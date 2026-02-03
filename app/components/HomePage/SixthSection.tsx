@@ -1,0 +1,81 @@
+import React from "react";
+// import { documentsData } from "./documentsData";
+import TextAnimation from './../TextAnimation';
+import FadeInFromLeft from './../Animation/FadeInFromLeft';
+
+// documentsData.js
+const documentsData = [
+  {
+    title: "Proof of Identity with full Date of Birth (Any One)",
+    items: [
+      "Pan Card",
+      "Aadhar Card",
+      "Passport",
+      "Voter Id",
+      "Passport size photo",
+    ],
+  },
+  {
+    title: "Proof of Residence (Any One)",
+    items: [
+      "Electricity Bill (Self/Parental)",
+      "Purchase Agreement",
+      "Property Tax",
+      "Utility Bills",
+      "Rent agreement",
+      "Allotment Letter",
+    ],
+  },
+  {
+    title: "Proof of Income (Required as per Product requirement)",
+    items: [
+      "Salaried – Previous 3 month Salary Credit Bank statement & salary slip.",
+      "Self employed – Latest Assessment year IT filed and Business Proof.",
+    ],
+  },
+];
+
+const SixthSection = () => {
+  return (
+    <section className="container py-10 sm:py-15 lg:py-20 ">
+      <div className=" mx-auto ">
+        <TextAnimation>
+          <h2 className="text-center mb-10 font-semibold text-black ">Documents Required to Apply For EV Two Wheeler Loan</h2>
+        </TextAnimation>
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {documentsData.map((section, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-corners overflow-hidden shadow-md border hover:shadow-lg transition"
+            >
+              {/* Heading */}
+              <TextAnimation>
+                <div className="bg-[#2dc8f7] text-white px-5 py-3  font-semibold text-sm">
+                  {section.title}
+                </div>
+              </TextAnimation>
+
+              {/* Content */}
+              <ul className="p-5 space-y-3">
+                {section.items.map((item, i) => (
+                  <li
+                  key={i}
+                  className="flex items-start gap-3 text-gray-700 text-sm cursor-pointer transition-colors duration-200 "
+                  >
+                    <span className="text-green-600 mt-1">✔</span>
+                    <TextAnimation>
+                    <span>{item}</span>
+              </TextAnimation>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default SixthSection;

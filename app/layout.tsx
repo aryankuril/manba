@@ -1,15 +1,31 @@
+// app/layout.tsx
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+import { Montserrat } from "next/font/google";
+import localFont from "next/font/local";
+
+/* =========================
+   Primary Font – Montserrat
+   ========================= */
+const montserrat = Montserrat({
   subsets: ["latin"],
+  weight: ["300", "400", "700"], // Extralight-ish, Regular, Bold
+  variable: "--font-primary",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+/* =========================
+   Secondary Font – Avant Garde
+   ========================= */
+const avantGarde = localFont({
+  src: [
+    {
+      path: "../public/fonts/ITCAvantGardePro-Md.ttf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-secondary",
 });
 
 export const metadata: Metadata = {
@@ -19,13 +35,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${montserrat.variable} ${avantGarde.variable} bg-background text-foreground`}
       >
         {children}
       </body>
