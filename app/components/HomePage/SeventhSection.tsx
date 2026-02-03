@@ -45,6 +45,7 @@ export default function SeventhSection() {
 
            <Button
             text="Calculate Your Loan"
+              href="/calculator"
             className="bg-[#205073] text-white lg:mt-5 mt-3"
           />
 

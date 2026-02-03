@@ -13,6 +13,12 @@ import EleventhSection from './components/HomePage/EleventhSection';
 import TwelfthSection from './components/HomePage/TwelfthSection';
 import Footer from './components/Footer';
 
+import { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Electric Scooter & Bike Loans | Easy Online Finance for Electric Vehicles',
+  description: 'Get fast, hassle-free online loans for electric bikes and scooters with flexible repayment options. Apply now for easy financing and drive into a greener future',
+}
+
 export default function Home() {
   return (
   <div className="">
@@ -24,9 +30,9 @@ export default function Home() {
     {/* <FifthSection /> */}
     <SixthSection />
     <SeventhSection />
-    <EightSection />
-    <NinthSection />
+    {/* <EightSection /> */}
     <TenthSection />
+    <NinthSection />
     <EleventhSection />
     <TwelfthSection />
     <Footer />

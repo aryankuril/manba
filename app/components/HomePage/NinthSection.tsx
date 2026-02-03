@@ -72,6 +72,7 @@ const toggleFaq = (index: number) => {
 
  <Button
             text="Apply Now"
+              href="https://www.manbafinance.com/apply-now/"
             className="bg-[#205073] text-white "
           />
 </FadeInFromLeft>

@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
+import SmoothScroll from './components/SmoothScroll';
 
 /* =========================
    Primary Font – Montserrat
@@ -43,7 +44,10 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${avantGarde.variable} bg-background text-foreground`}
       >
+
+                 <SmoothScroll>
         {children}
+        </SmoothScroll>
       </body>
     </html>
   );

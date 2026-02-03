@@ -1,39 +1,45 @@
 import Image from "next/image";
+import TextAnimation from "./../TextAnimation";
+import Button from "../Button";
 
 const products = [
   {
-    title: "Two wheeler Loan",
-    image: "/images/related-1.png",
+    title: "Two Wheeler Loan",
+    image: "/images/related-2.png",
+    link: "https://www.manbafinance.com/two-wheeler-loan/",
   },
   {
     title: "Pre-Owned Two Wheeler Loan",
-    image: "/images/related-2.png",
+    image: "/images/related-3.png",
+    link: "https://www.manbafinance.com/used-two-wheeler-loan/",
   },
   {
     title: "EV Three Wheeler Loan",
-    image: "/images/related-3.png",
+    image: "/images/related-1.png",
+    link: "https://www.manbafinance.com/ev-three-wheeler/",
   },
 ];
 
 export default function TwelfthSection() {
   return (
     <section className="w-full container py-10 sm:py-15 lg:py-20">
-      <div className=" mx-auto ">
+      <div className="mx-auto">
         {/* Heading */}
-        <h2 className="text-center text-3xl font-semibold mb-12">
-          <span className="text-[#1f4d6b]">Related</span>{" "}
-          <span className="text-[#f5a623]">Products</span>
-        </h2>
+        <TextAnimation>
+          <h2 className="text-center text-black font-semibold mb-10">
+            Related Products
+          </h2>
+        </TextAnimation>
 
         {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((item, index) => (
             <div
               key={index}
-              className="bg-[#f6f6f6] rounded-2xl overflow-hidden p-5"
+              className="bg-[#f6f6f6] rounded-corners overflow-hidden p-5"
             >
               {/* Image */}
-              <div className="relative w-full h-56 rounded-xl overflow-hidden">
+              <div className="relative w-full h-56 rounded-corners overflow-hidden">
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -48,10 +54,12 @@ export default function TwelfthSection() {
                   {item.title}
                 </h5>
 
-                {/* Full width button */}
-                <button className="w-full bg-[#1f4d6b] text-white py-3 rounded-lg hover:bg-[#173a52] transition">
-                  Explore More
-                </button>
+                {/* Button with unique link */}
+                <Button
+                  text="Explore More"
+                  href={item.link}
+                  className="bg-[#205073] text-white w-full"
+                />
               </div>
             </div>
           ))}
