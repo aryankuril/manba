@@ -7,7 +7,7 @@ import Button from '../Button';
 
 
 const NinthSection = () => {
-     const [activeIndex, setActiveIndex] = useState(0);
+    //  const [activeIndex, setActiveIndex] = useState(0);
 
 const faqs = [
   {
@@ -46,11 +46,12 @@ const faqs = [
       "Yes. Business owners and self-employed individuals are eligible for a two-wheeler loan if they have been running their business for at least 2 years and are at least 21 years of age.",
   },
 ];
+const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
+const toggleFaq = (index: number) => {
+  setActiveIndex(activeIndex === index ? null : index);
+};
 
-  const toggleFaq = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
   return (
      <section className="container py-10 sm:py-15 lg:py-20">
       <div className="flex flex-col lg:flex-row justify-between gap-10">
