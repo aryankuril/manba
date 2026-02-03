@@ -18,7 +18,7 @@ const AnimatedNumber = ({
 }: AnimatedNumberProps) => {
   const [displayValue, setDisplayValue] = useState(value);
   const previousValue = useRef(value);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | null>(null); // ✅ FIX
 
   useEffect(() => {
     const startValue = previousValue.current;
@@ -28,11 +28,11 @@ const AnimatedNumber = ({
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      
-      // Easing function (ease-out cubic)
+
       const easeOutCubic = 1 - Math.pow(1 - progress, 3);
-      
-      const currentValue = startValue + (endValue - startValue) * easeOutCubic;
+      const currentValue =
+        startValue + (endValue - startValue) * easeOutCubic;
+
       setDisplayValue(Math.round(currentValue));
 
       if (progress < 1) {
@@ -45,7 +45,7 @@ const AnimatedNumber = ({
     animationRef.current = requestAnimationFrame(animate);
 
     return () => {
-      if (animationRef.current) {
+      if (animationRef.current !== null) {
         cancelAnimationFrame(animationRef.current);
       }
     };
@@ -59,7 +59,9 @@ const AnimatedNumber = ({
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
     >
-      {prefix}{displayValue.toLocaleString('en-IN')}{suffix}
+      {prefix}
+      {displayValue.toLocaleString('en-IN')}
+      {suffix}
     </motion.span>
   );
 };
