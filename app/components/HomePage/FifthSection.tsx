@@ -37,7 +37,7 @@ const FifthSection = () => {
         {/* Content */}
         <div className="relative z-10 flex h-full items-center">
           <div className="max-w-xl px-10 text-white">
-            <h2 className="text-4xl font-bold">EMI Calculator</h2>
+            <h3 className="text-4xl font-bold">EMI Calculator</h3>
 
             <h3 className="mt-2 text-2xl font-semibold">
               Own the Future Today!

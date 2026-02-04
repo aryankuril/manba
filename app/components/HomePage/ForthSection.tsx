@@ -69,15 +69,15 @@ export default function ForthSection() {
     /* 🔥 SCROLL SPACE (FIXED HEIGHT) */
     <div
       ref={sectionRef}
-      style={{ height: `${(steps.length - 1) * 100}vh` }}
+      style={{ height: `${(steps.length - 1) * 120}vh` }}
       className="relative container py-10 sm:py-15 lg:py-20"
     >
       {/* 🔥 STICKY CONTENT */}
       <div className="sticky top-[25vh] w-full container flex flex-col items-center">
         <TextAnimation>
-          <h2 className="text-center text-3xl sm:text-4xl font-semibold">
+          <h3 className="text-center text-3xl sm:text-4xl font-semibold">
             How Our Process Works
-          </h2>
+          </h3>
         </TextAnimation>
         <FadeInFromLeft>
         <div className="w-full max-w-2xl">
@@ -113,13 +113,8 @@ export default function ForthSection() {
               >
                 {/* CIRCLE (ALIGNED ON LINE) */}
                 <motion.div
-                  className="w-24 h-24 flex items-center justify-center rounded-full shadow-md z-10"
-                  style={{
-                    background:
-                      active >= step.id
-                        ? "linear-gradient(90deg, #55c595, #329d9c)"
-                        : "#e5e7eb",
-                  }}
+                  className="w-24 h-24 bg-[#2dc8f7] flex items-center justify-center rounded-full shadow-md z-10"
+                  
                 >
                   {step.icon}
                 </motion.div>
@@ -164,7 +159,7 @@ export default function ForthSection() {
         </div>
 
         {/* BUTTONS */}
-        <div className="flex gap-4 mt-10">
+        {/* <div className="flex gap-4 mt-10">
           <Button
             onClick={() => setActive((p) => Math.max(1, p - 1))}
             text="← Previous"
@@ -175,7 +170,7 @@ export default function ForthSection() {
             text="Next →"
             className="bg-[#205073] text-white"
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );

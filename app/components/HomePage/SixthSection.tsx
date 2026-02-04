@@ -40,7 +40,7 @@ const SixthSection = () => {
     <section className="container py-10 sm:py-15 lg:py-20 ">
       <div className=" mx-auto ">
         <TextAnimation>
-          <h2 className="text-center mb-10 font-semibold text-black ">Documents Required to Apply For EV Two Wheeler Loan</h2>
+          <h3 className="text-center mb-10 font-semibold text-black ">Documents Required to Apply For EV Two Wheeler Loan</h3>
         </TextAnimation>
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

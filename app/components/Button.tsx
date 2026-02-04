@@ -105,6 +105,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+    
       type="button"
       onClick={internalClick} // use updated click handler
       disabled={disabled || loading}

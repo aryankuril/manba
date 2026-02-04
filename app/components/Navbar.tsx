@@ -11,12 +11,13 @@ import Button from "./Button";
 const Navbar = () => {
    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
-<header className="sticky top-0 z-40 bg-white">
+<header className="sticky top-0 z-40 bg-white/70 backdrop-blur-md border-b border-white/20">
+
   <div className="container w-full flex items-center py-3">
 
   
   {/* Left - Logo */}
-  <div className="flex items-center space-x-2 w-[200px]">
+  <div className="flex items-center space-x-2 w-[200px] z-99999">
      <Link href="/">
     <Image src="/images/Logo.svg" alt="boostim logo" width={130} height={33} />
     </Link>
@@ -75,11 +76,12 @@ const Navbar = () => {
 
   {/* Mobile Menu Dropdown */}
   {mobileMenuOpen && (
-    <div className="fixed inset-0 w-full h-full bg-white z-50 flex flex-col p-6 lg:hidden">
+<div className="fixed inset-0 w-full h-full bg-white/80  z-10 flex flex-col lg:hidden">
+
       <div className="absolute top-5 right-5 cursor-pointer" onClick={() => setMobileMenuOpen(false)}>
         <X size={28} />
       </div>
-      <div className="flex flex-col space-y-6 text-[#020407] mt-16 text-left">
+      <div className="flex flex-col space-y-6 bg-white text-[#020407] mt-16 p-6 z-10 text-left">
         <Link href="https://www.manbafinance.com/success-stories-2/">
         <div className="flex items-center space-x-2 text-[#020407] cursor-pointer hover:text-black  text-xl">
           <span>Home</span>

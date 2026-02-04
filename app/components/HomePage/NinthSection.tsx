@@ -58,11 +58,11 @@ const toggleFaq = (index: number) => {
         {/* Left Section */}
         <div className="lg:w-5/12">
         <TextAnimation>
-         <h2
+         <h3
   className="text-[#010205] text-[48px] font-semibold leading-[130%] tracking-[-0.045em] mb-4"
 >
   FAQ
-</h2></TextAnimation>
+</h3></TextAnimation>
 
 <FadeInFromLeft>
 

@@ -26,9 +26,9 @@ export default function TwelfthSection() {
       <div className="mx-auto">
         {/* Heading */}
         <TextAnimation>
-          <h2 className="text-center text-black font-semibold mb-10">
+          <h3 className="text-center text-black font-semibold mb-10">
             Related Products
-          </h2>
+          </h3>
         </TextAnimation>
 
         {/* Cards */}

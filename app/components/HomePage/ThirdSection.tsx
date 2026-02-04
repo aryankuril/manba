@@ -56,7 +56,7 @@ const ThirdSection = () => {
       <div className=" mx-auto ">
 
            <TextAnimation>
-      <h2 className="text-center font-semibold text-black mb-10 ">Advanced Features</h2>
+      <h3 className="text-center font-semibold text-black mb-10 ">Advanced Features</h3>
       </TextAnimation>
           
 
@@ -70,14 +70,14 @@ const ThirdSection = () => {
   {featuresLeft.map((item) => (
     <div key={item.id} className="flex items-start gap-5">
       {/* ICON */}
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#8dff6a] text-white text-xl">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#205073] text-white text-xl">
         {item.icon}
       </div>
 
       {/* TEXT */}
       <div>
         <div className="flex items-center gap-3">
-          <h5 className="font-semibold text-lg">{item.title}</h5>
+          <h5 className="font-semibold text-lg text-[#205073]">{item.title}</h5>
           {/* <span className="text-gray-400 text-sm">{item.id}</span> */}
         </div>
 
@@ -93,7 +93,7 @@ const ThirdSection = () => {
           {/* CENTER IMAGE */}
           <FadeInFromBottom>
           <div className="flex justify-center">
-            <div className="relative w-[260px] sm:w-[320px] md:w-[360px]">
+            <div className="relative w-[260px] sm:w-[320px] md:w-[400px]">
               <Image
                 src="/images/10.png" 
                 alt="EV Feature"
@@ -114,7 +114,7 @@ const ThirdSection = () => {
       className="flex items-start gap-5 flex-row-reverse text-left"
     >
       {/* ICON */}
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#8dff6a] text-white text-xl">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#205073] text-white text-xl">
         {item.icon}
       </div>
 
@@ -122,7 +122,7 @@ const ThirdSection = () => {
       <div>
         <div className="flex items-center justify-start gap-3">
           {/* <span className="text-gray-400 text-sm">{item.id}</span> */}
-          <h5 className="font-semibold text-lg">{item.title}</h5>
+          <h5 className="font-semibold text-lg text-[#205073]">{item.title}</h5>
         </div>
 
         <p className="mt-2 text-sm text-gray-500 max-w-xs ml-auto leading-relaxed">

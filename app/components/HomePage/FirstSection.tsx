@@ -7,7 +7,13 @@ import { motion } from "framer-motion";
 const FirstSection = () => {
   return (
     <div className=" lg:px-0 px-5">
-    <section className="relative  w-full container bg-[#8dff6a] rounded-corners ">
+    <section 
+    style={{
+    backgroundSize: "200% 100%",
+background:
+  "linear-gradient(90deg, #79f431 0%, #2dc8f7 60%, #2dc8f7 100%)",
+
+  }}className="relative  w-full container rounded-corners ">
       {/* Rounded outer container */}
       <div className="relative mx-auto h-[55vh] md:h-[60vh] ">
 
@@ -87,7 +93,7 @@ const FirstSection = () => {
 
 
             
-   <div className="relative z-10 max-w-xl text-black ">
+   <div className="relative z-10 max-w-xl text-white ">
           <TextAnimation>
             <h1 className="font-bold ">
               EV Two Wheeler
@@ -98,7 +104,7 @@ const FirstSection = () => {
         <motion.p
           className="mt-4 max-w-xl 
                      body2
-                     font-semibold  text-black"
+                     font-semibold  text-white"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}

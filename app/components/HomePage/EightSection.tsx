@@ -34,9 +34,9 @@ export default function EightSection() {
 
             {/* RIGHT CONTENT */}
             <div className="text-white">
-              <h2 className="text-4xl lg:text-5xl font-semibold leading-tight">
+              <h3 className="text-4xl lg:text-5xl font-semibold leading-tight">
                 Switch to Electric, <br /> Keep it Clean
-              </h2>
+              </h3>
 
               <p className="mt-5 text-lg text-white/90 max-w-xl">
                 Electric Scooter Loan and EV Bike Loan. Made Easy by Manba!

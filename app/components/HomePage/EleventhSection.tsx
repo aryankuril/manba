@@ -43,9 +43,9 @@ export default function TestimonialMarquee() {
     <section className="w-full py-16 overflow-hidden">
       <TextAnimation>
 
-      <h2 className="text-center mb-10 font-semibold text-black">
+      <h3 className="text-center mb-10 font-semibold text-black">
         What Our Clients Say
-      </h2>
+      </h3>
     </TextAnimation>
       {/* FADE EDGES */}
       <div className="relative">
