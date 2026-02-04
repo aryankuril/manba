@@ -6,9 +6,9 @@ import Lenis from "lenis";
 const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 2.0, // Higher = slower & smoother
+      duration: 1.0, // Higher = slower & smoother
       easing: (t) => 1 - Math.pow(1 - t, 3), // Custom easing
-      lerp: 0.10, // Lower = smoother but slower catch-up
+      lerp: 1, // Lower = smoother but slower catch-up
     });
 
     function raf(time: number) {

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import TextAnimation from './../TextAnimation';
 import FadeInFromLeft from './../Animation/FadeInFromLeft';
 import Button from '../Button';
+import Image from "next/image";
 
 
 const NinthSection = () => {
@@ -57,16 +58,17 @@ const toggleFaq = (index: number) => {
       <div className="flex flex-col lg:flex-row justify-between gap-10">
         {/* Left Section */}
         <div className="lg:w-5/12">
-        <TextAnimation>
+        {/* <TextAnimation> */}
          <h3
-  className="text-[#010205] text-[48px] font-semibold leading-[130%] tracking-[-0.045em] mb-4"
+  className="text-[#010205]  font-semibold mb-4"
 >
   FAQ
-</h3></TextAnimation>
+</h3>
+{/* </TextAnimation> */}
 
-<FadeInFromLeft>
+{/* <FadeInFromLeft> */}
 
-       <p className="text-[#878C91] text-[16px] font-medium leading-[150%] mb-6">
+       <p className="text-gray-600 font-secondary font-secondary  mb-4">
   Find clear answers to common questions about Manba’s EV two-wheeler loans, eligibility, process, and repayment—so you can switch to electric with confidence.
 </p>
 
@@ -75,7 +77,28 @@ const toggleFaq = (index: number) => {
               href="https://www.manbafinance.com/apply-now/"
             className="bg-[#205073] text-white "
           />
-</FadeInFromLeft>
+{/* </FadeInFromLeft> */}
+
+
+<motion.div
+              className=" md:flex hidden flex justify-center lg:justify-start"
+              initial={{ x: -140, opacity: 0, scale: 0.95 }}
+              whileInView={{ x: 0, opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{
+                duration: 1,
+                ease: [0.22, 1, 0.36, 1], // very smooth (easeOutExpo-like)
+              }}
+            >
+              <Image
+                src="/images/bike.svg"
+                alt="EV Scooter"
+                width={420}
+                height={420}
+                className="w-full max-w-md"
+                priority
+              />
+            </motion.div>
 
         </div>
 
@@ -101,15 +124,15 @@ const toggleFaq = (index: number) => {
         onClick={() => toggleFaq(index)}
         className="flex justify-between items-center cursor-pointer"
       >
-        <h5 className="font-semibold text-[#010205] text-[24px] w-120">{faq.question}</h5>
-        <span className="text-2xl text-[#000000] ">
+        <h5 className="font-semibold text-[#205073] text-[24px] w-120">{faq.question}</h5>
+        <span className="text-2xl text-[#205073] ">
           {activeIndex === index ? "−" : "+"}
         </span>
       </div>
 
       {activeIndex === index && (
         <motion.p
-          className="mt-4  text-[16px] text-[#878C91] "
+          className="mt-4  text-[16px] text-black font-secondary"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}

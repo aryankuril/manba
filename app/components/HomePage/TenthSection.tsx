@@ -19,7 +19,7 @@ export default function LogoInfiniteSlider() {
     <section className="w-full py-10 sm:py-14 lg:py-20 overflow-hidden">
       <div className="relative w-full">
         <TextAnimation>
-          <h3 className="text-center mb-8 sm:mb-10 font-semibold text-black px-4">
+          <h3 className="text-center mb-10 font-semibold text-black ">
             Take Your Pick, We&apos;ll Finance It!!
           </h3>
         </TextAnimation>

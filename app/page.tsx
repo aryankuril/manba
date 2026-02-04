@@ -11,6 +11,7 @@ import NinthSection from './components/HomePage/NinthSection';
 import TenthSection from './components/HomePage/TenthSection';
 import EleventhSection from './components/HomePage/EleventhSection';
 import TwelfthSection from './components/HomePage/TwelfthSection';
+import ContactUs from './components/HomePage/ContactUs';
 import Footer from './components/Footer';
 
 import { Metadata } from 'next';
@@ -35,6 +36,7 @@ export default function Home() {
     <NinthSection />
     <EleventhSection />
     <TwelfthSection />
+    <ContactUs />
     <Footer />
   </div>
   );

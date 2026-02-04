@@ -11,19 +11,19 @@ const featuresLeft = [
     id: "01",
     title: "Paperless Journey",
     desc: "Sunt dolor aliquip consectetur laboris incididunt tempor irure veniam amet et nostrud.",
-    icon: "⚡",
+    icon: <Image src="/icons/flash.png" alt="" width={28} height={28} />,
   },
   {
     id: "02",
     title: "Tenure 06 to 48 Months",
     desc: "Sunt dolor aliquip consectetur laboris incididunt tempor irure veniam amet et nostrud.",
-    icon: "🔇",
+    icon: <Image src="/icons/flash.png" alt="" width={28} height={28} />,
   },
   {
     id: "03",
     title: "Speedy Loan Approval",
     desc: "Sunt dolor aliquip consectetur laboris incididunt tempor irure veniam amet et nostrud.",
-    icon: "🍃",
+    icon: <Image src="/icons/flash.png" alt="" width={28} height={28} />,
   },
 ];
 
@@ -33,19 +33,19 @@ const featuresRight = [
     id: "04",
     title: "Simplified Disbursement ",
     desc: "Sunt dolor aliquip consectetur laboris incididunt tempor irure veniam amet et nostrud.",
-    icon: "🛣️",
+    icon: <Image src="/icons/flash.png" alt="" width={28} height={28} />,
   },
   {
     id: "05",
     title: "Customized Schemes",
     desc: "Sunt dolor aliquip consectetur laboris incididunt tempor irure veniam amet et nostrud.",
-    icon: "🛣️",
+    icon: <Image src="/icons/flash.png" alt="" width={28} height={28} />,
   },
    {
     id: "06",
     title: "Cash EMI Facility ",
     desc: "Sunt dolor aliquip consectetur laboris incididunt tempor irure veniam amet et nostrud.",
-    icon: "🛣️",
+    icon: <Image src="/icons/flash.png" alt="" width={28} height={28} />,
   },
 
 ];
@@ -81,7 +81,7 @@ const ThirdSection = () => {
           {/* <span className="text-gray-400 text-sm">{item.id}</span> */}
         </div>
 
-        <p className="mt-2 text-sm text-gray-500 max-w-xs leading-relaxed">
+        <p className="mt-2 text-sm text-gray-500 max-w-xs leading-relaxed font-secondary">
           {item.desc}
         </p>
       </div>
@@ -95,7 +95,7 @@ const ThirdSection = () => {
           <div className="flex justify-center">
             <div className="relative w-[260px] sm:w-[320px] md:w-[400px]">
               <Image
-                src="/images/10.png" 
+                src="/images/sad.png" 
                 alt="EV Feature"
                 width={500}
                 height={500}
@@ -125,7 +125,7 @@ const ThirdSection = () => {
           <h5 className="font-semibold text-lg text-[#205073]">{item.title}</h5>
         </div>
 
-        <p className="mt-2 text-sm text-gray-500 max-w-xs ml-auto leading-relaxed">
+        <p className="mt-2 text-sm text-gray-600 font-secondary max-w-xs ml-auto leading-relaxed ">
           {item.desc}
         </p>
       </div>

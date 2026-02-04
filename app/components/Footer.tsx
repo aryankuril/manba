@@ -4,7 +4,7 @@ import { Mail, Phone, Smartphone, Facebook, Instagram, Linkedin, Twitter, Headin
 export default function Footer() {
   return (
     <footer className="w-full">
-      <div className="bg-[#0b2a44] rounded-2xl text-white lg:p-10 p-5">
+      <div className="bg-[#205073] rounded-2xl text-white lg:p-10 p-5">
         <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
 
           {/* GET IN TOUCH (FIRST) */}

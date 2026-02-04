@@ -2,11 +2,13 @@ import React from "react";
 // import { documentsData } from "./documentsData";
 import TextAnimation from './../TextAnimation';
 import FadeInFromLeft from './../Animation/FadeInFromLeft';
+import Button from "../Button";
 
 // documentsData.js
 const documentsData = [
   {
-    title: "Proof of Identity with full Date of Birth (Any One)",
+    title: "Proof of Identity with full Date of Birth ",
+    subtitle: "(Any One)",
     items: [
       "Pan Card",
       "Aadhar Card",
@@ -16,7 +18,8 @@ const documentsData = [
     ],
   },
   {
-    title: "Proof of Residence (Any One)",
+    title: "Proof of Residence",
+    subtitle: "(Any One)",
     items: [
       "Electricity Bill (Self/Parental)",
       "Purchase Agreement",
@@ -27,7 +30,8 @@ const documentsData = [
     ],
   },
   {
-    title: "Proof of Income (Required as per Product requirement)",
+    title: "Proof of Income",
+    subtitle: "(Required as per Product requirement)",
     items: [
       "Salaried – Previous 3 month Salary Credit Bank statement & salary slip.",
       "Self employed – Latest Assessment year IT filed and Business Proof.",
@@ -50,18 +54,19 @@ const SixthSection = () => {
               className="bg-white rounded-corners overflow-hidden shadow-md border hover:shadow-lg transition"
             >
               {/* Heading */}
-              <TextAnimation>
-                <div className="bg-[#2dc8f7] text-white px-5 py-3  font-semibold text-sm">
+      
+                <div className="bg-[#205073] text-white px-5 py-3  font-semibold text-xl">
                   {section.title}
+                  <div className="mt-1 text-xs font-normal">{section.subtitle}</div>
                 </div>
-              </TextAnimation>
+           
 
               {/* Content */}
               <ul className="p-5 space-y-3">
                 {section.items.map((item, i) => (
                   <li
                   key={i}
-                  className="flex items-start gap-3 text-gray-700 text-sm cursor-pointer transition-colors duration-200 "
+                  className="flex items-start gap-3 text-gray-600 font-secondary text-sm cursor-pointer transition-colors duration-200 "
                   >
                     <span className="text-green-600 mt-1">✔</span>
                     <TextAnimation>
@@ -73,6 +78,13 @@ const SixthSection = () => {
             </div>
           ))}
         </div>
+<div className="text-center items-center">
+          <Button
+  text="Apply Now"
+  href="https://www.manbafinance.com/apply-now/"
+  className="mt-5 "
+/>
+          </div>
       </div>
     </section>
   );

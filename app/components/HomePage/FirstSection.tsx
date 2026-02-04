@@ -8,12 +8,7 @@ const FirstSection = () => {
   return (
     <div className=" lg:px-0 px-5">
     <section 
-    style={{
-    backgroundSize: "200% 100%",
-background:
-  "linear-gradient(90deg, #79f431 0%, #2dc8f7 60%, #2dc8f7 100%)",
-
-  }}className="relative  w-full container rounded-corners ">
+    className="relative  w-full container bg-[#205073] rounded-corners ">
       {/* Rounded outer container */}
       <div className="relative mx-auto h-[55vh] md:h-[60vh] ">
 
@@ -95,16 +90,16 @@ background:
             
    <div className="relative z-10 max-w-xl text-white ">
           <TextAnimation>
-            <h1 className="font-bold ">
+            <h1 className="font-bold mb-4 ">
               EV Two Wheeler
             </h1>
           </TextAnimation>
 
 {/* Subtitle */}
         <motion.p
-          className="mt-4 max-w-xl 
+          className=" max-w-xl 
                      body2
-                     font-semibold  text-white"
+                     font-semibold  text-white font-secondary"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}

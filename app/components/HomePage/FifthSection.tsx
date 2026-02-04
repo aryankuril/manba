@@ -37,13 +37,13 @@ const FifthSection = () => {
         {/* Content */}
         <div className="relative z-10 flex h-full items-center">
           <div className="max-w-xl px-10 text-white">
-            <h3 className="text-4xl font-bold">EMI Calculator</h3>
+            <h3 className=" font-bold">EMI Calculator</h3>
 
             <h3 className="mt-2 text-2xl font-semibold">
               Own the Future Today!
             </h3>
 
-            <p className="mt-4 text-sm leading-relaxed opacity-90">
+            <p className="mt-4 text-sm leading-relaxed opacity-90 text-gray-600 font-secondary">
               Experience the joy of riding an electric two-wheeler with easy
               monthly installments. Calculate your EMI now.
             </p>

@@ -32,7 +32,7 @@ export default function ForthSection() {
     {
       id: 4,
       title: "Onboarding",
-      desc: "GEO Deployment",
+      desc: "KYC, E-Sign, E-Mandate & Disbursement",
       icon: <Image src="/icons/onboarding.png" alt="" width={32} height={32} />,
     },
   ];
@@ -75,13 +75,13 @@ export default function ForthSection() {
       {/* 🔥 STICKY CONTENT */}
       <div className="sticky top-[25vh] w-full container flex flex-col items-center">
         <TextAnimation>
-          <h3 className="text-center text-3xl sm:text-4xl font-semibold">
+          <h3 className="text-center font-semibold mb-4">
             How Our Process Works
           </h3>
         </TextAnimation>
         <FadeInFromLeft>
         <div className="w-full max-w-2xl">
-          <p className="mt-2 text-black font-medium text-center">
+          <p className="mb-4  font-medium text-center text-gray-600 font-secondary">
             To Make Your Dream Come True
           </p>
         </div>
@@ -119,8 +119,8 @@ export default function ForthSection() {
                   {step.icon}
                 </motion.div>
 
-                <h5 className="mt-4 font-semibold">{step.title}</h5>
-                <p className="text-sm text-gray-600">{step.desc}</p>
+                <h5 className="mt-4 font-semibold text-[#205073]">{step.title}</h5>
+                <p className="text-sm text-gray-600 font-secondary">{step.desc}</p>
               </div>
             ))}
           </div>

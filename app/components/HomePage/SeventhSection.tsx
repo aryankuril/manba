@@ -7,11 +7,6 @@ import FadeInFromLeft from './../Animation/FadeInFromLeft';
 
 const eligibilityData = [
   {
-    icon: User,
-    title: "Age",
-    description: "Minimum 18 & Maximum up to 60 years",
-  },
-  {
     icon: MapPin,
     title: "Resident",
     description: "Indian",
@@ -20,6 +15,11 @@ const eligibilityData = [
     icon: CreditCard,
     title: "Bank Account",
     description: "Operative",
+  },
+  {
+    icon: User,
+    title: "Age",
+    description: "Minimum 18 & Maximum up to 60 years",
   },
 ];
 
@@ -31,14 +31,14 @@ export default function SeventhSection() {
         {/* LEFT CONTENT */}
         <div >
           <TextAnimation>
-          <h3 className=" font-semibold text-black leading-tight">
+          <h3 className=" mb-4 font-semibold text-black leading-tight">
             EV Two Wheeler Loan  Eligibility Criteria
           </h3>
           </TextAnimation>
 
           <FadeInFromLeft>
 
-          <p className="mt-6 text-lg text-gray-600 max-w-xl">
+          <p className=" text-lg text-gray-600 font-secondary max-w-xl mb-4 ">
             Explore the most flexible, quick and cost-effective way to own your
             dream EV two wheeler
           </p>
@@ -46,7 +46,7 @@ export default function SeventhSection() {
            <Button
             text="Calculate Your Loan"
               href="/calculator"
-            className="bg-[#205073] text-white lg:mt-5 mt-3"
+            className="bg-[#205073] text-white "
           />
 
           </FadeInFromLeft>
@@ -70,10 +70,10 @@ export default function SeventhSection() {
         </div>
 
         <div>
-          <h5 className="text-lg font-semibold text-gray-900">
+          <h5 className="text-lg font-semibold text-[#205073]">
             {item.title}
           </h5>
-          <p className="mt-1 text-gray-600">
+          <p className="mt-1 text-gray-600 font-secondary ">
             {item.description}
           </p>
         </div>

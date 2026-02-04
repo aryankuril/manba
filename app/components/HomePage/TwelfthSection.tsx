@@ -1,6 +1,7 @@
 import Image from "next/image";
 import TextAnimation from "./../TextAnimation";
 import Button from "../Button";
+import Link from "next/link";
 
 const products = [
   {
@@ -44,22 +45,35 @@ export default function TwelfthSection() {
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover"
+                  className="object-fit"
                 />
               </div>
 
               {/* Content */}
               <div className="mt-6">
-                <h5 className="text-lg font-semibold text-gray-800 mb-4">
+                <h5 className="text-lg font-semibold text-[#205073] mb-4">
                   {item.title}
                 </h5>
 
+
+
+                <Link
+  href={item.link}
+  className="inline-flex items-center gap-3 text-[#205073] font-semibold underline "
+>
+  Explore More →
+  {/* <span className="w-8 h-8 flex items-center justify-center rounded-full border border-[#205073]">
+    →
+  </span> */}
+</Link>
+
+
                 {/* Button with unique link */}
-                <Button
+                {/* <Button
                   text="Explore More"
                   href={item.link}
                   className="bg-[#205073] text-white w-full"
-                />
+                /> */}
               </div>
             </div>
           ))}

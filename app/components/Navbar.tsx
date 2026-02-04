@@ -56,7 +56,7 @@ const Navbar = () => {
     <Button
   text="Apply Now"
   href="https://www.manbafinance.com/apply-now/"
-  className="hidden md:inline-flex bg-[#205073] text-white"
+  className="hidden md:inline-flex "
 />
 
 {/* 

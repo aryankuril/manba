@@ -62,16 +62,18 @@ const StatsBar = () => {
 
   return (
     <section ref={ref} className="w-full container py-10 sm:py-15 lg:py-20 lg:mt-20 mt-10">
-      <div
-  className="relative rounded-corners px-6 py-6 shadow-lg bg-[#205073] bg-cover bg-center overflow-hidden"
-  style={{ backgroundImage: "url('/images/statsbg.jpg')" }}
->
+      <div   style={{
+    backgroundSize: "200% 100%",
+background:
+  "linear-gradient(90deg, #79f431 0%, #2dc8f7 60%, #2dc8f7 100%)",
 
+  }}
+  className=" rounded-corners px-6 py-6 shadow-lg">
         <div className="grid grid-cols-2 gap-6 text-center md:grid-cols-4">
           {stats.map((stat, i) => (
   <div key={i}>
     {/* BIG NUMBER */}
-    <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black">
+    <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[black]">
       {counts[i]}
       {stat.suffix}
     </div>

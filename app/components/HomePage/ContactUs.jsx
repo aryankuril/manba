@@ -1,0 +1,268 @@
+"use client";
+
+import { useState ,useRef } from "react";
+import confetti from "canvas-confetti";
+import { Phone, Mail, MapPin ,ChevronDown } from "lucide-react";
+
+import Button from "../Button";
+
+const ContactUs = () => {
+
+    const shootRealisticConfetti = () => {
+        const count = 200;
+        const defaults = {
+            origin: { x: 0.8, y: 0.2 }
+        };
+
+        function fire(particleRatio, opts) {
+            confetti({
+                ...defaults,
+                ...opts,
+                particleCount: Math.floor(count * particleRatio)
+            });
+        }
+
+        fire(0.25, {
+            spread: 26,
+            startVelocity: 55,
+        });
+        fire(0.2, {
+            spread: 60,
+        });
+        fire(0.35, {
+            spread: 100,
+            decay: 0.91,
+            scalar: 0.8
+        });
+        fire(0.1, {
+            spread: 120,
+            startVelocity: 25,
+            decay: 0.92,
+            scalar: 1.2
+        });
+        fire(0.1, {
+            spread: 120,
+            startVelocity: 45,
+        });
+    }
+
+
+//     const handleSubmit = () => {
+//         // your other functions here
+// setFormData({ ...formData, [e.target.name]: e.target.value });
+//         shootRealisticConfetti();
+//     }
+
+
+  //  const [subject, setSubject] = useState("general");
+ const [formData, setFormData] = useState({
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  message: "",
+  cibilScore: "",
+});
+
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const sendEmail = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        alert("Message sent successfully!");
+        shootRealisticConfetti();
+
+       setFormData({
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  message: "",
+  cibilScore: "",
+});
+      } else {
+        alert("Failed to send message. Please try again.");
+        console.error("API Error:", data.message);
+      }
+    } catch (error) {
+      console.error("Request Failed:", error);
+      alert("Something went wrong. Please try again.");
+    }
+  };
+
+
+
+  return (
+    <section className="min-h-screen w-full container py-10 sm:py-15 lg:py-20 ">
+      <div className="mx-auto">
+
+
+        <div className="flex flex-col md:flex-row lg:h-[600px] bg-white shadow-lg rounded-2xl overflow-hidden">
+          <div
+            className="md:w-1/2 bg-cover bg-center text-white p-8 relative"
+            style={{ backgroundImage: `url('/images/contact-bg.png')` }}
+          >
+            <div className="absolute inset-0  z-0 rounded-2xl" />
+            <div className="relative z-10">
+              <h3 className="text-[28px] font-semibold mb-2">
+                Contact Information
+              </h3>
+              <p className="lg:mb-30 mb-6 text-[18px]">
+                Say something to start a live chat!
+              </p>
+
+              <div className="space-y-5 text-[16px]">
+  <div className="flex items-center space-x-4 lg:mb-10">
+    <Phone className="w-5 h-5 text-[#79f431]" />
+    <span>+1012 3456 789</span>
+  </div>
+
+  <div className="flex items-center space-x-4 lg:mb-10">
+    <Mail className="w-5 h-5 text-[#79f431]" />
+    <span>demo@gmail.com</span>
+  </div>
+
+  <div className="flex items-center space-x-4 lg:mb-40">
+    <MapPin className="w-5 h-5 text-[#79f431]" />
+    <span>
+      132 Dartmouth Street Boston, Massachusetts 02156 United States
+    </span>
+  </div>
+</div>
+
+
+              {/* <div className="flex space-x-4 mt-10">
+                <img src="/icons/twitter-g.png" alt="social1" className="w-8 h-8" />
+                <img src="/icons/instagram.png" alt="social2" className="w-8 h-8" />
+              </div> */}
+            </div>
+          </div>
+
+          {/* Right Side Form */}
+          <div className="md:w-1/2 p-8 bg-white">
+            <form className="space-y-6" onSubmit={sendEmail}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm text-gray-600">First Name</label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                    className="w-full mt-1 border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm text-gray-600">Last Name</label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
+                    className="w-full mt-1 border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm text-gray-600 lg:mt-5 mt-1">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full mt-1 border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black"
+                  />
+                </div>
+                <div>
+        <label className="block text-sm text-gray-600 lg:mt-5 mt-1">Phone Number</label>
+        <input
+          type="tel"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          required
+          pattern="[0-9]{10}"
+          minLength="10"
+          maxLength="10"
+          placeholder=""
+          className="w-full mt-1 border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black"
+        />
+      </div>
+              </div>
+
+          <div className="mt-4">
+  <label className="block text-sm text-gray-600">
+    Cibil Score <span className="text-red-500">*</span>
+  </label>
+
+  <div className="relative mt-2">
+    <select
+      name="cibilScore"
+      value={formData.cibilScore}
+      onChange={handleChange}
+      required
+      className="w-full border border-gray-300 rounded-xl px-4 py-3 pr-12 focus:outline-none text-[#011C2A] focus:border-black appearance-none"
+    >
+      <option value="">What is your Cibil Score?</option>
+      <option value="Between 500 and 650">Between 500 and 650</option>
+      <option value="Between 650 and 720">Between 650 and 720</option>
+      <option value="Between 720 and 800">Between 720 and 800</option>
+      <option value="Above 800">Above 800</option>
+    </select>
+
+    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 pointer-events-none" />
+  </div>
+</div>
+
+
+
+
+              <div>
+                <label className="block text-sm text-gray-600 mb-5">Message</label>
+                <textarea
+                  rows="2"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  placeholder="Write a message"
+                  className="w-full border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black resize-none"
+                ></textarea>
+              </div>
+
+
+              <Button
+  text="Get Started"
+  className=" text-white"
+  onClick={sendEmail}
+/>
+
+
+
+      
+
+               
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ContactUs;

@@ -96,7 +96,13 @@ const Button: React.FC<ButtonProps> = ({
         href={href}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className={`relative inline-flex items-center justify-center px-5 py-3 border border-white rounded-[32px] uppercase text-white font-sans text-base overflow-hidden ${className}`}
+         style={{
+  backgroundSize: "200% 100%",
+  background: "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
+}}
+
+
+        className={`relative inline-flex items-center justify-center px-5 py-3  rounded-[32px] uppercase text-white font-sans text-base overflow-hidden ${className}`}
       >
         {ButtonContent}
       </Link>
@@ -104,19 +110,24 @@ const Button: React.FC<ButtonProps> = ({
   }
 
   return (
-    <button
-    
-      type="button"
-      onClick={internalClick} // use updated click handler
-      disabled={disabled || loading}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className={`relative inline-flex items-center justify-center px-5 py-3 cursor-pointer border border-white rounded-[32px] uppercase text-white font-sans text-base overflow-hidden ${
-        disabled || loading ? "opacity-50 cursor-not-allowed" : ""
-      } ${className}`}
-    >
-      {ButtonContent}
-    </button>
+   <button
+  type="button"
+  onClick={internalClick}
+  disabled={disabled || loading}
+  onMouseEnter={() => setHovered(true)}
+  onMouseLeave={() => setHovered(false)}
+  style={{
+    backgroundSize: "200% 100%",
+    background:
+      "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
+  }}
+  className={`relative inline-flex items-center justify-center px-5 py-3 cursor-pointer rounded-[32px] uppercase text-white font-sans text-base overflow-hidden ${
+    disabled || loading ? "opacity-50 cursor-not-allowed" : ""
+  } ${className}`}
+>
+  {ButtonContent}
+</button>
+
   );
 };
 

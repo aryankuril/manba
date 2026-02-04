@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import TextAnimation from './../TextAnimation';
+import TextAnimation from "./../TextAnimation";
+import { useEffect, useRef, useState } from "react";
 
 const testimonials = [
   {
@@ -23,8 +24,7 @@ const testimonials = [
   {
     name: "Rohit Sharma",
     role: "Founder, DEX",
-    message:
-      "Better engagement, better leads, and a crystal clear brand voice.",
+    message: "Better engagement, better leads, and a crystal clear brand voice.",
     image: "/images/Testimonials-3.jpeg",
     rating: 5,
   },
@@ -39,53 +39,111 @@ const testimonials = [
 ];
 
 export default function TestimonialMarquee() {
+  const sliderRef = useRef<HTMLDivElement | null>(null);
+
+  const [isDown, setIsDown] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  // AUTO SCROLL
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    let animationFrame: number;
+    let speed = 0.7; // adjust speed here
+
+    const autoScroll = () => {
+      if (!isDown) {
+        slider.scrollLeft += speed;
+
+        // infinite loop
+        if (slider.scrollLeft >= slider.scrollWidth / 2) {
+          slider.scrollLeft = 0;
+        }
+      }
+
+      animationFrame = requestAnimationFrame(autoScroll);
+    };
+
+    animationFrame = requestAnimationFrame(autoScroll);
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [isDown]);
+
   return (
     <section className="w-full py-16 overflow-hidden">
       <TextAnimation>
+        <h3 className="text-center mb-10 font-semibold text-black">
+          What Our Clients Say
+        </h3>
+      </TextAnimation>
 
-      <h3 className="text-center mb-10 font-semibold text-black">
-        What Our Clients Say
-      </h3>
-    </TextAnimation>
       {/* FADE EDGES */}
       <div className="relative">
         <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10" />
         <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-10" />
 
         {/* MASK */}
-        <div className="overflow-hidden w-full">
-          {/* TRACK */}
-          <div className="flex animate-marquee w-max">
+        <div
+          ref={sliderRef}
+          className="overflow-hidden w-full cursor-grab active:cursor-grabbing"
+          onMouseDown={(e) => {
+            setIsDown(true);
+            setStartX(e.pageX - (sliderRef.current?.offsetLeft || 0));
+            setScrollLeft(sliderRef.current?.scrollLeft || 0);
+          }}
+          onMouseLeave={() => setIsDown(false)}
+          onMouseUp={() => setIsDown(false)}
+          onMouseMove={(e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - (sliderRef.current?.offsetLeft || 0);
+            const walk = (x - startX) * 1.5;
+            if (sliderRef.current) {
+              sliderRef.current.scrollLeft = scrollLeft - walk;
+            }
+          }}
+          onTouchStart={(e) => {
+            setIsDown(true);
+            setStartX(e.touches[0].pageX - (sliderRef.current?.offsetLeft || 0));
+            setScrollLeft(sliderRef.current?.scrollLeft || 0);
+          }}
+          onTouchEnd={() => setIsDown(false)}
+          onTouchMove={(e) => {
+            if (!isDown) return;
+            const x = e.touches[0].pageX - (sliderRef.current?.offsetLeft || 0);
+            const walk = (x - startX) * 1.5;
+            if (sliderRef.current) {
+              sliderRef.current.scrollLeft = scrollLeft - walk;
+            }
+          }}
+        >
+          <div className="flex w-max">
             {[...testimonials, ...testimonials].map((item, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 px-4"
-                
-              >
-                <div className="bg-white border rounded-corners shadow-md flex h-full overflow-hidden">
+              <div key={index} className="flex-shrink-0 px-2">
+                <div className="bg-white border rounded-corners shadow-md flex h-full overflow-hidden w-[520px]">
                   {/* IMAGE */}
-                  <div className="relative w-2/2 min-h-[220px]">
+                  <div className="relative w-[180px] min-h-[180px] flex-shrink-0">
                     <Image
                       src={item.image}
                       alt={item.name}
                       fill
-                      className="object-fit"
+                      className="object-cover p-3 rounded-corners"
                     />
                   </div>
 
                   {/* CONTENT */}
-                  <div className="p-6 flex flex-col justify-between">
+                  <div className="p-3 flex flex-col justify-between">
                     <p className="text-gray-900 text-sm leading-relaxed">
                       “{item.message}”
                     </p>
 
                     <div className="mt-6">
-                      <p className="font-semibold text-gray-900">
+                      <p className="font-semibold text-[#205073]">
                         {item.name}
                       </p>
-                      <p className="text-sm text-gray-500">
-                        {item.role}
-                      </p>
+                      <p className="text-sm text-gray-500">{item.role}</p>
 
                       <div className="flex gap-1 mt-2">
                         {Array.from({ length: item.rating }).map((_, i) => (
