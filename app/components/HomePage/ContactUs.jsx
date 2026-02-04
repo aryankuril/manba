@@ -54,7 +54,7 @@ const ContactUs = () => {
 //     }
 
 
-  //  const [subject, setSubject] = useState("general");
+ const [errors, setErrors] = useState({});
  const [formData, setFormData] = useState({
   firstName: "",
   lastName: "",
@@ -65,43 +65,118 @@ const ContactUs = () => {
 });
 
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
-  const sendEmail = async (e) => {
-    e.preventDefault();
+const validateEmail = (email) => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+const validatePhone = (phone) => {
+  return /^[5-9][0-9]{9}$/.test(phone);
+};
+
+
+const validateField = (name, value) => {
+  switch (name) {
+    case "firstName":
+    case "lastName":
+      if (!value.trim()) return "Name is required";
+      if (value.trim().length < 2) return "Name must be at least 2 characters";
+      if (!/^[A-Za-z\s]+$/.test(value.trim()))
+        return "Name can contain only letters";
+      return "";
+
+    case "email":
+      if (!value.trim()) return "Email is required";
+      if (!validateEmail(value)) return "Please enter a valid email";
+      return "";
+
+    case "phone":
+      if (!value.trim()) return "Phone number is required";
+     if (!validatePhone(value))
+  return "Phone must be 10 digits and start with 5-9";
+
+      return "";
+
+    case "message":
+      if (!value.trim()) return "Message is required";
+      if (value.trim().length < 10)
+        return "Message must be at least 10 characters";
+      return "";
+
+
+      case "cibilScore":
+  if (!value.trim()) return "Please select your CIBIL score";
+  return "";
+
+
+    default:
+      return "";
+  }
+};
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+
+  setFormData({ ...formData, [name]: value });
+
+  const errorMsg = validateField(name, value);
+
+  setErrors((prev) => ({
+    ...prev,
+    [name]: errorMsg,
+  }));
+};
+
+
+const sendEmail = async (e) => {
+  e.preventDefault();
+
+  const newErrors = {};
+
+  ["firstName", "lastName", "email", "phone", "cibilScore", "message"].forEach((field) => {
+    const errorMsg = validateField(field, formData[field]);
+    if (errorMsg) newErrors[field] = errorMsg;
+  });
+
+  setErrors(newErrors);
+
+  if (Object.keys(newErrors).length > 0) {
+    return;
+  }
+
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert("Message sent successfully!");
+      shootRealisticConfetti();
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+        cibilScore: "",
       });
 
-      const data = await res.json();
-
-      if (data.success) {
-        alert("Message sent successfully!");
-        shootRealisticConfetti();
-
-       setFormData({
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  message: "",
-  cibilScore: "",
-});
-      } else {
-        alert("Failed to send message. Please try again.");
-        console.error("API Error:", data.message);
-      }
-    } catch (error) {
-      console.error("Request Failed:", error);
-      alert("Something went wrong. Please try again.");
+      setErrors({});
+    } else {
+      alert("Failed to send message. Please try again.");
+      console.error("API Error:", data.message);
     }
-  };
+  } catch (error) {
+    console.error("Request Failed:", error);
+    alert("Something went wrong. Please try again.");
+  }
+};
+
 
 
 
@@ -121,24 +196,27 @@ const ContactUs = () => {
                 Contact Information
               </h3>
               <p className="lg:mb-30 mb-6 text-[18px]">
-                Say something to start a live chat!
-              </p>
+ Have questions? Let’s help you get your EV loan faster.
+               </p>
 
-              <div className="space-y-5 text-[16px]">
+              <div className="space-y-5 text-[16px] ">
   <div className="flex items-center space-x-4 lg:mb-10">
     <Phone className="w-5 h-5 text-[#79f431]" />
-    <span>+1012 3456 789</span>
+    <span>022 6234 6666</span>
   </div>
 
   <div className="flex items-center space-x-4 lg:mb-10">
     <Mail className="w-5 h-5 text-[#79f431]" />
-    <span>demo@gmail.com</span>
+    <span>info@manbafinance.com</span>
   </div>
 
   <div className="flex items-center space-x-4 lg:mb-40">
     <MapPin className="w-5 h-5 text-[#79f431]" />
-    <span>
-      132 Dartmouth Street Boston, Massachusetts 02156 United States
+    <span className="max-w-sm">
+      324, Runwal Heights,
+Opp. Nirmal Lifestyle,
+LBS Marg, Mulund (W),
+Mumbai – 400080
     </span>
   </div>
 </div>
@@ -165,6 +243,10 @@ const ContactUs = () => {
                     required
                     className="w-full mt-1 border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black"
                   />
+                  {errors.firstName && (
+  <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>
+)}
+
                 </div>
                 <div>
                   <label className="block text-sm text-gray-600">Last Name</label>
@@ -176,6 +258,10 @@ const ContactUs = () => {
                     required
                     className="w-full mt-1 border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black"
                   />
+                  {errors.lastName && (
+  <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>
+)}
+
                 </div>
                 <div>
                   <label className="block text-sm text-gray-600 lg:mt-5 mt-1">Email</label>
@@ -187,6 +273,10 @@ const ContactUs = () => {
                     required
                     className="w-full mt-1 border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black"
                   />
+                  {errors.email && (
+  <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+)}
+
                 </div>
                 <div>
         <label className="block text-sm text-gray-600 lg:mt-5 mt-1">Phone Number</label>
@@ -202,6 +292,10 @@ const ContactUs = () => {
           placeholder=""
           className="w-full mt-1 border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black"
         />
+        {errors.phone && (
+  <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+)}
+
       </div>
               </div>
 
@@ -227,6 +321,10 @@ const ContactUs = () => {
 
     <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 pointer-events-none" />
   </div>
+
+   {errors.cibilScore && (
+    <p className="text-red-500 text-xs mt-1">{errors.cibilScore}</p>
+  )}
 </div>
 
 
@@ -243,6 +341,11 @@ const ContactUs = () => {
                   placeholder="Write a message"
                   className="w-full border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black resize-none"
                 ></textarea>
+
+                {errors.message && (
+  <p className="text-red-500 text-xs mt-1">{errors.message}</p>
+)}
+
               </div>
 
 
