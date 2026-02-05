@@ -96,7 +96,7 @@ const totalFontSize =
         {/* Interest */}
         <path
           d={createArcPath(principalAngle, 360, 85, 55)}
-          fill="url(#interestGradient)"
+          fill="#79f431"
         />
 
         {/* Principal */}
@@ -110,7 +110,7 @@ const totalFontSize =
         {/* Center */}
         {/* Center (clipped) */}
 <g clipPath="url(#centerClip)">
-  <circle cx="100" cy="100" r="45" fill="white" />
+  <circle cx="100" cy="10" r="45" fill="white" />
 
   <text
     x="100"

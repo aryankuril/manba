@@ -37,180 +37,158 @@ const EMICalculator = () => {
 
   return (
     <motion.div
-      className="w-full   "
+      className="w-full"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-
-
     >
 
-<div className="relative w-full mb-12 overflow-visible">
+      <div className="relative w-full mb-12 overflow-visible">
 
-  {/* Full-width decorative wave */}
-  <div className="absolute lg:-top-15  left-0 w-full z-0 pointer-events-none ">
-    <Image
-      src="/images/Shape1.png"
-      alt="Decorative Shape"
-      width={1920}
-      height={220}
-      className="w-full h-auto object-cover"
-      priority
-    />
-  </div>
+        <div className="py-10 sm:py-15 lg:py-10 container">
 
+          {/* Text Content */}
+          <div className="relative z-10 max-w-6xl mx-auto text-center lg:text-left">
+            <h2 className="font-semibold text-black">
+              EMI Calculator
+            </h2>
 
-  <div className="py-10 sm:py-15 lg:py-10 container">
-
-  {/* Text Content */}
-  <div className="relative z-10 ">
-    <h2 className="font-semibold text-black">
-      EMI Calculator
-    </h2>
-
-    <p className="text-gray-600 mt-2">
-      Manba Finance simplifies finances with easy EMI calculator
-    </p>
-  </div>
-
-</div>
-
-      {/* </div> */}
-
-      <div className="glass-card rounded-2xl md:rounded-3xl  shadow-glass container">
-        
-
-        <div className="grid lg:grid-cols-2 gap-0 lg:gap-12">
-          {/* Input Section */}
-          <div className="space-y-8">
-            <AnimatedSlider
-  label="Loan Amount"
-  value={loanAmount}
-  min={30000}
-  max={2500000}
-  step={5000}
-  prefix="₹"
-  unit=""
-  onChange={setLoanAmount}
-  ticks={[
-    // { value: 50000, label: "50K" },
-    { value: 100000, label: "1L" },
-    { value: 300000, label: "3L" },
-    { value: 500000, label: "5L" },
-    { value: 1000000, label: "10L" },
-    { value: 2500000, label: "25L" },
-  ]}
-/>
-
-
-
-          <AnimatedSlider
-  label="Interest Rate"
-  value={interestRate}
-  min={7}
-  max={22}
-  step={0.1}
-  unit="%"
-  onChange={setInterestRate}
-  formatValue={(v) => v.toFixed(1)}
-  ticks={[
-    { value: 7, label: "7%" },
-    { value: 10, label: "10%" },
-    { value: 14, label: "14%" },
-    { value: 18, label: "18%" },
-    { value: 22, label: "22%" },
-  ]}
-/>
-
-
-
-            <AnimatedSlider
-  label="Loan Tenure"
-  value={loanTenure}
-  min={12}
-  max={84}
-  step={1}
-  unit="Months"
-  onChange={setLoanTenure}
-  ticks={[
-    { value: 12, label: "1Y" },
-    { value: 24, label: "2Y" },
-    { value: 36, label: "3Y" },
-    { value: 48, label: "4Y" },
-    { value: 60, label: "5Y" },
-    { value: 84, label: "7Y" },
-  ]}
-/>
-
-
-            {/* Apply Now Button */}
-
-
-     <div className="hidden md:block w-full">
-  <Button
-    text="Apply Now"
-    href="https://www.manbafinance.com/apply-now/"
-    className="mt-4 bg-[#205073] text-white w-full"
-  />
-        <p className="text-gray-600 text-center body2 mt-2">Making sense of loans is hassle-free with Manba Finance's EMI Calculator.</p>
-</div>
-
-
-          </div>
-
-          {/* Results Section */}
-          <div className="space-y-6">
-            {/* EMI Result Cards */}
-            <div className="grid gap-4">
-              <ResultCard 
-                label="Monthly EMI" 
-                value={calculations.emi} 
-                highlight={true}
-                delay={0.3}
-              />
-              <div className="grid grid-cols-2 gap-4">
-                <ResultCard 
-                  label="Total Interest" 
-                  value={calculations.totalInterest} 
-                  delay={0.4}
-                />
-                <ResultCard 
-                  label="Total Payment" 
-                  value={calculations.totalPayment} 
-                  delay={0.5}
-                />
-              </div>
-            </div>
-
-            {/* Pie Chart */}
-            <motion.div
-              className="mt-6"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6 }}
-            >
-              <PieChart 
-                principal={calculations.principal} 
-                interest={calculations.totalInterest} 
-              />
-            </motion.div>
-            
+            <p className="text-gray-600 font-secondary  mt-2">
+              Manba Finance simplifies finances with easy EMI calculator
+            </p>
           </div>
 
         </div>
-       <div className="block md:hidden w-full">
-  <Button
-    text="Apply Now"
-    href="https://www.manbafinance.com/apply-now/"
-    className="mt-8 bg-[#205073] text-white w-full"
-  />
-          <p className="text-gray-600 text-center body2 mt-2">Making sense of loans is hassle-free with Manba Finance's EMI Calculator.</p>
 
-</div>
+        <div className="glass-card rounded-2xl md:rounded-3xl shadow-glass container">
+          
+          <div className="grid lg:grid-cols-2 gap-0 lg:gap-12 max-w-6xl mx-auto">
+            {/* Input Section */}
+            <div className="space-y-6">
+              <AnimatedSlider
+                label="Loan Amount"
+                value={loanAmount}
+                min={30000}
+                max={2500000}
+                step={5000}
+                prefix="₹"
+                unit=""
+                onChange={setLoanAmount}
+                ticks={[
+                  { value: 100000, label: "1L" },
+                  { value: 300000, label: "3L" },
+                  { value: 500000, label: "5L" },
+                  { value: 1000000, label: "10L" },
+                  { value: 2500000, label: "25L" },
+                ]}
+              />
+
+              <AnimatedSlider
+                label="Interest Rate"
+                value={interestRate}
+                min={7}
+                max={22}
+                step={0.1}
+                unit="%"
+                onChange={setInterestRate}
+                formatValue={(v) => v.toFixed(1)}
+                ticks={[
+                  { value: 7, label: "7%" },
+                  { value: 10, label: "10%" },
+                  { value: 14, label: "14%" },
+                  { value: 18, label: "18%" },
+                  { value: 22, label: "22%" },
+                ]}
+              />
+
+              <AnimatedSlider
+                label="Loan Tenure"
+                value={loanTenure}
+                min={12}
+                max={84}
+                step={1}
+                unit="Months"
+                onChange={setLoanTenure}
+                ticks={[
+                  { value: 12, label: "1Y" },
+                  { value: 24, label: "2Y" },
+                  { value: 36, label: "3Y" },
+                  { value: 48, label: "4Y" },
+                  { value: 60, label: "5Y" },
+                  { value: 84, label: "7Y" },
+                ]}
+              />
+
+              {/* Apply Now Button */}
+              <div className="hidden md:block w-full">
+                <Button
+                  text="Apply Now"
+                  href="https://www.manbafinance.com/apply-now/"
+                  className="mt-4 bg-[#205073] text-white w-full"
+                />
+                <p className="text-gray-600 text-center body2 mt-2">
+                  Making sense of loans is hassle-free with Manba Finance's EMI Calculator.
+                </p>
+              </div>
+
+            </div>
+
+            {/* Results Section */}
+            <div className="space-y-6">
+              {/* EMI Result Cards */}
+              <div className="grid gap-4">
+                <ResultCard 
+                  label="Monthly EMI" 
+                  value={calculations.emi} 
+                  highlight={true}
+                  delay={0.3}
+                />
+                <div className="grid grid-cols-2 gap-4">
+                  <ResultCard 
+                    label="Total Interest" 
+                    value={calculations.totalInterest} 
+                    delay={0.4}
+                  />
+                  <ResultCard 
+                    label="Total Payment" 
+                    value={calculations.totalPayment} 
+                    delay={0.5}
+                  />
+                </div>
+              </div>
+
+              {/* Pie Chart */}
+              <motion.div
+                className="mt-6"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.6 }}
+              >
+                <PieChart 
+                  principal={calculations.principal} 
+                  interest={calculations.totalInterest} 
+                />
+              </motion.div>
+              
+            </div>
+
+          </div>
+
+          <div className="block md:hidden w-full">
+            <Button
+              text="Apply Now"
+              href="https://www.manbafinance.com/apply-now/"
+              className="mt-8 bg-[#205073] text-white w-full"
+            />
+            <p className="text-gray-600 text-center body2 mt-2">
+              Making sense of loans is hassle-free with Manba Finance's EMI Calculator.
+            </p>
+          </div>
+
+        </div>
 
       </div>
 
-</div>
     </motion.div>
   );
 };

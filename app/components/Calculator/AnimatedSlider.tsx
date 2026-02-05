@@ -53,8 +53,8 @@ const AnimatedSlider = ({
       transition={{ duration: 0.4 }}
     >
       {/* 🔹 LABEL + INPUT */}
-      <div className="flex justify-between items-center mb-3">
-        <label className="text-sm text-black">{label}</label>
+      <div className="flex justify-between items-center ">
+        <label className="body2 text-black">{label}</label>
 
         <div className="flex items-center border border-[#205073] rounded-md overflow-hidden ">
           {prefix && (
@@ -81,7 +81,7 @@ const AnimatedSlider = ({
       </div>
 
       {/* 🔹 SLIDER */}
-      <div className="relative h-12 flex items-center">
+      <div className="relative h-10 flex items-center">
         <div className="absolute w-full h-2 bg-gray-200 rounded-full overflow-hidden">
           <motion.div
   className="h-full rounded-full"
@@ -127,13 +127,13 @@ background:
           onMouseUp={() => setIsDragging(false)}
           onTouchStart={() => setIsDragging(true)}
           onTouchEnd={() => setIsDragging(false)}
-          className="absolute w-full h-12 opacity-0 cursor-pointer z-20"
+          className="absolute w-full h-10 opacity-0 cursor-pointer z-20"
         />
       </div>
 
       {/* 🔹 TICKS */}
       {ticks.length > 0 && (
-        <div className="relative mt-2 h-5">
+        <div className="relative h-5">
           {ticks.map((t, index) => {
             const left = ((t.value - min) / (max - min)) * 100;
 

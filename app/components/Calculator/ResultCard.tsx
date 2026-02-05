@@ -18,7 +18,7 @@ const ResultCard = ({
 }: ResultCardProps) => {
   return (
     <motion.div
-      className={`relative p-5 rounded-xl overflow-hidden transition-all duration-300 ${
+      className={`relative p-3 rounded-xl overflow-hidden transition-all duration-300 ${
         highlight 
           ? 'glass-card border-primary/30' 
           : 'bg-secondary/50 border border-border/50'
@@ -42,7 +42,7 @@ const ResultCard = ({
         />
       )}
       
-      <p className="text-sm text-muted-foreground mb-2 relative z-10">{label}</p>
+      <p className="body2 text-gray-600 font-secondary text-muted-foreground mb-2 relative z-10">{label}</p>
       <div className={`text-2xl md:text-3xl font-bold font-display relative z-10 ${
         highlight ? 'gradient-text' : 'text-foreground'
       }`}>
