@@ -144,7 +144,7 @@ const totalFontSize =
           </span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-gray-300" />
+          <div className="w-3 h-3 rounded-full bg-[#79f431]" />
           <span className="text-sm text-muted-foreground">
             Interest {(100 - principalPercentage).toFixed(1)}%
           </span>

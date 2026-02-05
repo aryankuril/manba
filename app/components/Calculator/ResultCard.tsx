@@ -42,7 +42,7 @@ const ResultCard = ({
         />
       )}
       
-      <p className="body2 text-gray-600 font-secondary text-muted-foreground mb-2 relative z-10">{label}</p>
+      <p className="body2 text-muted-foreground mb-2 relative z-10">{label}</p>
       <div className={`text-2xl md:text-3xl font-bold font-display relative z-10 ${
         highlight ? 'gradient-text' : 'text-foreground'
       }`}>
