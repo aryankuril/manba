@@ -102,7 +102,7 @@ const totalFontSize =
         {/* Principal */}
         <path
   d={createArcPath(0, principalAngle, 85, 55)}
-  fill="#2dc8f7"
+  fill="#205073 "
   filter="url(#glow)"
 />
 
@@ -138,7 +138,7 @@ const totalFontSize =
       {/* Legend */}
       <div className="flex justify-center gap-6 mt-4">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#2dc8f7]" />
+          <div className="w-3 h-3 rounded-full bg-[#205073]" />
           <span className="text-sm text-muted-foreground">
             Principal ({principalPercentage.toFixed(1)}%)
           </span>

@@ -72,6 +72,7 @@ export default function ForthSection() {
       style={{ height: `${(steps.length - 1) * 120}vh` }}
       className="relative container py-10 sm:py-15 lg:py-20"
     >
+
       {/* 🔥 STICKY CONTENT */}
       <div className="sticky top-[25vh] w-full container flex flex-col items-center">
         <TextAnimation>

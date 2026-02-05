@@ -42,12 +42,12 @@ const ResultCard = ({
         />
       )}
       
-      <p className="body2 text-muted-foreground mb-2 relative z-10">{label}</p>
       <div className={`text-2xl md:text-3xl font-bold font-display relative z-10 ${
         highlight ? 'gradient-text' : 'text-foreground'
       }`}>
         <AnimatedNumber value={value} prefix={prefix} />
       </div>
+        <p className="body3 text-muted-foreground  relative z-10">{label}</p>
       
       {highlight && (
         <motion.div

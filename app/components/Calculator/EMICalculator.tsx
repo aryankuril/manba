@@ -146,8 +146,8 @@ const EMICalculator = () => {
                 />
                 <div className="grid grid-cols-2 gap-4">
                   <ResultCard 
-                    label="Total Interest" 
                     value={calculations.totalInterest} 
+                    label="Total Interest" 
                     delay={0.4}
                   />
                   <ResultCard 

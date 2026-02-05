@@ -5,6 +5,8 @@ import confetti from "canvas-confetti";
 import { Phone, Mail, MapPin ,ChevronDown } from "lucide-react";
 
 import Button from "../Button";
+import TextAnimation from './../TextAnimation';
+import FadeInFromLeft from './../Animation/FadeInFromLeft';
 
 const ContactUs = () => {
 
@@ -195,23 +197,33 @@ const sendEmail = async (e) => {
           >
             <div className="absolute inset-0  z-0 rounded-2xl" />
             <div className="relative z-10">
-              <h3 className="text-[28px] font-semibold mb-2">
+              <TextAnimation>
+              <h3 className=" font-semibold mb-2">
                 Contact Information
               </h3>
-              <p className="lg:mb-30 mb-6 text-[18px]">
+              </TextAnimation>
+
+              <FadeInFromLeft >
+              <p className="lg:mb-30 mb-6 body2">
  Have questions? Let’s help you get your EV loan faster.
                </p>
+               </FadeInFromLeft>
 
               <div className="space-y-5 text-[16px] ">
-  <div className="flex items-center space-x-4 lg:mb-10">
-    <Phone className="w-5 h-5 text-[#79f431]" />
-    <span>022 6234 6666</span>
-  </div>
+<div className="flex items-center space-x-4 lg:mb-10">
+  <Phone className="w-5 h-5 text-[#79f431]" />
+  <a href="tel:02262346666" >
+    022 6234 6666
+  </a>
+</div>
 
-  <div className="flex items-center space-x-4 lg:mb-10">
-    <Mail className="w-5 h-5 text-[#79f431]" />
-    <span>info@manbafinance.com</span>
-  </div>
+<div className="flex items-center space-x-4 lg:mb-10">
+  <Mail className="w-5 h-5 text-[#79f431]" />
+  <a href="mailto:info@manbafinance.com" >
+    info@manbafinance.com
+  </a>
+</div>
+
 
   <div className="flex items-center space-x-4 lg:mb-40">
     <MapPin className="w-5 h-5 text-[#79f431]" />
@@ -223,6 +235,8 @@ Mumbai – 400080
     </span>
   </div>
 </div>
+
+
 
 
               {/* <div className="flex space-x-4 mt-10">

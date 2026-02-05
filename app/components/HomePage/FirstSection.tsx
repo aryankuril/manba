@@ -9,6 +9,8 @@ const FirstSection = () => {
     <div className=" lg:px-0 px-5">
     <section 
     className="relative  w-full container bg-[#205073] rounded-corners ">
+     
+
       {/* Rounded outer container */}
       <div className="relative mx-auto h-[55vh] md:h-[60vh] ">
 
@@ -49,8 +51,7 @@ const FirstSection = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-  Simplify your finance needs with Manba Finance, here is the easy to use EMI calculator to help you plan your finances.
-
+Simplify your EV loan journey with Manba Finance. Use our easy EMI calculator to plan your finances smartly and confidently.
         </motion.p>
         </div>
 

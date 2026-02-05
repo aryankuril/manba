@@ -56,24 +56,12 @@ export default function TwelfthSection() {
                 </h5>
 
 
-
-                <Link
-  href={item.link}
-  className="inline-flex items-center gap-3 text-[#205073] font-semibold underline "
->
-  Explore More →
-  {/* <span className="w-8 h-8 flex items-center justify-center rounded-full border border-[#205073]">
-    →
-  </span> */}
-</Link>
-
-
                 {/* Button with unique link */}
-                {/* <Button
+                <Button
                   text="Explore More"
                   href={item.link}
-                  className="bg-[#205073] text-white w-full"
-                /> */}
+                  className="bg-[#205073] text-white "
+                />
               </div>
             </div>
           ))}

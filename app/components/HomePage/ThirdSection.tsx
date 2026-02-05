@@ -11,19 +11,19 @@ const featuresLeft = [
     id: "01",
     title: "Paperless Journey",
     desc: "Sunt dolor aliquip consectetur laboris incididunt tempor irure veniam amet et nostrud.",
-    icon: <Image src="/icons/flash.png" alt="" width={28} height={28} />,
+    icon: <Image src="/icons/paperless2.png" alt="" width={25} height={25} />,
   },
   {
     id: "02",
     title: "Tenure 06 to 48 Months",
     desc: "Sunt dolor aliquip consectetur laboris incididunt tempor irure veniam amet et nostrud.",
-    icon: <Image src="/icons/flash.png" alt="" width={28} height={28} />,
+    icon: <Image src="/icons/calendar2.png" alt="" width={25} height={25} />,
   },
   {
     id: "03",
     title: "Speedy Loan Approval",
     desc: "Sunt dolor aliquip consectetur laboris incididunt tempor irure veniam amet et nostrud.",
-    icon: <Image src="/icons/flash.png" alt="" width={28} height={28} />,
+    icon: <Image src="/icons/approved2.png" alt="" width={25} height={25} />,
   },
 ];
 
@@ -33,19 +33,19 @@ const featuresRight = [
     id: "04",
     title: "Simplified Disbursement ",
     desc: "Sunt dolor aliquip consectetur laboris incididunt tempor irure veniam amet et nostrud.",
-    icon: <Image src="/icons/flash.png" alt="" width={28} height={28} />,
+    icon: <Image src="/icons/flash.png" alt="" width={25} height={25} />,
   },
   {
     id: "05",
     title: "Customized Schemes",
     desc: "Sunt dolor aliquip consectetur laboris incididunt tempor irure veniam amet et nostrud.",
-    icon: <Image src="/icons/flash.png" alt="" width={28} height={28} />,
+    icon: <Image src="/icons/custom2.png" alt="" width={25} height={25} />,
   },
    {
     id: "06",
-    title: "Cash EMI Facility ",
+    title: "Cash EMI Facility",
     desc: "Sunt dolor aliquip consectetur laboris incididunt tempor irure veniam amet et nostrud.",
-    icon: <Image src="/icons/flash.png" alt="" width={28} height={28} />,
+    icon: <Image src="/icons/banknotes2.png" alt="" width={25} height={25} />,
   },
 
 ];

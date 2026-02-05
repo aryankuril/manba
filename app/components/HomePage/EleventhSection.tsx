@@ -129,7 +129,7 @@ export default function TestimonialMarquee() {
                       src={item.image}
                       alt={item.name}
                       fill
-                      className="object-cover p-3 rounded-corners"
+                      className="object-fit p-3 rounded-corners"
                     />
                   </div>
 
