@@ -41,13 +41,15 @@ export default function TwelfthSection() {
             >
               {/* Image */}
               <div className="relative w-full h-56 rounded-corners overflow-hidden">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
+  <Image
+    src={item.image}
+    alt={item.title}
+    fill
+    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+    className="object-cover"
+  />
+</div>
+
 
               {/* Content */}
               <div className="mt-6">

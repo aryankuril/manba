@@ -95,13 +95,15 @@ const totalFontSize =
 
         {/* Interest */}
         <path
-          d={createArcPath(principalAngle, 360, 85, 55)}
+          d={createArcPath(principalAngle, 360, 90, 65)}
+
           fill="#79f431"
         />
 
         {/* Principal */}
         <path
-  d={createArcPath(0, principalAngle, 85, 55)}
+d={createArcPath(0, principalAngle, 90, 65)}
+
   fill="#205073 "
   filter="url(#glow)"
 />
@@ -112,24 +114,27 @@ const totalFontSize =
 <g clipPath="url(#centerClip)">
   <circle cx="100" cy="10" r="45" fill="white" />
 
-  <text
-    x="100"
-    y="95"
-    textAnchor="middle"
-    className="fill-foreground text-xs font-medium"
-  >
-    Total
-  </text>
 
-  <text
-    x="100"
-    y="115"
-    textAnchor="middle"
-    className="fill-primary font-bold font-display"
-    style={{ fontSize: totalFontSize }}
-  >
-    {formattedTotal}
-  </text>
+
+<text
+  x="100"
+  y="100"
+  textAnchor="middle"
+  className="fill-primary font-bold font-display"
+  style={{ fontSize: totalFontSize }}
+>
+  {formattedTotal}
+</text>
+
+<text
+  x="100"
+  y="120"
+  textAnchor="middle"
+  className="fill-foreground text-xs text-black font-secondary  font-medium"
+>
+  Total
+</text>
+
 </g>
 
 

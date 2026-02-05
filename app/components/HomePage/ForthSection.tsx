@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import Button from "../Button";
 import Image from "next/image";
+import TextAnimation from './../TextAnimation';
+import FadeInFromLeft from './../Animation/FadeInFromLeft';
 
 export default function Thirdsection() {
   const steps = [
@@ -39,43 +41,73 @@ export default function Thirdsection() {
     },
   ];
 
-  const [active, setActive] = useState(1);
+const [active, setActive] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActive((prev) => (prev === steps.length ? 1 : prev + 1));
-    }, 2000);
 
-    return () => clearInterval(interval);
-  }, [steps.length]);
+useEffect(() => {
+  const isMobile = window.innerWidth < 768;
+
+  setActive(isMobile ? 1 : 0);
+
+  const interval = setInterval(() => {
+    setActive((prev) => {
+      if (prev >= steps.length) {
+        return isMobile ? 1 : 0;
+      }
+      return prev + 1;
+    });
+  }, 1000);
+
+  return () => clearInterval(interval);
+}, [steps.length]);
+
+
+
+
+const progressMap: Record<number, number> = {
+  0: 0,
+  1: 10,
+  2: 38,
+  3: 65,
+  4: 100,
+};
+
+
 
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   return (
     <div className="w-full container py-10 sm:py-15 lg:py-20 flex flex-col items-center">
-      <h3 className="text-center  font-semibold text-black ">
-        How Our Process Works
-      </h3>
+      <TextAnimation>
+        <h3 className="text-center  font-semibold text-black ">
+          How Our Process Works
+        </h3>
+      </TextAnimation>
+
+      <FadeInFromLeft>
       <p className="text-gray-600 mb-10 text-center">
         To Make Your Dream Come True
       </p>
+      </FadeInFromLeft>
 
       <div className="relative w-full px-6 overflow-hidden">
+    
         {/* Desktop Background Line */}
         <div className="absolute top-[80px] left-0 w-full h-1 bg-gray-200 rounded-full hidden md:block"></div>
 
         {/* Desktop Animated Fill Line */}
         <motion.div
-          className="absolute top-[80px] h-1 w-full rounded-full hidden md:block"
-          initial={{ width: 0 }}
-          animate={{ width: `${((active - 1) / (steps.length - 1)) * 100}%` }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-          style={{
-            backgroundSize: "200% 100%",
-            background:
-              "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
-          }}
-        />
+  className="absolute top-[80px] h-1 w-full rounded-full hidden md:block"
+  initial={{ width: 0 }}
+  animate={{ width: `${progressMap[active] ?? 0}%` }}
+  transition={{ duration: 0.6, ease: "easeInOut" }}
+  style={{
+    backgroundSize: "200% 100%",
+    background:
+      "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
+  }}
+/>
+
 
         {/* DESKTOP STEPS */}
         <div className="hidden md:flex justify-between relative z-10 mt-6">

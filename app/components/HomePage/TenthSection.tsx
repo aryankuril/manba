@@ -22,6 +22,7 @@ export default function LogoInfiniteSlider() {
 
         {/* LOGO GRID */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8 items-center">
+          
           {logos.map((logo, index) => (
             <div
               key={index}

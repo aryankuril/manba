@@ -19,7 +19,7 @@ const Navbar = () => {
   {/* Left - Logo */}
   <div className="flex items-center space-x-2 w-[200px] z-99999">
      <Link href="/">
-    <Image src="/images/Logo.svg" alt="boostim logo" width={130} height={33} />
+    <Image src="/images/Logo.svg" alt="logo" width={130} height={33} />
     </Link>
   </div>
 

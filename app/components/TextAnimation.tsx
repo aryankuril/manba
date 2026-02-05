@@ -33,12 +33,13 @@ const TextAnimation = ({ children }: TextAnimationProps) => {
   const Tag = children.type;
 
   return (
-    <motion.div
+<motion.div
   variants={container}
   initial="hidden"
   whileInView="visible"
-  viewport={{ once: true, amount: 0.6 }}
+  viewport={{ once: false, amount: 0.6 }}
 >
+
 
       <Tag {...children.props}>
         {words.map((word, i) => (

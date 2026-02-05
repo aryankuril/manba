@@ -9,6 +9,8 @@ import Image from "next/image";
 
 // import { Button } from '@/components/ui/button';
 import { Calculator, ArrowRight } from 'lucide-react';
+import TextAnimation from './../TextAnimation';
+import FadeInFromLeft from './../Animation/FadeInFromLeft';
 
 const EMICalculator = () => {
   const [loanAmount, setLoanAmount] = useState(500000);
@@ -49,13 +51,19 @@ const EMICalculator = () => {
 
           {/* Text Content */}
           <div className="relative z-10 max-w-6xl mx-auto text-center lg:text-left">
-            <h2 className="font-semibold text-black">
-              EMI Calculator
-            </h2>
+            <TextAnimation>
+              <h2 className="font-semibold text-black">
+                EMI Calculator
+              </h2>
+            </TextAnimation>
 
+
+
+<FadeInFromLeft>
             <p className="text-gray-600 font-secondary  mt-2">
               Manba Finance simplifies finances with easy EMI calculator
             </p>
+            </FadeInFromLeft>
           </div>
 
         </div>

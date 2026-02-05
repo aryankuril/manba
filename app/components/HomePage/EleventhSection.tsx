@@ -151,12 +151,14 @@ const highlightWords = (text: string) => {
                 <div className="bg-white border rounded-corners shadow-md flex h-full overflow-hidden w-[520px]">
                   {/* IMAGE */}
                   <div className="relative w-[180px] min-h-[180px] flex-shrink-0">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      fill
-                      className="object-fit p-3 rounded-corners"
-                    />
+                   <Image
+  src={item.image}
+  alt={item.name}
+  fill
+  sizes="(max-width: 768px) 100vw, 180px"
+  className="object-fit p-3 rounded-corners"
+/>
+
                   </div>
 
                   {/* CONTENT */}

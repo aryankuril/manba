@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { TrendingUp, Shield, Clock } from "lucide-react";
+import TextAnimation from './../TextAnimation';
 
 const InfoSection = () => {
   const features = [
@@ -33,10 +34,11 @@ const InfoSection = () => {
         >
           {/* Heading */}
           <div className="text-center mb-10">
-            <h2 className=" font-semibold text-gray-900">
-              Simple Way to Know your{" "}
-              <span className="text-[#205073]">EMI on the Loan</span>
-            </h2>
+            <TextAnimation>
+              <h2 className=" font-semibold text-gray-900">
+                Simple Way to Know yourEMI on the Loan
+              </h2>
+            </TextAnimation>
           </div>
 
           {/* Description Card */}
@@ -76,9 +78,9 @@ const InfoSection = () => {
 
         {/* RIGHT TEXT */}
         <div className="text-left">
-          <h4 className=" text-[#205073] mb-1">
+          <h5 className="font-semibold text-lg text-[#205073]">
             {item.title}
-          </h4>
+          </h5>
           <p className="body2 text-gray-600 font-secondary">
             {item.description}
           </p>
