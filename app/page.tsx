@@ -25,7 +25,7 @@ export default function Home() {
   <div className="">
     <Navbar />
     <FirstSection />
-    <StatsBar />
+    {/* <StatsBar /> */}
     <ThirdSection />
     <ForthSection />
     {/* <FifthSection /> */}

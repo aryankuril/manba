@@ -8,50 +8,34 @@ const logos = [
   "/images/bajaj.png",
   "/images/tvs.png",
   "/images/Hero-Electric.png",
-  "/images/Ather.png",
-  "/images/bajaj.png",
-  "/images/tvs.png",
-  "/images/Hero-Electric.png",
 ];
 
 export default function LogoInfiniteSlider() {
   return (
-    <section className="w-full py-10 sm:py-14 lg:py-20 overflow-hidden">
-      <div className="relative w-full">
+    <section className="w-full py-10 sm:py-14 lg:py-20">
+      <div className="max-w-6xl mx-auto px-4">
         <TextAnimation>
-          <h3 className="text-center mb-10 font-semibold text-black ">
+          <h3 className="text-center mb-10 font-semibold text-black">
             Take Your Pick, We&apos;ll Finance It!!
           </h3>
         </TextAnimation>
 
-        {/* FADE EDGES */}
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-10 sm:w-16 bg-gradient-to-r from-white to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 top-0 h-full w-10 sm:w-16 bg-gradient-to-l from-white to-transparent z-10" />
-
-        {/* MASK */}
-        <div className="overflow-hidden w-full">
-          {/* TRACK */}
-          <div className="flex w-[300%] animate-marquee">
-            {[...logos, ...logos].map((logo, index) => (
-              <div
-                key={index}
-                className="
-                  flex items-center justify-center
-                  w-[180px] sm:w-[220px] lg:w-[260px]
-                  px-2 sm:px-3 lg:px-4
-                  flex-shrink-0
-                "
-              >
-                <Image
-                  src={logo}
-                  alt="Brand logo"
-                  width={140}
-                  height={70}
-                  className="object-contain w-auto h-9 sm:h-11 lg:h-13"
-                />
-              </div>
-            ))}
-          </div>
+        {/* LOGO GRID */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8 items-center">
+          {logos.map((logo, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-center bg-white rounded-corners shadow-md border hover:shadow-lg transition p-4 h-[90px]"
+            >
+              <Image
+                src={logo}
+                alt="Brand logo"
+                width={160}
+                height={80}
+                className="object-contain max-h-[55px] w-auto"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>

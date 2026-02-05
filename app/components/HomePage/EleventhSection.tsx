@@ -71,6 +71,32 @@ export default function TestimonialMarquee() {
     return () => cancelAnimationFrame(animationFrame);
   }, [isDown]);
 
+
+
+const highlightWords = (text: string) => {
+  const highlightList = [
+    "ad campaigns finally speak to the right",
+    "strategic thinking completely transformed",
+    "Better engagement, better leads,",
+    "everything became clear.",
+  ];
+
+  let updatedText = text;
+
+  highlightList.forEach((phrase) => {
+    const regex = new RegExp(`(${phrase})`, "gi");
+
+    updatedText = updatedText.replace(
+      regex,
+      `<span class="bg-[#fff2a8] px-1 rounded-sm font-medium">$1</span>`
+    );
+  });
+
+  return <span dangerouslySetInnerHTML={{ __html: updatedText }} />;
+};
+
+
+
   return (
     <section className="w-full py-16 overflow-hidden">
       <TextAnimation>
@@ -136,8 +162,10 @@ export default function TestimonialMarquee() {
                   {/* CONTENT */}
                   <div className="p-3 flex flex-col justify-between">
                     <p className="text-gray-900 text-sm leading-relaxed">
-                      “{item.message}”
-                    </p>
+“{highlightWords(item.message)}”
+
+</p>
+
 
                     <div className="mt-6">
                       <p className="font-semibold text-[#205073]">

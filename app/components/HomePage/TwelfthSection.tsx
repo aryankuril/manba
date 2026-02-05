@@ -6,17 +6,17 @@ import Link from "next/link";
 const products = [
   {
     title: "Two Wheeler Loan",
-    image: "/images/related-2.png",
+    image: "/images/related2.png",
     link: "https://www.manbafinance.com/two-wheeler-loan/",
   },
   {
     title: "Pre-Owned Two Wheeler Loan",
-    image: "/images/related-3.png",
+    image: "/images/related3.png",
     link: "https://www.manbafinance.com/used-two-wheeler-loan/",
   },
   {
     title: "EV Three Wheeler Loan",
-    image: "/images/related-1.png",
+    image: "/images/related1.png",
     link: "https://www.manbafinance.com/ev-three-wheeler/",
   },
 ];
@@ -37,7 +37,7 @@ export default function TwelfthSection() {
           {products.map((item, index) => (
             <div
               key={index}
-              className="bg-[#f6f6f6] rounded-corners overflow-hidden p-5"
+              className="bg-white rounded-corners shadow-md border hover:shadow-lg transition overflow-hidden p-5"
             >
               {/* Image */}
               <div className="relative w-full h-56 rounded-corners overflow-hidden">
@@ -45,7 +45,7 @@ export default function TwelfthSection() {
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-fit"
+                  className="object-cover"
                 />
               </div>
 

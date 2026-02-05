@@ -1,137 +1,123 @@
 "use client";
-
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import {
+  ChartBar,
+  Rocket,
+  ClipboardList,
+  Search,
+  Zap,
+} from "lucide-react";
 import Button from "../Button";
 import Image from "next/image";
-import TextAnimation from "../TextAnimation";
-import FadeInFromLeft from './../Animation/FadeInFromLeft';
 
-export default function ForthSection() {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-
+export default function Thirdsection() {
   const steps = [
     {
       id: 1,
       title: "Customer Visits",
       desc: "Visits Website OR Visits Showroom",
-      icon: <Image src="/icons/rating.png" alt="" width={32} height={32} />,
+      icon: "/icons/rating.png",
     },
     {
       id: 2,
       title: "CRM",
       desc: "Information is logged in the CRM",
-      icon: <Image src="/icons/crm.png" alt="" width={32} height={32} />,
+      icon: "/icons/crm.png",
     },
     {
       id: 3,
       title: "Approval",
       desc: "System Approved in 1 min",
-      icon: <Image src="/icons/approved.png" alt="" width={32} height={32} />,
+      icon: "/icons/approve.svg",
     },
     {
       id: 4,
       title: "Onboarding",
-      desc: "KYC, E-Sign, E-Mandate & Disbursement",
-      icon: <Image src="/icons/onboarding.png" alt="" width={32} height={32} />,
+      desc: "GEO Deployment",
+      icon: "/icons/onboarding.png",
     },
   ];
 
   const [active, setActive] = useState(1);
 
-  // 🔥 SCROLL → STEP MAPPING (FIXED)
   useEffect(() => {
-    const onScroll = () => {
-      if (!sectionRef.current) return;
+    const interval = setInterval(() => {
+      setActive((prev) => (prev === steps.length ? 1 : prev + 1));
+    }, 2000);
 
-      const rect = sectionRef.current.getBoundingClientRect();
-      const vh = window.innerHeight;
-
-      const start = vh * 0.3;
-      const total = (steps.length - 1) * vh;
-
-      const progress = Math.min(
-        Math.max((start - rect.top) / total, 0),
-        1
-      );
-
-      const step = Math.round(progress * (steps.length - 1)) + 1;
-      setActive(step);
-    };
-
-    window.addEventListener("scroll", onScroll);
-    onScroll();
-
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => clearInterval(interval);
   }, [steps.length]);
 
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   return (
-    /* 🔥 SCROLL SPACE (FIXED HEIGHT) */
-    <div
-      ref={sectionRef}
-      style={{ height: `${(steps.length - 1) * 120}vh` }}
-      className="relative container py-10 sm:py-15 lg:py-20"
-    >
+    <div className="w-full container py-10 sm:py-15 lg:py-20 flex flex-col items-center">
+      <h3 className="text-center  font-semibold text-black ">
+        How Our Process Works
+      </h3>
+      <p className="text-gray-600 mb-10 text-center">
+        To Make Your Dream Come True
+      </p>
 
-      {/* 🔥 STICKY CONTENT */}
-      <div className="sticky top-[25vh] w-full container flex flex-col items-center">
-        <TextAnimation>
-          <h3 className="text-center font-semibold mb-4">
-            How Our Process Works
-          </h3>
-        </TextAnimation>
-        <FadeInFromLeft>
-        <div className="w-full max-w-2xl">
-          <p className="mb-4  font-medium text-center text-gray-600 font-secondary">
-            To Make Your Dream Come True
-          </p>
-        </div>
-        </FadeInFromLeft>
+      <div className="relative w-full px-6 overflow-hidden">
+        {/* Desktop Background Line */}
+        <div className="absolute top-[80px] left-0 w-full h-1 bg-gray-200 rounded-full hidden md:block"></div>
 
-        {/* 🔥 LINE + CIRCLES WRAPPER */}
-        <div className="relative w-full mt-16 hidden md:block">
-          {/* LINE */}
-          <div className="absolute top-1/4 left-0 w-full h-1 bg-gray-200 rounded-full -translate-y-1/2" />
+        {/* Desktop Animated Fill Line */}
+        <motion.div
+          className="absolute top-[80px] h-1 w-full rounded-full hidden md:block"
+          initial={{ width: 0 }}
+          animate={{ width: `${((active - 1) / (steps.length - 1)) * 100}%` }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          style={{
+            backgroundSize: "200% 100%",
+            background:
+              "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
+          }}
+        />
 
-          <motion.div
-            className="absolute top-1/4 left-0 h-1 rounded-full -translate-y-1/2"
-            style={{
-              background:
-                "linear-gradient(90deg, #79f431 0%, #2dc8f7 100%)",
-            }}
-            animate={{
-              width: `${((active - 1) / (steps.length - 1)) * 100}%`,
-            }}
-            transition={{ duration: 0.4 }}
-          />
-
-          {/* STEPS */}
-          <div className="relative flex justify-between">
-            {steps.map((step) => (
-              <div
-                key={step.id}
-                className="flex flex-col items-center text-center w-[200px]"
+        {/* DESKTOP STEPS */}
+        <div className="hidden md:flex justify-between relative z-10 mt-6">
+          {steps.map((step) => (
+            <div
+              key={step.id}
+              className="flex flex-col items-center cursor-pointer"
+              onClick={() => setActive(step.id)}
+            >
+              <motion.div
+                className={`w-24 h-24 flex items-center justify-center rounded-full shadow-md transition-all ${
+                  active >= step.id ? "bg-[#205073]" : "bg-gray-200"
+                }`}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
               >
-                {/* CIRCLE (ALIGNED ON LINE) */}
-                <motion.div
-                  className="w-24 h-24 bg-[#2dc8f7] flex items-center justify-center rounded-full shadow-md z-10"
-                  
-                >
-                  {step.icon}
-                </motion.div>
+                <Image
+                  src={step.icon}
+                  alt=""
+                  width={32}
+                  height={32}
+                  style={{
+                    filter:
+                      active >= step.id
+                        ? "invert(70%) sepia(90%) saturate(900%) hue-rotate(50deg) brightness(105%) contrast(105%)"
+                        : "brightness(0)",
+                  }}
+                />
+              </motion.div>
 
-                <h5 className="mt-4 font-semibold text-[#205073]">{step.title}</h5>
-                <p className="text-sm text-gray-600 font-secondary">{step.desc}</p>
-              </div>
-            ))}
-          </div>
+              <h5 className="mt-4 font-semibold">{step.title}</h5>
+              <p className="text-sm text-gray-600">{step.desc}</p>
+            </div>
+          ))}
         </div>
 
-        {/* 🔥 MOBILE (unchanged logic) */}
-        <div className="md:hidden w-full relative h-60 mt-16 overflow-hidden">
+        {/* MOBILE SLIDING BALL ANIMATION */}
+        <div className="md:hidden w-full flex justify-center relative h-50 mt-6 overflow-hidden">
           {steps.map((step) => (
             <motion.div
               key={step.id}
+              initial={false}
               animate={{
                 x:
                   step.id === active
@@ -140,38 +126,35 @@ export default function ForthSection() {
                     ? -200
                     : 200,
                 opacity: step.id === active ? 1 : 0,
+                scale: step.id === active ? 1 : 0.6,
               }}
-              className="absolute w-full flex flex-col items-center"
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              className="absolute flex flex-col items-center "
             >
               <div
-                className="w-24 h-24 rounded-full flex items-center justify-center shadow-md"
-                style={{
-                  background:
-                    active >= step.id
-                      ? "linear-gradient(90deg, #55c595, #329d9c)"
-                      : "#e5e7eb",
-                }}
+                className={`w-28 h-28 flex items-center justify-center rounded-full shadow-md transition-all ${
+                  active >= step.id ? "bg-[#205073]" : "bg-gray-200"
+                }`}
               >
-                {step.icon}
+                <Image
+                  src={step.icon}
+                  alt=""
+                  width={32}
+                  height={32}
+                  style={{
+                    filter:
+                      active >= step.id
+                        ? "invert(70%) sepia(90%) saturate(900%) hue-rotate(50deg) brightness(105%) contrast(105%)"
+                        : "brightness(0)",
+                  }}
+                />
               </div>
-              <h3 className="mt-3 font-semibold">{step.title}</h3>
+
+              <h5 className="mt-4 font-semibold">{step.title}</h5>
+              <p className="text-sm text-gray-600">{step.desc}</p>
             </motion.div>
           ))}
         </div>
-
-        {/* BUTTONS */}
-        {/* <div className="flex gap-4 mt-10">
-          <Button
-            onClick={() => setActive((p) => Math.max(1, p - 1))}
-            text="← Previous"
-            className="bg-[#205073] text-white"
-          />
-          <Button
-            onClick={() => setActive((p) => Math.min(steps.length, p + 1))}
-            text="Next →"
-            className="bg-[#205073] text-white"
-          />
-        </div> */}
       </div>
     </div>
   );

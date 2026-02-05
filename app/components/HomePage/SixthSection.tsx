@@ -53,7 +53,7 @@ const SixthSection = () => {
           {documentsData.map((section, index) => (
             <div
               key={index}
-              className="bg-white rounded-corners overflow-hidden shadow-md border hover:shadow-lg transition"
+              className="bg-white rounded-corners shadow-md border hover:shadow-lg transition overflow-hidden"
             >
               {/* Heading */}
       

@@ -4,7 +4,7 @@ import { Mail, Phone, Smartphone, Facebook, Instagram, Linkedin, Twitter, Headin
 export default function Footer() {
   return (
     <footer className="w-full">
-      <div className="bg-[#205073] rounded-2xl text-white lg:p-10 p-5">
+      <div className="bg-[#205073] rounded-2xl text-white lg:py-10 py-5">
         <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
 
           {/* GET IN TOUCH (FIRST) */}
@@ -16,17 +16,17 @@ export default function Footer() {
 
              <div className="border-t border-white/20 pt-6">
 
-            <p className="text-sm leading-relaxed text-gray-200 mb-6">
+            <p className="text-sm leading-relaxed  text-gray-100 mb-6">
               324, Runwal Heights,<br />
               Opp. Nirmal Lifestyle,<br />
               LBS Marg, Mulund (W),<br />
               Mumbai – 400080
             </p>
 
-            <div className="space-y-3 text-sm text-gray-200">
+            <div className="space-y-3 text-sm  text-gray-100">
               <div className="flex items-center gap-3">
                 <Mail size={16} />
-                <Link href="mailto:info@manbafinance.com" className="hover:text-[#4db3ff]">
+                <Link href="mailto:info@manbafinance.com" className="hover:text-[#4db3ff] text-gray-100">
                   info@manbafinance.com
                 </Link>
               </div>
@@ -34,15 +34,15 @@ export default function Footer() {
               {/* ALL PHONE NUMBERS IN ONE LINE */}
               <div className="flex items-center gap-3 flex-wrap">
                 <Phone size={16} />
-                <Link href="tel:02262346666" className="hover:text-[#4db3ff]">
+                <Link href="tel:02262346666" className="hover:text-[#4db3ff] text-gray-100">
                   022 6234 6666
                 </Link>
                 <span>|</span>
-                <Link href="tel:+919004977228" className="hover:text-[#4db3ff]">
+                <Link href="tel:+919004977228" className="hover:text-[#4db3ff] text-gray-100">
                   +91 9004977228
                 </Link>
                 <span>|</span>
-                <Link href="tel:+917039638494" className="hover:text-[#4db3ff]">
+                <Link href="tel:+917039638494" className="hover:text-[#4db3ff] text-gray-100">
                   +91 7039638494
                 </Link>
               </div>
@@ -78,7 +78,7 @@ export default function Footer() {
     { label: "Small Business Loan", href: "https://www.manbafinance.com/business-loan/" },
   ].map((item, index) => (
     <li key={index}>
-      <Link href={item.href} className="hover:text-[#4db3ff] transition">
+      <Link href={item.href} className="hover:text-[#4db3ff] text-gray-100 transition">
         {item.label}
       </Link>
     </li>
@@ -94,7 +94,7 @@ export default function Footer() {
               Quick Links
             </h4>
 <div className="border-t border-white/20 pt-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10">
+            <div className="grid grid-cols-2 sm:grid-cols-2 gap-x-10">
               <ul className="space-y-3 text-sm">
   {[
     { label: "About", href: "https://www.manbafinance.com/about-us/" },
@@ -106,7 +106,7 @@ export default function Footer() {
     { label: "Careers", href: "https://www.manbafinance.com/careers/" },
   ].map((item, index) => (
     <li key={index}>
-      <Link href={item.href} className="hover:text-[#4db3ff] transition">
+      <Link href={item.href} className="hover:text-[#4db3ff] text-gray-100 transition">
         {item.label}
       </Link>
     </li>
@@ -138,16 +138,16 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-white/20 my-8" />
+        <div className="container h-px bg-white/20 my-8 " />
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-300">
+        <div className=" container flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-100">
           <p>© 2026 All Rights Reserved.</p>
 
           <div className="flex flex-wrap gap-6">
-            <Link href="https://www.manbafinance.com/disclaimer/" className="hover:text-white">Disclaimer</Link>
-            <Link href="https://www.manbafinance.com/terms-conditions/" className="hover:text-white">Terms & Conditions</Link>
-            <Link href="https://www.manbafinance.com/payment-gateway-terms-conditions/" className="hover:text-white">Payment Gateway</Link>
+            <Link href="https://www.manbafinance.com/disclaimer/" className="hover:text-[#4db3ff] text-gray-100">Disclaimer</Link>
+            <Link href="https://www.manbafinance.com/terms-conditions/" className="hover:text-[#4db3ff] text-gray-100">Terms & Conditions</Link>
+            <Link href="https://www.manbafinance.com/payment-gateway-terms-conditions/" className="hover:text-[#4db3ff] text-gray-100">Payment Gateway</Link>
           </div>
         </div>
       </div>

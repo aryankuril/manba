@@ -65,7 +65,7 @@ const InfoSection = () => {
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
       whileHover={{ y: -6 }}
-      className="bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.06)] border border-gray-100 p-6 transition-all"
+      className="bg-white rounded-corners shadow-md border hover:shadow-lg transition p-6 "
     >
       <div className="flex items-start gap-4 h-full">
         

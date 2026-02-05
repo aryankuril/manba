@@ -190,11 +190,19 @@ const sendEmail = async (e) => {
       <div className="mx-auto">
 
 
-        <div className="flex flex-col md:flex-row lg:h-[600px] bg-white shadow-lg rounded-2xl overflow-hidden">
+        <div className="flex flex-col md:flex-row lg:h-[600px] bg-white rounded-corners shadow-md border hover:shadow-lg transition overflow-hidden">
           <div
-            className="md:w-1/2 bg-cover bg-center text-white p-8 relative"
-            style={{ backgroundImage: `url('/images/contact-bg.png')` }}
+            className="md:w-1/2 bg-cover bg-[#205073] text-white lg:p-8 p-5 relative"
+           
           >
+
+
+            {/* Bottom Right Image */}
+  <img
+    src="/images/creative1.png"
+    alt="contact decoration"
+    className="absolute bottom-0 right-0 w-[220px] opacity-30 z-0 pointer-events-none"
+  />
             <div className="absolute inset-0  z-0 rounded-2xl" />
             <div className="relative z-10">
               <TextAnimation>
@@ -226,8 +234,8 @@ const sendEmail = async (e) => {
 
 
   <div className="flex items-center space-x-4 lg:mb-40">
-    <MapPin className="w-5 h-5 text-[#79f431]" />
-    <span className="max-w-sm">
+    <MapPin className="w-5 lg:h-5 text-[#79f431]" />
+    <span className="max-w-sm text-sm">
       324, Runwal Heights,
 Opp. Nirmal Lifestyle,
 LBS Marg, Mulund (W),
@@ -247,11 +255,11 @@ Mumbai – 400080
           </div>
 
           {/* Right Side Form */}
-          <div className="md:w-1/2 p-8 bg-white">
+          <div className="md:w-1/2 lg:p-8 p-5 bg-white">
             <form className="space-y-6" onSubmit={sendEmail}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm text-gray-600">First Name</label>
+                  <label className="block text-sm text-black">First Name</label>
                   <input
                     type="text"
                     name="firstName"
@@ -266,7 +274,7 @@ Mumbai – 400080
 
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-600">Last Name</label>
+                  <label className="block text-sm text-black">Last Name</label>
                   <input
                     type="text"
                     name="lastName"
@@ -281,7 +289,7 @@ Mumbai – 400080
 
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-600 lg:mt-5 mt-1">Email</label>
+                  <label className="block text-sm text-black lg:mt-5 mt-1">Email</label>
                   <input
                     type="email"
                     name="email"
@@ -296,7 +304,7 @@ Mumbai – 400080
 
                 </div>
                 <div>
-        <label className="block text-sm text-gray-600 lg:mt-5 mt-1">Phone Number</label>
+        <label className="block text-sm text-black lg:mt-5 mt-1">Phone Number</label>
         <input
           type="tel"
           name="phone"
@@ -317,8 +325,9 @@ Mumbai – 400080
               </div>
 
           <div className="mt-4">
-  <label className="block text-sm text-gray-600">
-    Cibil Score <span className="text-red-500">*</span>
+  <label className="block text-sm text-black">
+    Cibil Score 
+    {/* <span className="text-red-500">*</span> */}
   </label>
 
   <div className="relative mt-2">
@@ -348,7 +357,7 @@ Mumbai – 400080
 
 
               <div>
-                <label className="block text-sm text-gray-600 mb-5">Message</label>
+                <label className="block text-sm text-black mb-5">Message</label>
                 <textarea
                   rows="2"
                   name="message"

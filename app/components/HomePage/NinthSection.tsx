@@ -62,7 +62,7 @@ const toggleFaq = (index: number) => {
          <h3
   className="text-[#010205]  font-semibold mb-4"
 >
-  FAQ
+Your Questions Answered
 </h3>
 {/* </TextAnimation> */}
 

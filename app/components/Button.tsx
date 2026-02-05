@@ -102,7 +102,7 @@ const Button: React.FC<ButtonProps> = ({
 }}
 
 
-        className={`relative inline-flex items-center justify-center px-5 py-3  rounded-[32px] uppercase text-white font-sans text-base overflow-hidden ${className}`}
+        className={`relative inline-flex items-center justify-center px-5 py-3  rounded-[32px] uppercase text-white font-semibold text-base overflow-hidden ${className}`}
       >
         {ButtonContent}
       </Link>
@@ -121,7 +121,7 @@ const Button: React.FC<ButtonProps> = ({
     background:
       "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
   }}
-  className={`relative inline-flex items-center justify-center px-5 py-3 cursor-pointer rounded-[32px] uppercase text-white font-sans text-base overflow-hidden ${
+  className={`relative inline-flex items-center justify-center px-5 py-3 cursor-pointer rounded-[32px] uppercase text-white font-semibold text-base overflow-hidden ${
     disabled || loading ? "opacity-50 cursor-not-allowed" : ""
   } ${className}`}
 >

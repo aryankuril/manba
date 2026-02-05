@@ -61,7 +61,7 @@ export default function SeventhSection() {
     return (
       <div
         key={index}
-        className={`flex gap-4 p-6 rounded-corners border hover:shadow-lg transition
+        className={`flex gap-4 p-6 bg-white rounded-corners shadow-md border hover:shadow-lg transition
           ${isLast ? "sm:col-span-2" : ""}
         `}
       >

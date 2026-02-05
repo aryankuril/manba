@@ -11,21 +11,55 @@ const featuresLeft = [
     id: "01",
     title: "Paperless Journey",
     desc: "Sunt dolor aliquip consectetur laboris incididunt tempor irure veniam amet et nostrud.",
-    icon: <Image src="/icons/paperless2.png" alt="" width={25} height={25} />,
+    icon: (
+      <Image
+        src="/icons/paper.svg"
+        alt=""
+        width={25}
+        height={25}
+        style={{
+          filter:
+            "invert(70%) sepia(90%) saturate(900%) hue-rotate(50deg) brightness(105%) contrast(105%)",
+        }}
+      />
+    ),
   },
   {
     id: "02",
     title: "Tenure 06 to 48 Months",
     desc: "Sunt dolor aliquip consectetur laboris incididunt tempor irure veniam amet et nostrud.",
-    icon: <Image src="/icons/calendar2.png" alt="" width={25} height={25} />,
+    icon: (
+      <Image
+        src="/icons/time.svg"
+        alt=""
+        width={25}
+        height={25}
+        style={{
+          filter:
+            "invert(70%) sepia(90%) saturate(900%) hue-rotate(50deg) brightness(105%) contrast(105%)",
+        }}
+      />
+    ),
   },
   {
     id: "03",
     title: "Speedy Loan Approval",
     desc: "Sunt dolor aliquip consectetur laboris incididunt tempor irure veniam amet et nostrud.",
-    icon: <Image src="/icons/approved2.png" alt="" width={25} height={25} />,
+    icon: (
+      <Image
+        src="/icons/approve.svg"
+        alt=""
+        width={25}
+        height={25}
+        style={{
+          filter:
+            "invert(70%) sepia(90%) saturate(900%) hue-rotate(50deg) brightness(105%) contrast(105%)",
+        }}
+      />
+    ),
   },
 ];
+
 
 const featuresRight = [
   
@@ -39,7 +73,18 @@ const featuresRight = [
     id: "05",
     title: "Customized Schemes",
     desc: "Sunt dolor aliquip consectetur laboris incididunt tempor irure veniam amet et nostrud.",
-    icon: <Image src="/icons/custom2.png" alt="" width={25} height={25} />,
+    icon: (
+      <Image
+        src="/icons/personalization.svg"
+        alt=""
+        width={25}
+        height={25}
+        style={{
+          filter:
+            "invert(70%) sepia(90%) saturate(900%) hue-rotate(50deg) brightness(105%) contrast(105%)",
+        }}
+      />
+    ),
   },
    {
     id: "06",
@@ -52,7 +97,7 @@ const featuresRight = [
 
 const ThirdSection = () => {
   return (
-    <section className="w-full container py-10 sm:py-15 lg:py-20">
+    <section className="w-full  container py-10 sm:py-15 lg:py-20 lg:mt-20 mt-10">
       <div className=" mx-auto ">
 
            <TextAnimation>
@@ -111,7 +156,8 @@ const ThirdSection = () => {
   {featuresRight.map((item) => (
     <div
       key={item.id}
-      className="flex items-start gap-5 flex-row-reverse text-left"
+      className="flex items-start gap-5  sm:flex-row-reverse text-left"
+
     >
       {/* ICON */}
       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#205073] text-white text-xl">

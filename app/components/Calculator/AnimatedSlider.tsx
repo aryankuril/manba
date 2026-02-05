@@ -88,9 +88,8 @@ const AnimatedSlider = ({
   style={{
     width: `${percentage}%`,
     backgroundSize: "200% 100%",
-background:
-  "linear-gradient(90deg, #79f431 0%, #2dc8f7 30%, #2dc8f7 100%)",
-
+            background:
+              "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
   }}
   animate={{
     boxShadow: isDragging
