@@ -74,7 +74,12 @@ const toggleFaq = (index: number) => {
 
  <Button
             text="Apply Now"
-              href="https://www.manbafinance.com/apply-now/"
+              onClick={() => {
+    document.getElementById("contact-section")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }}
             className="bg-[#205073] text-white "
           />
 {/* </FadeInFromLeft> */}

@@ -309,8 +309,6 @@ h6 {
 
 
 /* slider */
-
-
 @keyframes marquee {
   0% {
     transform: translateX(0);
@@ -330,7 +328,6 @@ h6 {
 
 
 /* header */
-
 .header {
   background-color: white;
   display: flex;
@@ -552,3 +549,6 @@ h6 {
 .hand-swipe {
   animation: handSwipe 1.2s infinite ease-in-out;
 }
+
+
+

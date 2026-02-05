@@ -122,10 +122,11 @@ const EMICalculator = () => {
               {/* Apply Now Button */}
               <div className="hidden md:block w-full">
                 <Button
-                  text="Apply Now"
-                  href="https://www.manbafinance.com/apply-now/"
-                  className="mt-4 bg-[#205073] text-white w-full"
-                />
+  text="Apply Now"
+  href="/#contact-section"
+  className="mt-4 bg-[#205073] text-white w-full"
+/>
+
                 <p className="text-gray-600 text-center body2 mt-2">
                   Making sense of loans is hassle-free with Manba Finance's EMI Calculator.
                 </p>
@@ -177,7 +178,12 @@ const EMICalculator = () => {
           <div className="block md:hidden w-full">
             <Button
               text="Apply Now"
-              href="https://www.manbafinance.com/apply-now/"
+              onClick={() => {
+    document.getElementById("contact-section")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }}
               className="mt-8 bg-[#205073] text-white w-full"
             />
             <p className="text-gray-600 text-center body2 mt-2">

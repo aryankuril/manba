@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 // import { documentsData } from "./documentsData";
 import TextAnimation from './../TextAnimation';
@@ -81,7 +83,12 @@ const SixthSection = () => {
 <div className="text-center items-center">
           <Button
   text="Apply Now"
-  href="https://www.manbafinance.com/apply-now/"
+onClick={() => {
+    document.getElementById("contact-section")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }}
   className="mt-5 "
 />
           </div>

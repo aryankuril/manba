@@ -181,7 +181,10 @@ const sendEmail = async (e) => {
 
 
   return (
-    <section className="min-h-screen w-full container py-10 sm:py-15 lg:py-20 ">
+    <section
+    id="contact-section"
+    className="min-h-screen w-full container py-10 sm:py-15 lg:py-20"
+  >
       <div className="mx-auto">
 
 

@@ -55,8 +55,13 @@ const Navbar = () => {
   <div className="hidden lg:flex items-center space-x-4">
     <Button
   text="Apply Now"
-  href="https://www.manbafinance.com/apply-now/"
   className="hidden md:inline-flex "
+  onClick={() => {
+    document.getElementById("contact-section")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }}
 />
 
 {/* 
@@ -111,7 +116,12 @@ const Navbar = () => {
       
     <Button
   text="Apply Now"
-  href="https://www.manbafinance.com/apply-now/"
+onClick={() => {
+    document.getElementById("contact-section")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }}
   className=" bg-[#205073] text-white"
 />
 
