@@ -38,7 +38,7 @@ export default function SeventhSection() {
 
           <FadeInFromLeft>
 
-          <p className=" text-lg text-gray-600 font-secondary max-w-xl mb-4 ">
+          <p className=" body3 text-gray-600  max-w-xl mb-4 ">
             Explore the most flexible, quick and cost-effective way to own your
             dream EV two wheeler
           </p>
@@ -61,7 +61,7 @@ export default function SeventhSection() {
     return (
       <div
         key={index}
-        className={`flex gap-4 p-6 bg-white rounded-corners shadow-md border hover:shadow-lg transition
+        className={`flex gap-4 p-6 bg-white rounded-corners border border-[#d4d4d4] shadow-md border hover:shadow-lg transition
           ${isLast ? "sm:col-span-2" : ""}
         `}
       >
@@ -70,10 +70,10 @@ export default function SeventhSection() {
         </div>
 
         <div>
-          <h5 className="text-lg font-semibold text-[#205073]">
+          <h5 className="font-medium text-highlight">
             {item.title}
           </h5>
-          <p className="mt-1 text-gray-600 font-secondary ">
+          <p className="mt-1 text-gray-600 body3 ">
             {item.description}
           </p>
         </div>

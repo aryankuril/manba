@@ -130,7 +130,7 @@ const FirstSection = () => {
           </div>
 
           {/* Content */}
-          <div className="   z-10  h-full  px-10 flex flex-col md:flex-row items-center justify-center md:justify-start ">
+          <div className="   z-10  h-full  px-8 flex flex-col md:flex-row items-center justify-center md:justify-start ">
             {/* Left Text Content */}
             <div className=" hidden md:block  text-left items-center">
               <div className="relative z-10 max-w-3xl text-white ">
@@ -141,8 +141,8 @@ const FirstSection = () => {
                 {/* Subtitle */}
                 <motion.p
                   className=" max-w-xl 
-                     body2
-                     font-semibold  text-white font-secondary"
+                     body3
+                     text-white "
                   initial={{ opacity: 0, x: -40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.7, ease: "easeOut" }}
@@ -159,8 +159,8 @@ const FirstSection = () => {
                       <h4 className="text-2xl sm:text-3xl font-bold text-[#79f431]">
                         <Counter value={item.value} suffix={item.suffix} />
                       </h4>
-                      <p className="body2
-                     font-semibold  text-white font-secondary">
+                      <p className="body3
+                      text-white ">
                         {item.label}
                       </p>
                     </div>

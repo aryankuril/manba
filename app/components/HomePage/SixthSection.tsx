@@ -53,11 +53,11 @@ const SixthSection = () => {
           {documentsData.map((section, index) => (
             <div
               key={index}
-              className="bg-white rounded-corners shadow-md border hover:shadow-lg transition overflow-hidden"
+              className="bg-white rounded-corners border border-[#d4d4d4] shadow-md  hover:shadow-lg transition overflow-hidden"
             >
               {/* Heading */}
       
-                <div className="bg-[#205073] text-white px-5 py-3  font-semibold text-xl">
+                <div className="bg-[#205073] text-white  px-5 py-3  font-medium  text-xl">
                   {section.title}
                   <div className="mt-1 text-xs font-normal">{section.subtitle}</div>
                 </div>
@@ -68,7 +68,7 @@ const SixthSection = () => {
                 {section.items.map((item, i) => (
                   <li
                   key={i}
-                  className="flex items-start gap-3 text-gray-600 font-secondary text-sm cursor-pointer transition-colors duration-200 "
+                  className="flex items-start gap-3 text-gray-600 font-secondary body3 cursor-pointer transition-colors duration-200 "
                   >
                     <span className="text-green-600 mt-1">✔</span>
                     <TextAnimation>

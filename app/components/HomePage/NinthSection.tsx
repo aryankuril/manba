@@ -68,7 +68,7 @@ Your Questions Answered
 
 {/* <FadeInFromLeft> */}
 
-       <p className="text-gray-600 font-secondary font-secondary  mb-4">
+       <p className="text-gray-600 body3  mb-4">
   Find clear answers to common questions about Manba’s EV two-wheeler loans, eligibility, process, and repayment—so you can switch to electric with confidence.
 </p>
 
@@ -129,7 +129,7 @@ Your Questions Answered
         onClick={() => toggleFaq(index)}
         className="flex justify-between items-center cursor-pointer"
       >
-        <h5 className="font-semibold text-[#205073] text-[24px] w-120">{faq.question}</h5>
+        <h5 className="font-medium text-highlight  w-120">{faq.question}</h5>
         <span className="text-2xl text-[#205073] ">
           {activeIndex === index ? "−" : "+"}
         </span>
@@ -137,7 +137,7 @@ Your Questions Answered
 
       {activeIndex === index && (
         <motion.p
-          className="mt-4  text-[16px] text-black font-secondary"
+          className="mt-4  body3 text-black font-secondary"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}

@@ -26,7 +26,7 @@ export default function LogoInfiniteSlider() {
           {logos.map((logo, index) => (
             <div
               key={index}
-              className="flex items-center justify-center bg-white rounded-corners shadow-md border hover:shadow-lg transition p-4 h-[90px]"
+              className="flex items-center justify-center bg-white rounded-corners border border-[#d4d4d4] shadow-md border hover:shadow-lg transition p-4 h-[90px]"
             >
               <Image
                 src={logo}

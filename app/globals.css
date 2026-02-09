@@ -34,7 +34,7 @@
      Colors
      ========================= */
   --color-primary: #1d1d1d;
-  --color-highlight: #fab31e;
+  --color-highlight: #205073;
   --color-secondary: #fdfdfd;
   --color-grey: #898989;
   --color-text-muted: #ababab;
@@ -45,7 +45,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-primary);
+  font-family:"Montserrat", "Avant Garde";
 }
 
 
@@ -78,7 +78,7 @@ h4 {
 }
 
 h5 {
-  font-family: var(--font-primary);
+  font-family: var(--font-secondary);
   font-size: var(--h5-size); /* ✅ Blog titles */
   line-height: 1.2em;
 }
@@ -163,8 +163,9 @@ h6 {
    UTILITY TEXT COLORS
    ========================================= */
 .text-highlight {
-  color: var(--color-highlight);
+  color: var(--color-highlight) !important;
 }
+
 
 .black-text {
   color: var(--color-primary);
@@ -179,7 +180,7 @@ h6 {
 }
 
 .rounded-corners {
-  border-radius: 25px;
+  border-radius: 20px;
 }
 
 
@@ -202,8 +203,8 @@ h6 {
 
   /* ---------- Body ---------- */
   .body1 { font-size: 20px !important; }
-  .body2 { font-size: 15px !important; }
-  .body3 { font-size: 16px !important; }
+  .body2 { font-size: 16px !important; }
+  .body3 { font-size: 15px !important; }
   .body4 { font-size: 14px !important; }
 
   /* ---------- Numbers ---------- */

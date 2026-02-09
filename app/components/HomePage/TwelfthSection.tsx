@@ -37,7 +37,7 @@ export default function TwelfthSection() {
           {products.map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-corners shadow-md border hover:shadow-lg transition overflow-hidden p-5"
+              className="bg-white rounded-corners border border-[#d4d4d4] shadow-md  hover:shadow-lg transition overflow-hidden p-5"
             >
               {/* Image */}
               <div className="relative w-full h-56 rounded-corners overflow-hidden">
@@ -53,7 +53,7 @@ export default function TwelfthSection() {
 
               {/* Content */}
               <div className="mt-6">
-                <h5 className="text-lg font-semibold text-[#205073] mb-4">
+                <h5 className="font-medium text-highlight mb-4">
                   {item.title}
                 </h5>
 

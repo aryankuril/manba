@@ -148,22 +148,22 @@ const highlightWords = (text: string) => {
           <div className="flex w-max">
             {[...testimonials, ...testimonials].map((item, index) => (
               <div key={index} className="flex-shrink-0 px-2">
-                <div className="bg-white border rounded-corners shadow-md flex h-full overflow-hidden w-[520px]">
+                <div className="bg-white  rounded-corners p-4 gap-5 border  border-[#d4d4d4] shadow-md flex h-full overflow-hidden w-[520px]">
                   {/* IMAGE */}
-                  <div className="relative w-[180px] min-h-[180px] flex-shrink-0">
+                  <div className="relative w-[250px] min-h-[250px] flex-shrink-0">
                    <Image
   src={item.image}
   alt={item.name}
   fill
   sizes="(max-width: 768px) 100vw, 180px"
-  className="object-fit p-3 rounded-corners"
+    className="object-cover object-top  rounded-corners"
 />
 
                   </div>
 
                   {/* CONTENT */}
-                  <div className="p-3 flex flex-col justify-between">
-                    <p className="text-gray-900 text-sm leading-relaxed">
+                  <div className=" flex flex-col justify-between">
+                    <p className="text-gray-900 body3  leading-relaxed">
 “{highlightWords(item.message)}”
 
 </p>

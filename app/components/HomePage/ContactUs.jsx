@@ -190,7 +190,7 @@ const sendEmail = async (e) => {
       <div className="mx-auto">
 
 
-        <div className="flex flex-col md:flex-row lg:h-[600px] bg-white rounded-corners shadow-md border hover:shadow-lg transition overflow-hidden">
+        <div className="flex flex-col md:flex-row lg:h-[600px] bg-white rounded-corners border border-[#d4d4d4] shadow-md  hover:shadow-lg transition overflow-hidden">
           <div
             className="md:w-1/2 bg-cover bg-[#205073] text-white lg:p-8 p-5 relative"
            
@@ -212,12 +212,12 @@ const sendEmail = async (e) => {
               </TextAnimation>
 
               <FadeInFromLeft >
-              <p className="lg:mb-30 mb-6 body2">
+              <p className="lg:mb-30 mb-6 body3">
  Have questions? Let’s help you get your EV loan faster.
                </p>
                </FadeInFromLeft>
 
-              <div className="space-y-5 text-[16px] ">
+              <div className="space-y-5 body3 ">
 <div className="flex items-center space-x-4 lg:mb-10">
   <Phone className="w-5 h-5 text-[#79f431]" />
   <a href="tel:02262346666" >

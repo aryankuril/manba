@@ -79,13 +79,13 @@ const progressMap: Record<number, number> = {
   return (
     <div className="w-full container py-10 sm:py-15 lg:py-20 flex flex-col items-center">
       <TextAnimation>
-        <h3 className="text-center  font-semibold text-black ">
+        <h3 className="text-center font-semibold text-black ">
           How Our Process Works
         </h3>
       </TextAnimation>
 
       <FadeInFromLeft>
-      <p className="text-gray-600 mb-10 text-center">
+      <p className="text-gray-600 body3 mb-10 text-center">
         To Make Your Dream Come True
       </p>
       </FadeInFromLeft>
@@ -93,7 +93,7 @@ const progressMap: Record<number, number> = {
       <div className="relative w-full px-6 overflow-hidden">
     
         {/* Desktop Background Line */}
-        <div className="absolute top-[80px] left-0 w-full h-1 bg-gray-200 rounded-full hidden md:block"></div>
+        <div className="absolute top-[80px] left-[30px]  w-full h-1 bg-gray-200 rounded-full hidden md:block"></div>
 
         {/* Desktop Animated Fill Line */}
         <motion.div
@@ -138,8 +138,8 @@ const progressMap: Record<number, number> = {
                 />
               </motion.div>
 
-              <h5 className="mt-4 font-semibold">{step.title}</h5>
-              <p className="text-sm text-gray-600">{step.desc}</p>
+              <h5 className="mt-4 font-medium text-highlight">{step.title}</h5>
+              <p className="text-sm text-gray-600 body3">{step.desc}</p>
             </div>
           ))}
         </div>
