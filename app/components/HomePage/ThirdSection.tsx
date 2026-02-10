@@ -161,9 +161,9 @@ const ThirdSection = () => {
           {/* CENTER IMAGE */}
           <FadeInFromBottom>
           <div className="flex justify-center">
-            <div className="relative w-[260px] sm:w-[320px] md:w-[400px]">
+            <div className="relative w-[260px] sm:w-[320px] md:w-[450px]">
               <Image
-                src="/images/sad.png" 
+                src="/images/Features2.png" 
                 alt="EV Feature"
                 width={500}
                 height={500}

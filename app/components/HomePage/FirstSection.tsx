@@ -53,7 +53,12 @@ const Counter = ({ value, suffix = "" }: { value: number; suffix?: string }) => 
 const FirstSection = () => {
   return (
     <div className=" lg:px-0 px-5">
-      <section className="relative  w-full container bg-[#205073] rounded-corners ">
+      <section 
+       style={{
+    backgroundSize: "200% 100%",
+    background:
+      "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
+  }} className="relative  w-full container  rounded-corners ">
         {/* Rounded outer container */}
         <div className="relative mx-auto h-[70vh] md:h-[70vh] ">
 

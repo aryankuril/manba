@@ -64,7 +64,7 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   const ButtonContent = (
-    <span className="flex">
+    <span className="flex relative z-10">
       {chars.map((char, idx) => (
         <span
           key={idx}
@@ -90,44 +90,56 @@ const Button: React.FC<ButtonProps> = ({
     </span>
   );
 
+  const ShineEffect = (
+    <span
+      className={`absolute top-0 left-[-80px] h-[250%] w-[45px] rotate-45 translate-y-[-35%] transition-all duration-700 ease-out ${
+        hovered ? "left-[150%]" : "left-[-80px]"
+      }`}
+      style={{
+        background:
+          "linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.55), rgba(255,255,255,0))",
+      }}
+    ></span>
+  );
+
   if (href) {
     return (
       <Link
         href={href}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-         style={{
-  backgroundSize: "200% 100%",
-  background: "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
-}}
-
-
-        className={`relative inline-flex items-center justify-center px-5 py-3  rounded-[32px] uppercase text-white font-semibold text-base overflow-hidden ${className}`}
+        style={{
+          backgroundSize: "200% 100%",
+          background:
+            "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
+        }}
+        className={`relative inline-flex items-center justify-center px-5 py-3 rounded-[32px] uppercase text-white font-semibold text-base overflow-hidden transition-all duration-300 ease-out hover:scale-[1.06] ${className}`}
       >
+        {ShineEffect}
         {ButtonContent}
       </Link>
     );
   }
 
   return (
-   <button
-  type="button"
-  onClick={internalClick}
-  disabled={disabled || loading}
-  onMouseEnter={() => setHovered(true)}
-  onMouseLeave={() => setHovered(false)}
-  style={{
-    backgroundSize: "200% 100%",
-    background:
-      "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
-  }}
-  className={`relative inline-flex items-center justify-center px-5 py-3 cursor-pointer rounded-[32px] uppercase text-white font-semibold text-base overflow-hidden ${
-    disabled || loading ? "opacity-50 cursor-not-allowed" : ""
-  } ${className}`}
->
-  {ButtonContent}
-</button>
-
+    <button
+      type="button"
+      onClick={internalClick}
+      disabled={disabled || loading}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        backgroundSize: "200% 100%",
+        background:
+          "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
+      }}
+      className={`relative inline-flex items-center justify-center px-5 py-3 cursor-pointer rounded-[32px] uppercase text-white font-semibold text-base overflow-hidden transition-all duration-300 ease-out hover:scale-[1.06] ${
+        disabled || loading ? "opacity-50 cursor-not-allowed" : ""
+      } ${className}`}
+    >
+      {ShineEffect}
+      {ButtonContent}
+    </button>
   );
 };
 

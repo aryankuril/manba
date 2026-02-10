@@ -129,7 +129,7 @@ Your Questions Answered
         onClick={() => toggleFaq(index)}
         className="flex justify-between items-center cursor-pointer"
       >
-        <h5 className="font-medium text-highlight  w-120">{faq.question}</h5>
+        <h5 className="font-medium text-highlight  w-180">{faq.question}</h5>
         <span className="text-2xl text-[#205073] ">
           {activeIndex === index ? "−" : "+"}
         </span>

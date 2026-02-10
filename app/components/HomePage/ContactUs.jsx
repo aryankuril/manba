@@ -9,6 +9,7 @@ import TextAnimation from './../TextAnimation';
 import FadeInFromLeft from './../Animation/FadeInFromLeft';
 
 const ContactUs = () => {
+const [submitting, setSubmitting] = useState(false);
 
     const shootRealisticConfetti = () => {
         const count = 200;
@@ -100,10 +101,11 @@ const validateField = (name, value) => {
       return "";
 
     case "message":
-      if (!value.trim()) return "Message is required";
-      if (value.trim().length < 10)
-        return "Message must be at least 10 characters";
-      return "";
+  if (!value.trim()) return ""; // optional now
+  if (value.trim().length < 10)
+    return "Message must be at least 10 characters";
+  return "";
+
 
 
       case "cibilScore":
@@ -135,7 +137,7 @@ const sendEmail = async (e) => {
 
   const newErrors = {};
 
-  ["firstName", "lastName", "email", "phone", "cibilScore", "message"].forEach((field) => {
+  ["firstName", "lastName", "email", "phone", "cibilScore"].forEach((field) => {
     const errorMsg = validateField(field, formData[field]);
     if (errorMsg) newErrors[field] = errorMsg;
   });
@@ -145,6 +147,8 @@ const sendEmail = async (e) => {
   if (Object.keys(newErrors).length > 0) {
     return;
   }
+
+  setSubmitting(true); // ✅ start loading
 
   try {
     const res = await fetch("/api/contact", {
@@ -176,8 +180,11 @@ const sendEmail = async (e) => {
   } catch (error) {
     console.error("Request Failed:", error);
     alert("Something went wrong. Please try again.");
+  } finally {
+    setSubmitting(false); // ✅ stop loading
   }
 };
+
 
 
 
@@ -192,17 +199,21 @@ const sendEmail = async (e) => {
 
         <div className="flex flex-col md:flex-row lg:h-[600px] bg-white rounded-corners border border-[#d4d4d4] shadow-md  hover:shadow-lg transition overflow-hidden">
           <div
-            className="md:w-1/2 bg-cover bg-[#205073] text-white lg:p-8 p-5 relative"
-           
+            className="md:w-1/2 bg-cover  text-white lg:p-8 p-5 relative"
+           style={{
+          backgroundSize: "200% 100%",
+          background:
+            "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
+        }}
           >
 
 
             {/* Bottom Right Image */}
-  <img
+  {/* <img
     src="/images/creative1.png"
     alt="contact decoration"
     className="absolute bottom-0 right-0 w-[220px] opacity-30 z-0 pointer-events-none"
-  />
+  /> */}
             <div className="absolute inset-0  z-0 rounded-2xl" />
             <div className="relative z-10">
               <TextAnimation>
@@ -324,31 +335,37 @@ Mumbai – 400080
       </div>
               </div>
 
-          <div className="mt-4">
+        <div className="mt-4">
   <label className="block text-sm text-black">
-    Cibil Score 
-    {/* <span className="text-red-500">*</span> */}
+    Cibil Score
   </label>
 
-  <div className="relative mt-2">
-    <select
-      name="cibilScore"
-      value={formData.cibilScore}
-      onChange={handleChange}
-      required
-      className="w-full border border-gray-300 rounded-xl px-4 py-3 pr-12 focus:outline-none text-[#011C2A] focus:border-black appearance-none"
-    >
-      <option value="">What is your Cibil Score?</option>
-      <option value="Between 500 and 650">Between 500 and 650</option>
-      <option value="Between 650 and 720">Between 650 and 720</option>
-      <option value="Between 720 and 800">Between 720 and 800</option>
-      <option value="Above 800">Above 800</option>
-    </select>
-
-    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 pointer-events-none" />
+  <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+    {[
+      "Between 500 and 650",
+      "Between 650 and 720",
+      "Between 720 and 800",
+      "Above 800",
+    ].map((score, index) => (
+      <label
+        key={index}
+        className="flex items-center gap-3 cursor-pointer border border-gray-300 rounded-xl px-4 py-3 hover:border-black transition"
+      >
+        <input
+          type="radio"
+          name="cibilScore"
+          value={score}
+          checked={formData.cibilScore === score}
+          onChange={handleChange}
+          required
+          className="w-4 h-4 accent-black cursor-pointer"
+        />
+        <span className="text-[#011C2A] text-sm">{score}</span>
+      </label>
+    ))}
   </div>
 
-   {errors.cibilScore && (
+  {errors.cibilScore && (
     <p className="text-red-500 text-xs mt-1">{errors.cibilScore}</p>
   )}
 </div>
@@ -356,15 +373,16 @@ Mumbai – 400080
 
 
 
+
               <div>
                 <label className="block text-sm text-black mb-5">Message</label>
                 <textarea
-                  rows="2"
+                  rows="1"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  required
-                  placeholder="Write a message"
+                  // required
+                  // placeholder="Write a message"
                   className="w-full border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black resize-none"
                 ></textarea>
 
@@ -376,10 +394,12 @@ Mumbai – 400080
 
 
               <Button
-  text="Get Started"
-  className=" text-white"
+  text={submitting ? "Submitting..." : "Get Started"}
+  className="text-white"
   onClick={sendEmail}
+  disabled={submitting}
 />
+
 
 
 

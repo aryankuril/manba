@@ -25,77 +25,82 @@ const eligibilityData = [
 
 export default function SeventhSection() {
   return (
-    <section className="w-full container py-10 sm:py-15 lg:py-20 lg:mt-25 mt-40">
+    <section className="w-full container py-10 sm:py-15 lg:py-20 lg:mt-25 mt-15">
       
-      {/* BENTO GRID */}
-      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr] gap-4 lg:gap-8 items-stretch">
+      {/* MAIN FULL WIDTH CARD */}
+      <div
+        className="rounded-corners border border-[#d4d4d4] shadow-md p-8 relative overflow-hidden min-h-[420px] flex flex-col lg:flex-row justify-between gap-8"
+        style={{
+          backgroundImage: "url('/images/ev-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent transition duration-500"></div>
+
+        {/* LEFT CONTENT */}
+        <div className="relative z-10 w-full lg:w-1/2 flex flex-col justify-center">
+  <TextAnimation>
+    <h3 className="max-w-xl mb-3 font-semibold text-white leading-tight">
+      EV Two Wheeler Loan Eligibility Criteria
+    </h3>
+  </TextAnimation>
+
+  <FadeInFromLeft>
+    <p className="body3 text-white max-w-md mb-3">
+      Explore the most flexible, quick and cost-effective <br /> way to own your
+      dream EV two wheeler
+    </p>
+  </FadeInFromLeft>
+
+  <FadeInFromLeft>
+    <div className="relative z-10">
+      <Button
+        text="Calculate Your Loan"
+        href="/calculator"
+        className="bg-[#205073] text-white w-fit"
+      />
+    </div>
+  </FadeInFromLeft>
+</div>
 
 
-        {/* LEFT BIG CARD */}
-        <div className="bg-white rounded-corners border border-[#d4d4d4] shadow-md p-8 flex flex-col justify-between lg:row-span-2 lg:col-span-1">
+
+
+                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent transition duration-500"></div>
+
+
+        {/* RIGHT BOX INSIDE IMAGE CARD */}
+        <div className="relative z-10 w-full lg:w-[420px] bg-white/20 backdrop-blur-sm border-b border-white/20 rounded-corners border shadow-lg p-6 flex flex-col justify-center">
           
-          <div>
-            <TextAnimation>
-              <h3 className="mb-3 font-semibold text-black leading-tight">
-                EV Two Wheeler Loan Eligibility Criteria
-              </h3>
-            </TextAnimation>
+          <h5 className="font-medium text-white mb-6">
+            Eligibility Requirements
+          </h5>
 
-            <FadeInFromLeft>
-              <p className="body3 text-gray-600 max-w-xl mb-3">
-                Explore the most flexible, quick and cost-effective way to own your
-                dream EV two wheeler
-              </p>
-            </FadeInFromLeft>
+          <div className="flex flex-col gap-8">
+            {eligibilityData.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div key={index} className="flex items-start gap-4">
+                  
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#205073] flex items-center justify-center">
+                    <Icon className="w-6 h-6 text-[#79f431]" />
+                  </div>
+
+                  <div>
+                    <h6 className="font-semibold text-white">{item.title}</h6>
+                    <p className="text-white body3 mt-2 leading-snug">
+                      {item.description}
+                    </p>
+                  </div>
+
+                </div>
+              );
+            })}
           </div>
 
-          <FadeInFromLeft>
-            <Button
-              text="Calculate Your Loan"
-              href="/calculator"
-              className="bg-[#205073] text-white w-fit"
-            />
-          </FadeInFromLeft>
         </div>
-
-        {/* TOP RIGHT SMALL CARD 1 */}
-        <div className="bg-white rounded-corners border border-[#d4d4d4] shadow-md hover:shadow-lg transition p-6 flex gap-4">
-          <div className="flex-shrink-0">
-            <MapPin className="w-8 h-8 text-[#1f4f6f]" />
-          </div>
-
-          <div>
-            <h5 className="font-medium text-highlight">Resident</h5>
-            <p className="mt-1 text-gray-600 body3">Indian</p>
-          </div>
-        </div>
-
-        {/* TOP RIGHT SMALL CARD 2 */}
-        <div className="bg-white rounded-corners border border-[#d4d4d4] shadow-md hover:shadow-lg transition p-6 flex gap-4">
-          <div className="flex-shrink-0">
-            <CreditCard className="w-8 h-8 text-[#1f4f6f]" />
-          </div>
-
-          <div>
-            <h5 className="font-medium text-highlight">Bank Account</h5>
-            <p className="mt-1 text-gray-600 body3">Operative</p>
-          </div>
-        </div>
-
-        {/* BOTTOM RIGHT LONG CARD */}
-        <div className="bg-white rounded-corners border border-[#d4d4d4] shadow-md hover:shadow-lg transition p-6 flex gap-4 lg:col-span-2">
-          <div className="flex-shrink-0">
-            <User className="w-8 h-8 text-[#1f4f6f]" />
-          </div>
-
-          <div>
-            <h5 className="font-medium text-highlight">Age</h5>
-            <p className="mt-1 text-gray-600 body3">
-              Minimum 18 & Maximum up to 60 years
-            </p>
-          </div>
-        </div>
-
       </div>
     </section>
   );

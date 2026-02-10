@@ -8,19 +8,21 @@ export async function POST(req: Request) {
 
     const { firstName, lastName, email, phone, message, cibilScore } = body;
 
-    if (!firstName || !lastName || !email || !phone || !message || !cibilScore) {
+    if (!firstName || !lastName || !email || !phone || !cibilScore) {
       return NextResponse.json(
         { success: false, message: "All fields are required." },
         { status: 400 }
       );
     }
 
+    const finalMessage = message?.trim() || "No message provided";
+
     await addDoc(collection(db, "contacts"), {
       firstName,
       lastName,
       email,
       phone,
-      message,
+      message: finalMessage,
       cibilScore,
       createdAt: serverTimestamp(),
     });

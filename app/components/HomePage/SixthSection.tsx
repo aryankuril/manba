@@ -4,6 +4,8 @@ import React from "react";
 import TextAnimation from "./../TextAnimation";
 import FadeInFromLeft from "./../Animation/FadeInFromLeft";
 import Button from "../Button";
+import { motion } from 'framer-motion';
+import Image from "next/image";
 
 const documentsData = [
   {
@@ -41,12 +43,14 @@ const documentsData = [
 
 const SixthSection = () => {
   return (
-    <section className="container py-10 sm:py-15 lg:py-20  ">
+    <section className="container py-10 sm:py-15 lg:py-20 pb-[200px]">
+
       <div className="mx-auto">
-        <div className="flex flex-col lg:flex-row gap-12 items-start">
+        <div className="flex flex-col lg:flex-row gap-12 items-start relative">
+
           
           {/* LEFT SIDE */}
-          <div className="w-full lg:w-1/2 sticky top-20 lg:top-32">
+          <div className="w-full lg:w-1/2 sticky top-20 lg:top-32 ">
 
             <TextAnimation>
               <h3 className="text-left mb-3 font-semibold text-black text-3xl lg:text-4xl leading-tight">
@@ -54,9 +58,13 @@ const SixthSection = () => {
               </h3>
             </TextAnimation>
 
+
+            <FadeInFromLeft>
+
             <p className="text-gray-600 text-lg mb-3">
               Please keep these documents ready before applying for your EV Two Wheeler Loan.
             </p>
+            </FadeInFromLeft>
 
             <Button
               text="Apply Now"
@@ -68,6 +76,27 @@ const SixthSection = () => {
               }}
               className="mt-2"
             />
+
+
+            <motion.div
+              className=" md:flex hidden flex justify-center "
+              initial={{ x: -140, opacity: 0, scale: 0.95 }}
+              whileInView={{ x: 0, opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{
+                duration: 1,
+                ease: [0.22, 1, 0.36, 1], // very smooth (easeOutExpo-like)
+              }}
+            >
+              <Image
+                src="/images/loanapprove.svg"
+                alt="EV Scooter"
+                width={420}
+                height={420}
+                className="w-full max-w-md"
+                priority
+              />
+            </motion.div>
           </div>
 
           {/* RIGHT SIDE STACK CARDS */}
@@ -81,25 +110,24 @@ const SixthSection = () => {
       }}
     >
       <div
-  className={`bg-white rounded-corners border border-[#d4d4d4] shadow-md hover:shadow-lg transition overflow-hidden min-h-[300px] flex flex-col 
-    ${index === 0 ? "translate-y-0" : ""}
-    ${index === 1 ? "translate-y-[75px] lg:translate-y-[50px]" : ""}
-    ${index === 2 ? "translate-y-[150px] lg:translate-y-[100px]" : ""}
-  `}
->
-
+        className={`bg-white rounded-corners border border-[#d4d4d4] shadow-md hover:shadow-lg transition overflow-hidden min-h-[300px] flex flex-col 
+          ${index === 0 ? "translate-y-0" : ""}
+          ${index === 1 ? "translate-y-[75px] lg:translate-y-[50px]" : ""}
+          ${index === 2 ? "translate-y-[150px] lg:translate-y-[100px]" : ""}
+        `}
+      >
         {/* Heading */}
+        
         <div className="bg-[#205073] text-white px-5 py-3 font-medium text-xl flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 lg:gap-4">
-  <span className="leading-snug text-base sm:text-lg lg:text-xl">
-    {section.title}
-  </span>
-
-  <span className="bg-white text-[#205073] text-xs font-semibold px-3 py-1 rounded-full w-fit whitespace-nowrap">
-    {section.subtitle}
-  </span>
-</div>
-
-
+           <TextAnimation>
+          <span className="leading-snug text-base sm:text-lg lg:text-xl">
+            {section.title}
+          </span>
+</TextAnimation>
+          <span className="bg-white text-[#205073] text-xs font-semibold px-3 py-1 rounded-full w-fit whitespace-nowrap">
+            {section.subtitle}
+          </span>
+        </div>
 
         {/* Content */}
         <ul className="p-5 space-y-3 list-disc list-outside pl-9 flex-1">
@@ -108,18 +136,21 @@ const SixthSection = () => {
               key={i}
               className="text-gray-600 font-secondary body3 cursor-pointer transition-colors duration-200 leading-snug tracking-tight"
             >
-              <TextAnimation>
-                <span className="block max-w-[320px]">
-                  {item}
-                </span>
-              </TextAnimation>
+             
+                <span className="block max-w-[320px]">{item}</span>
+              
             </li>
           ))}
         </ul>
       </div>
     </div>
   ))}
+
+  {/* IMPORTANT SCROLL SPACE (this fixes sticky left stopping early) */}
+<div className="h-[350px]"></div>
+
 </div>
+
 
 
         </div>
