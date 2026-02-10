@@ -18,7 +18,7 @@ const ResultCard = ({
 }: ResultCardProps) => {
   return (
     <motion.div
-      className={`relative p-3 bg-white rounded-corners border border-[#d4d4d4] shadow-md overflow-hidden transition-all duration-300 ${
+      className={`relative p-3 h-full w-full bg-white rounded-corners border border-[#d4d4d4] shadow-md overflow-hidden transition-all duration-300 ${
         highlight 
           ? 'glass-card ' 
           : 'bg-secondary/50 '

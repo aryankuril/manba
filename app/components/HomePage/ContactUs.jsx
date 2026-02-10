@@ -1,271 +1,362 @@
 "use client";
 
-import { useState ,useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import confetti from "canvas-confetti";
-import { Phone, Mail, MapPin ,ChevronDown } from "lucide-react";
+import { Phone, Mail, MapPin, ChevronDown } from "lucide-react";
+import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 
 import Button from "../Button";
-import TextAnimation from './../TextAnimation';
-import FadeInFromLeft from './../Animation/FadeInFromLeft';
+import TextAnimation from "./../TextAnimation";
 
 const ContactUs = () => {
-const [submitting, setSubmitting] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-    const shootRealisticConfetti = () => {
-        const count = 200;
-        const defaults = {
-            origin: { x: 0.8, y: 0.2 }
-        };
+  const shootRealisticConfetti = () => {
+    const count = 200;
+    const defaults = {
+      origin: { x: 0.8, y: 0.2 },
+    };
 
-        function fire(particleRatio, opts) {
-            confetti({
-                ...defaults,
-                ...opts,
-                particleCount: Math.floor(count * particleRatio)
-            });
-        }
-
-        fire(0.25, {
-            spread: 26,
-            startVelocity: 55,
-        });
-        fire(0.2, {
-            spread: 60,
-        });
-        fire(0.35, {
-            spread: 100,
-            decay: 0.91,
-            scalar: 0.8
-        });
-        fire(0.1, {
-            spread: 120,
-            startVelocity: 25,
-            decay: 0.92,
-            scalar: 1.2
-        });
-        fire(0.1, {
-            spread: 120,
-            startVelocity: 45,
-        });
+    function fire(particleRatio, opts) {
+      confetti({
+        ...defaults,
+        ...opts,
+        particleCount: Math.floor(count * particleRatio),
+      });
     }
 
+    fire(0.25, { spread: 26, startVelocity: 55 });
+    fire(0.2, { spread: 60 });
+    fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+    fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+    fire(0.1, { spread: 120, startVelocity: 45 });
+  };
 
-//     const handleSubmit = () => {
-//         // your other functions here
-// setFormData({ ...formData, [e.target.name]: e.target.value });
-//         shootRealisticConfetti();
-//     }
-
-
- const [errors, setErrors] = useState({});
- const [formData, setFormData] = useState({
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  message: "",
-  cibilScore: "",
-});
-
-
-
-const validateEmail = (email) => {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-};
-
-const validatePhone = (phone) => {
-  return /^[5-9][0-9]{9}$/.test(phone);
-};
-
-
-const validateField = (name, value) => {
-  switch (name) {
-    case "firstName":
-    case "lastName":
-      if (!value.trim()) return "Name is required";
-      if (value.trim().length < 2) return "Name must be at least 2 characters";
-      if (!/^[A-Za-z\s]+$/.test(value.trim()))
-        return "Name can contain only letters";
-      return "";
-
-    case "email":
-      if (!value.trim()) return "Email is required";
-      if (!validateEmail(value)) return "Please enter a valid email";
-      return "";
-
-    case "phone":
-      if (!value.trim()) return "Phone number is required";
-     if (!validatePhone(value))
-  return "Phone must be 10 digits and start with 5-9";
-
-      return "";
-
-    case "message":
-  if (!value.trim()) return ""; // optional now
-  if (value.trim().length < 10)
-    return "Message must be at least 10 characters";
-  return "";
-
-
-
-      case "cibilScore":
-  if (!value.trim()) return "Please select your CIBIL score";
-  return "";
-
-
-    default:
-      return "";
-  }
-};
-
-const handleChange = (e) => {
-  const { name, value } = e.target;
-
-  setFormData({ ...formData, [name]: value });
-
-  const errorMsg = validateField(name, value);
-
-  setErrors((prev) => ({
-    ...prev,
-    [name]: errorMsg,
-  }));
-};
-
-
-const sendEmail = async (e) => {
-  e.preventDefault();
-
-  const newErrors = {};
-
-  ["firstName", "lastName", "email", "phone", "cibilScore"].forEach((field) => {
-    const errorMsg = validateField(field, formData[field]);
-    if (errorMsg) newErrors[field] = errorMsg;
+  const [errors, setErrors] = useState({});
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+    cibilScore: "",
   });
 
-  setErrors(newErrors);
+  // ===================== STORE DATA =====================
+// ===================== GOOGLE MAP =====================
+const { isLoaded } = useLoadScript({
+  googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+});
 
-  if (Object.keys(newErrors).length > 0) {
-    return;
-  }
+// coordinates list (must be exact for markers)
+const storeLocations = [
+  { city: "Ahmedabad", state: "Gujarat", lat: 23.0225, lng: 72.5714 },
+  { city: "Anand", state: "Gujarat", lat: 22.5645, lng: 72.9289 },
+  { city: "Bhavnagar", state: "Gujarat", lat: 21.7645, lng: 72.1519 },
+  { city: "Bikaner", state: "Rajasthan", lat: 28.0229, lng: 73.3119 },
+  { city: "Jaipur", state: "Rajasthan", lat: 26.9124, lng: 75.7873 },
+  { city: "Jalgaon", state: "Maharashtra", lat: 21.0077, lng: 75.5626 },
+  { city: "Kolhapur", state: "Maharashtra", lat: 16.705, lng: 74.2433 },
+  { city: "Mumbai", state: "Maharashtra", lat: 19.076, lng: 72.8777 },
+  { city: "Nadiad", state: "Gujarat", lat: 22.6916, lng: 72.8634 },
+  { city: "Nagpur", state: "Maharashtra", lat: 21.1458, lng: 79.0882 },
+  { city: "Nashik", state: "Maharashtra", lat: 19.9975, lng: 73.7898 },
+  { city: "Patan", state: "Gujarat", lat: 23.85, lng: 72.1167 },
+  { city: "Pune", state: "Maharashtra", lat: 18.5204, lng: 73.8567 },
+  { city: "Raipur", state: "Chhattisgarh", lat: 21.2514, lng: 81.6296 },
+  { city: "Rajkot", state: "Gujarat", lat: 22.3039, lng: 70.8022 },
+  { city: "Sangli", state: "Maharashtra", lat: 16.8524, lng: 74.5815 },
+  { city: "Satara", state: "Maharashtra", lat: 17.6805, lng: 74.0183 },
+  { city: "Shirur", state: "Maharashtra", lat: 18.8276, lng: 74.3747 },
+  { city: "Surat", state: "Gujarat", lat: 21.1702, lng: 72.8311 },
+  { city: "Thane", state: "Maharashtra", lat: 19.2183, lng: 72.9781 },
+  { city: "Vadodra", state: "Gujarat", lat: 22.3072, lng: 73.1812 },
+];
 
-  setSubmitting(true); // ✅ start loading
+const [selectedState, setSelectedState] = useState("All");
+const [selectedCity, setSelectedCity] = useState("All");
 
-  try {
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
+// state list
+const states = ["All", ...new Set(storeLocations.map((s) => s.state))];
+
+// city list based on state
+const cities =
+  selectedState === "All"
+    ? ["All", ...new Set(storeLocations.map((s) => s.city))]
+    : [
+        "All",
+        ...new Set(
+          storeLocations
+            .filter((s) => s.state === selectedState)
+            .map((s) => s.city)
+        ),
+      ];
+
+// filtered markers
+const filteredMarkers = storeLocations.filter((store) => {
+  const stateMatch = selectedState === "All" || store.state === selectedState;
+  const cityMatch = selectedCity === "All" || store.city === selectedCity;
+  return stateMatch && cityMatch;
+});
+
+// map center
+const mapCenter =
+  filteredMarkers.length > 0
+    ? { lat: filteredMarkers[0].lat, lng: filteredMarkers[0].lng }
+    : { lat: 20.5937, lng: 78.9629 }; // India center
+
+  // ===================== VALIDATION =====================
+  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const validatePhone = (phone) => /^[5-9][0-9]{9}$/.test(phone);
+
+  const validateField = (name, value) => {
+    switch (name) {
+      case "firstName":
+      case "lastName":
+        if (!value.trim()) return "Name is required";
+        if (value.trim().length < 2) return "Name must be at least 2 characters";
+        if (!/^[A-Za-z\s]+$/.test(value.trim()))
+          return "Name can contain only letters";
+        return "";
+
+      case "email":
+        if (!value.trim()) return "Email is required";
+        if (!validateEmail(value)) return "Please enter a valid email";
+        return "";
+
+      case "phone":
+        if (!value.trim()) return "Phone number is required";
+        if (!validatePhone(value))
+          return "Phone must be 10 digits and start with 5-9";
+        return "";
+
+      case "message":
+        if (!value.trim()) return "";
+        if (value.trim().length < 10)
+          return "Message must be at least 10 characters";
+        return "";
+
+      case "cibilScore":
+        if (!value.trim()) return "Please select your CIBIL score";
+        return "";
+
+      default:
+        return "";
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    const errorMsg = validateField(name, value);
+    setErrors((prev) => ({
+      ...prev,
+      [name]: errorMsg,
+    }));
+  };
+
+  const sendEmail = async (e) => {
+    e.preventDefault();
+
+    const newErrors = {};
+    ["firstName", "lastName", "email", "phone", "cibilScore"].forEach((field) => {
+      const errorMsg = validateField(field, formData[field]);
+      if (errorMsg) newErrors[field] = errorMsg;
     });
 
-    const data = await res.json();
+    setErrors(newErrors);
 
-    if (data.success) {
-      alert("Message sent successfully!");
-      shootRealisticConfetti();
+    if (Object.keys(newErrors).length > 0) return;
 
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        message: "",
-        cibilScore: "",
+    setSubmitting(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
 
-      setErrors({});
-    } else {
-      alert("Failed to send message. Please try again.");
-      console.error("API Error:", data.message);
+      const data = await res.json();
+
+      if (data.success) {
+        alert("Message sent successfully!");
+        shootRealisticConfetti();
+
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          message: "",
+          cibilScore: "",
+        });
+
+        setErrors({});
+      } else {
+        alert("Failed to send message. Please try again.");
+        console.error("API Error:", data.message);
+      }
+    } catch (error) {
+      console.error("Request Failed:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
-  } catch (error) {
-    console.error("Request Failed:", error);
-    alert("Something went wrong. Please try again.");
-  } finally {
-    setSubmitting(false); // ✅ stop loading
-  }
-};
-
-
-
-
+  };
 
   return (
     <section
-    id="contact-section"
-    className="min-h-screen w-full container py-10 sm:py-15 lg:py-20"
-  >
+      id="contact-section"
+      className="min-h-screen w-full container py-10 sm:py-15 lg:py-20"
+    >
       <div className="mx-auto">
-
-
-        <div className="flex flex-col md:flex-row lg:h-[600px] bg-white rounded-corners border border-[#d4d4d4] shadow-md  hover:shadow-lg transition overflow-hidden">
+        <div className="flex flex-col md:flex-row lg:h-full bg-white rounded-corners border border-[#d4d4d4] shadow-md hover:shadow-lg transition overflow-hidden">
+          
+          {/* LEFT SIDE */}
           <div
-            className="md:w-1/2 bg-cover  text-white lg:p-8 p-5 relative"
-           style={{
-          backgroundSize: "200% 100%",
-          background:
-            "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
-        }}
+            className="md:w-1/2 bg-cover text-white lg:p-8 p-5 relative"
+            style={{
+              backgroundSize: "200% 100%",
+              background:
+                "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
+            }}
           >
-
-
-            {/* Bottom Right Image */}
-  {/* <img
-    src="/images/creative1.png"
-    alt="contact decoration"
-    className="absolute bottom-0 right-0 w-[220px] opacity-30 z-0 pointer-events-none"
-  /> */}
-            <div className="absolute inset-0  z-0 rounded-2xl" />
+            <div className="absolute inset-0 z-0 rounded-2xl" />
             <div className="relative z-10">
               <TextAnimation>
-              <h3 className=" font-semibold mb-2">
-                Contact Information
-              </h3>
+                <h3 className="font-semibold mb-2">Contact Information</h3>
               </TextAnimation>
 
-              {/* <FadeInFromLeft > */}
-              <p className="lg:mb-30 mb-6 body3">
- Have questions? Let’s help you get your EV loan faster.
-               </p>
-               {/* </FadeInFromLeft> */}
+              <p className="lg:mb-10 mb-6 body3">
+                Have questions? Let’s help you get your EV loan faster.
+              </p>
 
-              <div className="space-y-5 body3 ">
-<div className="flex items-center space-x-4 lg:mb-10">
-  <Phone className="w-5 h-5 text-[#79f431]" />
-  <a href="tel:02262346666" >
-    022 6234 6666
-  </a>
-</div>
+              <div className="space-y-5 body3">
+                <div className="flex items-center space-x-4 lg:mb-6">
+                  <Phone className="w-5 h-5 text-[#79f431]" />
+                  <a href="tel:02262346666">022 6234 6666</a>
+                </div>
 
-<div className="flex items-center space-x-4 lg:mb-10">
-  <Mail className="w-5 h-5 text-[#79f431]" />
-  <a href="mailto:info@manbafinance.com" >
-    info@manbafinance.com
-  </a>
-</div>
+                <div className="flex items-center space-x-4 lg:mb-6">
+                  <Mail className="w-5 h-5 text-[#79f431]" />
+                  <a href="mailto:info@manbafinance.com">info@manbafinance.com</a>
+                </div>
 
+                <div className="flex items-start space-x-4 lg:mb-8">
+                  <MapPin className="w-5 h-5 text-[#79f431] mt-1" />
+                  <span className="max-w-sm text-sm leading-relaxed">
+                    324, Runwal Heights, Opp. Nirmal Lifestyle, LBS Marg,
+                    Mulund (W), Mumbai – 400080
+                  </span>
+                </div>
+              </div>
 
-  <div className="flex items-center space-x-4 lg:mb-40">
-    <MapPin className="w-5 lg:h-5 text-[#79f431]" />
-    <span className="max-w-sm text-sm">
-      324, Runwal Heights,
-Opp. Nirmal Lifestyle,
-LBS Marg, Mulund (W),
-Mumbai – 400080
-    </span>
+              {/* ================= FILTER + MAP ================= */}
+<div className="mt-8">
+  <h4 className="text-white font-semibold mb-4 text-[16px]">
+    Find Nearest Store
+  </h4>
+
+  {/* Filters */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+    {/* State */}
+    <div className="relative">
+      <select
+        value={selectedState}
+        onChange={(e) => {
+          setSelectedState(e.target.value);
+          setSelectedCity("All");
+        }}
+        className="w-full bg-white/15 backdrop-blur-md border border-white/20 text-white px-4 py-3 rounded-xl outline-none appearance-none"
+      >
+        {states.map((state, i) => (
+          <option key={i} value={state} className="text-black">
+            {state}
+          </option>
+        ))}
+      </select>
+      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />
+    </div>
+
+    {/* City */}
+    <div className="relative">
+      <select
+        value={selectedCity}
+        onChange={(e) => setSelectedCity(e.target.value)}
+        className="w-full bg-white/15 backdrop-blur-md border border-white/20 text-white px-4 py-3 rounded-xl outline-none appearance-none"
+      >
+        {cities.map((city, i) => (
+          <option key={i} value={city} className="text-black">
+            {city}
+          </option>
+        ))}
+      </select>
+      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none" />
+    </div>
   </div>
+
+  {/* MAP */}
+  <div className="w-full h-[260px] rounded-2xl overflow-hidden border border-white/20 shadow-lg bg-white/10 backdrop-blur-md">
+    {isLoaded ? (
+      <GoogleMap
+        zoom={filteredMarkers.length === 1 ? 12 : 5}
+        center={mapCenter}
+        mapContainerStyle={{ width: "100%", height: "100%" }}
+        options={{
+          disableDefaultUI: true,
+          zoomControl: true,
+        }}
+      >
+        {filteredMarkers.map((store, idx) => (
+          <Marker
+            key={idx}
+            position={{ lat: store.lat, lng: store.lng }}
+            title={`${store.city}, ${store.state}`}
+          />
+        ))}
+      </GoogleMap>
+    ) : (
+      <div className="flex items-center justify-center h-full text-white">
+        Loading Map...
+      </div>
+    )}
+  </div>
+
+  {/* Store List */}
+  {/* <div className="mt-5 bg-white/10 border border-white/20 rounded-2xl p-4 backdrop-blur-md max-h-[170px] overflow-y-auto scrollbar-hide">
+    <p className="text-sm font-medium mb-3 text-white">
+      Available Stores ({filteredMarkers.length})
+    </p>
+
+    {filteredMarkers.length === 0 ? (
+      <p className="text-white/70 text-sm">
+        No store found for this location.
+      </p>
+    ) : (
+      <div className="space-y-3">
+        {filteredMarkers.map((store, idx) => (
+          <div
+            key={idx}
+            className="p-3 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 transition"
+          >
+            <p className="font-semibold text-white text-sm">
+              {store.city}, {store.state}
+            </p>
+          </div>
+        ))}
+      </div>
+    )}
+  </div> */}
 </div>
+{/* ================= END FILTER + MAP ================= */}
 
-
-
-
-              {/* <div className="flex space-x-4 mt-10">
-                <img src="/icons/twitter-g.png" alt="social1" className="w-8 h-8" />
-                <img src="/icons/instagram.png" alt="social2" className="w-8 h-8" />
-              </div> */}
+              {/* ================= END FILTER + GRAPH ================= */}
             </div>
           </div>
 
-          {/* Right Side Form */}
+          {/* RIGHT SIDE FORM */}
           <div className="md:w-1/2 lg:p-8 p-5 bg-white">
             <form className="space-y-6" onSubmit={sendEmail}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -280,10 +371,10 @@ Mumbai – 400080
                     className="w-full mt-1 border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black"
                   />
                   {errors.firstName && (
-  <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>
-)}
-
+                    <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>
+                  )}
                 </div>
+
                 <div>
                   <label className="block text-sm text-black">Last Name</label>
                   <input
@@ -295,12 +386,14 @@ Mumbai – 400080
                     className="w-full mt-1 border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black"
                   />
                   {errors.lastName && (
-  <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>
-)}
-
+                    <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>
+                  )}
                 </div>
+
                 <div>
-                  <label className="block text-sm text-black lg:mt-5 mt-1">Email</label>
+                  <label className="block text-sm text-black lg:mt-5 mt-1">
+                    Email
+                  </label>
                   <input
                     type="email"
                     name="email"
@@ -310,69 +403,63 @@ Mumbai – 400080
                     className="w-full mt-1 border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black"
                   />
                   {errors.email && (
-  <p className="text-red-500 text-xs mt-1">{errors.email}</p>
-)}
-
+                    <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                  )}
                 </div>
-                <div>
-        <label className="block text-sm text-black lg:mt-5 mt-1">Phone Number</label>
-        <input
-          type="tel"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          required
-          pattern="[0-9]{10}"
-          minLength="10"
-          maxLength="10"
-          placeholder=""
-          className="w-full mt-1 border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black"
-        />
-        {errors.phone && (
-  <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
-)}
 
-      </div>
+                <div>
+                  <label className="block text-sm text-black lg:mt-5 mt-1">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    pattern="[0-9]{10}"
+                    minLength="10"
+                    maxLength="10"
+                    className="w-full mt-1 border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black"
+                  />
+                  {errors.phone && (
+                    <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+                  )}
+                </div>
               </div>
 
-        <div className="mt-4">
-  <label className="block text-sm text-black">
-    Cibil Score
-  </label>
+              <div className="mt-4">
+                <label className="block text-sm text-black">Cibil Score</label>
 
-  <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-    {[
-      "Between 500 and 650",
-      "Between 650 and 720",
-      "Between 720 and 800",
-      "Above 800",
-    ].map((score, index) => (
-      <label
-        key={index}
-        className="flex items-center gap-3 cursor-pointer border border-gray-300 rounded-xl px-4 py-3 hover:border-black transition"
-      >
-        <input
-          type="radio"
-          name="cibilScore"
-          value={score}
-          checked={formData.cibilScore === score}
-          onChange={handleChange}
-          required
-          className="w-4 h-4 accent-black cursor-pointer"
-        />
-        <span className="text-[#011C2A] text-sm">{score}</span>
-      </label>
-    ))}
-  </div>
+                <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    "Between 500 and 650",
+                    "Between 650 and 720",
+                    "Between 720 and 800",
+                    "Above 800",
+                  ].map((score, index) => (
+                    <label
+                      key={index}
+                      className="flex items-center gap-3 cursor-pointer border border-gray-300 rounded-xl px-4 py-3 hover:border-black transition"
+                    >
+                      <input
+                        type="radio"
+                        name="cibilScore"
+                        value={score}
+                        checked={formData.cibilScore === score}
+                        onChange={handleChange}
+                        required
+                        className="w-4 h-4 accent-black cursor-pointer"
+                      />
+                      <span className="text-[#011C2A] text-sm">{score}</span>
+                    </label>
+                  ))}
+                </div>
 
-  {errors.cibilScore && (
-    <p className="text-red-500 text-xs mt-1">{errors.cibilScore}</p>
-  )}
-</div>
-
-
-
-
+                {errors.cibilScore && (
+                  <p className="text-red-500 text-xs mt-1">{errors.cibilScore}</p>
+                )}
+              </div>
 
               <div>
                 <label className="block text-sm text-black mb-5">Message</label>
@@ -381,31 +468,20 @@ Mumbai – 400080
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  // required
-                  // placeholder="Write a message"
                   className="w-full border-b border-gray-300 focus:outline-none text-[#011C2A] focus:border-black resize-none"
                 ></textarea>
 
                 {errors.message && (
-  <p className="text-red-500 text-xs mt-1">{errors.message}</p>
-)}
-
+                  <p className="text-red-500 text-xs mt-1">{errors.message}</p>
+                )}
               </div>
 
-
               <Button
-  text={submitting ? "Submitting..." : "Get Started"}
-  className="text-white"
-  onClick={sendEmail}
-  disabled={submitting}
-/>
-
-
-
-
-      
-
-               
+                text={submitting ? "Submitting..." : "Get Started"}
+                className="text-white"
+                onClick={sendEmail}
+                disabled={submitting}
+              />
             </form>
           </div>
         </div>

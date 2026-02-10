@@ -64,7 +64,7 @@ const sliderRef = useRef<HTMLDivElement | null>(null);
       <div className="container mx-auto flex flex-col lg:flex-row items-center gap-12">
         
         {/* LEFT TEXT */}
-        <div className="lg:w-[40%] w-full text-center lg:text-left">
+        <div className="lg:w-[40%] w-full text-left">
         <TextAnimation>
           <h3
   className="text-[#010205]  font-semibold mb-5"

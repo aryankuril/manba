@@ -104,7 +104,7 @@ const SixthSection = () => {
   {documentsData.map((section, index) => (
     <div
       key={index}
-      className="sticky lg:top-30 top-80"
+      className="sticky lg:top-30 top-85"
       style={{
         zIndex: 10 + index,
       }}
@@ -112,7 +112,7 @@ const SixthSection = () => {
       <div
         className={`bg-white rounded-corners border border-[#d4d4d4] shadow-md hover:shadow-lg transition overflow-hidden min-h-[300px] flex flex-col 
           ${index === 0 ? "translate-y-0" : ""}
-          ${index === 1 ? "translate-y-[120px] lg:translate-y-[60px]" : ""}
+          ${index === 1 ? "translate-y-[115px] lg:translate-y-[60px]" : ""}
           ${index === 2 ? "translate-y-[210px] lg:translate-y-[120px]" : ""}
         `}
       >

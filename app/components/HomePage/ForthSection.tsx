@@ -34,7 +34,7 @@ export default function Thirdsection() {
       title: "Onboarding",
       desc: "Complete onboarding and get your EV loan.",
       icon: "/icons/onboarding.png",
-      img: "/images/process3.JPG",
+      img: "/images/process4.jpg",
     },
   ];
 
@@ -68,12 +68,12 @@ export default function Thirdsection() {
 
         
         {/* LEFT PROCESS LIST */}
-        <div >
+        <div className="lg:w-auto w-full ">
           {/* <h4 className="text-2xl lg:text-3xl font-semibold text-black mb-8 leading-tight">
             Get an EV loan <br /> in just 4 steps
           </h4> */}
 
-        <div className="flex flex-col gap-20 relative pl-6 overflow-hidden">
+        <div className="flex flex-col gap-20 relative pl-6 overflow-visible">
   {/* vertical line */}
   <div className="absolute left-[50px] top-3 bottom-3 w-[2px] bg-gray-200"></div>
 
@@ -81,75 +81,72 @@ export default function Thirdsection() {
     const isActive = active === step.id;
 
     return (
-      <motion.div
-        key={step.id}
-        onClick={() => setActive(step.id)}
-        className="flex items-start gap-5 cursor-pointer relative"
-        initial={false}
-        animate={{
-          scale: isActive ? 1.03 : 1,
-        }}
-        transition={{ duration: 0.35, ease: "easeInOut" }}
-      >
-        {/* icon circle */}
-        <motion.div
-          initial={false}
-          transition={{ duration: 0.35, ease: "easeInOut" }}
-          className={`w-12 h-12 flex items-center justify-center rounded-full border transition-all duration-500 flex-shrink-0 ${
-            isActive
-              ? "bg-[#205073] border-[#205073] shadow-md"
-              : "bg-gray-100 border-gray-200"
-          }`}
-        >
-          <motion.div
-            initial={false}
-            animate={{
-              scale: isActive ? 1.2 : 1,
-            }}
-            transition={{ duration: 0.35, ease: "easeInOut" }}
-          >
-            <Image
-              src={step.icon}
-              alt=""
-              width={24}
-              height={24}
-              className="object-cover"
-              style={{
-                filter: isActive
-                  ? "invert(70%) sepia(90%) saturate(900%) hue-rotate(50deg) brightness(105%) contrast(105%)"
-                  : "brightness(0)",
-              }}
-            />
-          </motion.div>
-        </motion.div>
-
-        {/* text */}
-        <motion.div
-          className="pt-1 origin-left w-full"
-         initial={false}
-  animate={{
-    scale: isActive ? 1.08 : 1,
-    x: isActive ? 10 : 0,
-  }}
+     <motion.div
+  key={step.id}
+  onClick={() => setActive(step.id)}
+  className="flex items-start gap-5 cursor-pointer relative"
+  layout
   transition={{ duration: 0.35, ease: "easeInOut" }}
-        >
-          <h5
-            className={`font-semibold transition-all duration-300 ${
-              isActive ? "text-black" : "text-gray-500"
-            }`}
-          >
-            {step.title}
-          </h5>
+>
+  {/* icon circle */}
+  <motion.div
+    layout
+    initial={false}
+    animate={{
+      scale: isActive ? 1.15 : 1,
+    }}
+    transition={{ duration: 0.35, ease: "easeInOut" }}
+    className={`w-12 h-12 flex items-center justify-center rounded-full border transition-all duration-50 flex-shrink-0 ${
+      isActive
+        ? "bg-[#205073] border-[#205073] shadow-md"
+        : "bg-gray-100 border-gray-200"
+    }`}
+  >
+    <Image
+      src={step.icon}
+      alt=""
+      width={24}
+      height={24}
+      className="object-cover"
+      style={{
+        filter: isActive
+          ? "invert(70%) sepia(90%) saturate(900%) hue-rotate(50deg) brightness(105%) contrast(105%)"
+          : "brightness(0)",
+      }}
+    />
+  </motion.div>
 
-          <p
-            className={`text-sm mt-1 leading-snug transition-all duration-300 ${
-              isActive ? "text-gray-600" : "text-gray-400"
-            }`}
-          >
-            {step.desc}
-          </p>
-        </motion.div>
-      </motion.div>
+  {/* text */}
+  <motion.div
+    layout
+    className="pt-1 origin-left w-full max-w-full"
+    initial={false}
+    animate={{
+      scale: isActive ? 1.05 : 1,
+      x: isActive ? 6 : 0,
+    }}
+    transition={{ duration: 0.35, ease: "easeInOut" }}
+  >
+    <h5
+      className={`font-semibold transition-all duration-300 break-words ${
+        isActive ? "text-black" : "text-gray-500"
+      }`}
+    >
+      {step.title}
+    </h5>
+
+    <p
+      className={`text-sm mt-1 leading-snug transition-all duration-300 
+        max-w-[230px] sm:max-w-[320px] md:max-w-full w-full 
+        whitespace-normal break-words ${
+          isActive ? "text-gray-600" : "text-gray-400"
+        }`}
+    >
+      {step.desc}
+    </p>
+  </motion.div>
+</motion.div>
+
     );
   })}
 </div>
