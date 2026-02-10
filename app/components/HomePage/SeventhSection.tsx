@@ -25,7 +25,7 @@ const eligibilityData = [
 
 export default function SeventhSection() {
   return (
-    <section className="w-full container py-10 sm:py-15 lg:py-20 mt-30">
+    <section className="w-full container py-10 sm:py-15 lg:py-20 lg:mt-25 mt-40">
       
       {/* BENTO GRID */}
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr] gap-4 lg:gap-8 items-stretch">
