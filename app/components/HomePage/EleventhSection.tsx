@@ -10,6 +10,7 @@ const testimonials = [
     role: "Marketing Manager",
     message:
       "Our ad campaigns finally speak to the right audience with clarity resulting in high CTR and ROI.",
+    maintext: "wowow",
     image: "/images/Testimonials-1.jpg",
     rating: 5,
   },
@@ -18,6 +19,7 @@ const testimonials = [
     role: "Growth Lead",
     message:
       "Their strategic thinking completely transformed how we communicate our brand.",
+    maintext: "Amazing",
     image: "/images/Testimonials-2.jpeg",
     rating: 5,
   },
@@ -25,6 +27,7 @@ const testimonials = [
     name: "Rohit Sharma",
     role: "Founder, DEX",
     message: "Better engagement, better leads, and a crystal clear brand voice.",
+     maintext: "wowow",
     image: "/images/Testimonials-3.jpeg",
     rating: 5,
   },
@@ -32,7 +35,8 @@ const testimonials = [
     name: "Neha Kapoor",
     role: "CMO",
     message:
-      "Messaging, positioning, and growth strategy — everything became clear.",
+      "Messaging, positioning, and growth strategy,everything became clear.",
+       maintext: "wowow",
     image: "/images/Testimonials-4.jpeg",
     rating: 5,
   },
@@ -163,8 +167,15 @@ const highlightWords = (text: string) => {
 
                   {/* CONTENT */}
                   <div className=" flex flex-col justify-between">
+
+                     <h5 className="text-gray-900 ">
+“{item.maintext}”
+
+</h5>
+
                     <p className="text-gray-900 body3  leading-relaxed">
-“{highlightWords(item.message)}”
+{/* “{highlightWords(item.message)}” */}
+{item.message}
 
 </p>
 

@@ -18,10 +18,10 @@ const ResultCard = ({
 }: ResultCardProps) => {
   return (
     <motion.div
-      className={`relative p-3 rounded-xl overflow-hidden transition-all duration-300 ${
+      className={`relative p-3 bg-white rounded-corners border border-[#d4d4d4] shadow-md overflow-hidden transition-all duration-300 ${
         highlight 
-          ? 'glass-card border-primary/30' 
-          : 'bg-secondary/50 border border-border/50'
+          ? 'glass-card ' 
+          : 'bg-secondary/50 '
       }`}
       initial={{ opacity: 0, y: 20, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -30,7 +30,7 @@ const ResultCard = ({
     >
       {highlight && (
         <motion.div
-          className="absolute inset-0 border rounded-2xl pointer-events-none"
+          className="absolute inset-0  pointer-events-none"
           animate={{
             opacity: [0.5, 0.8, 0.5],
           }}

@@ -36,7 +36,7 @@ const InfoSection = () => {
           <div className="text-center mb-10">
             <TextAnimation>
               <h2 className=" font-semibold text-gray-900">
-                Simple Way to Know yourEMI on the Loan
+                Simple Way to Know your EMI on the Loan
               </h2>
             </TextAnimation>
           </div>
@@ -62,26 +62,26 @@ const InfoSection = () => {
   {features.map((item, index) => (
     <motion.div
       key={item.title}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      whileHover={{ y: -6 }}
-      className="bg-white rounded-corners shadow-md border hover:shadow-lg transition p-6 "
+      // initial={{ opacity: 0, y: 20 }}
+      // whileInView={{ opacity: 1, y: 0 }}
+      // viewport={{ once: true }}
+      // transition={{ delay: index * 0.1 }}
+      // whileHover={{ y: -6 }}
+      className="bg-white rounded-corners border border-[#d4d4d4] shadow-md hover:shadow-lg transition p-6 "
     >
       <div className="flex items-start gap-4 h-full">
         
         {/* LEFT ICON (FULL HEIGHT) */}
-        <div className="w-14 h-full rounded-xl bg-[#205073] flex items-center justify-center text-[#79f431] shrink-0">
+        <div className="w-14 h-full rounded-[10px] bg-[#205073] flex items-center justify-center text-[#79f431] shrink-0">
           <item.icon className="w-7 h-7" />
         </div>
 
         {/* RIGHT TEXT */}
         <div className="text-left">
-          <h5 className="font-semibold text-lg text-[#205073]">
+          <h5 className="font-medium text-highlight">
             {item.title}
           </h5>
-          <p className="body2 text-gray-600 font-secondary">
+          <p className="body3 text-gray-600 font-secondary">
             {item.description}
           </p>
         </div>

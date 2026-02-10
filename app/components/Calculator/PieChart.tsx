@@ -141,20 +141,25 @@ d={createArcPath(0, principalAngle, 90, 65)}
       </svg>
 
       {/* Legend */}
-      <div className="flex justify-center gap-6 mt-4">
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#205073]" />
-          <span className="text-sm text-muted-foreground">
-            Principal ({principalPercentage.toFixed(1)}%)
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#79f431]" />
-          <span className="text-sm text-muted-foreground">
-            Interest {(100 - principalPercentage).toFixed(1)}%
-          </span>
-        </div>
-      </div>
+     {/* Legend */}
+<div className="flex justify-center gap-10 mt-4">
+  
+  <div className="flex items-center gap-2">
+    <div className="w-3 h-3 aspect-square rounded-full bg-[#205073] flex-shrink-0" />
+    <span className="text-sm text-muted-foreground">
+      Principal ({principalPercentage.toFixed(1)}%)
+    </span>
+  </div>
+
+  <div className="flex items-center gap-2">
+    <div className="w-3 h-3 aspect-square rounded-full bg-[#79f431] flex-shrink-0" />
+    <span className="text-sm text-muted-foreground">
+      Interest {(100 - principalPercentage).toFixed(1)}%
+    </span>
+  </div>
+
+</div>
+
     </motion.div>
   );
 };

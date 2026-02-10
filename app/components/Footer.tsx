@@ -26,7 +26,7 @@ export default function Footer() {
 
             <div className="space-y-3 text-sm  text-gray-100">
               <div className="flex items-center gap-3">
-                <Mail size={16} />
+                <Mail size={16} className=" text-[#79f431]" />
                 <Link href="mailto:info@manbafinance.com" className="hover:text-[#4db3ff] text-gray-100">
                   info@manbafinance.com
                 </Link>
@@ -34,7 +34,7 @@ export default function Footer() {
 
               {/* ALL PHONE NUMBERS IN ONE LINE */}
               <div className="flex items-center gap-3 flex-wrap">
-                <Phone size={16} />
+                <Phone size={16} className=" text-[#79f431]" />
                 <Link href="tel:02262346666" className="hover:text-[#4db3ff] text-gray-100">
                   022 6234 6666
                 </Link>
@@ -50,7 +50,7 @@ export default function Footer() {
             </div>
 
             {/* SOCIALS */}
-            <div className="flex gap-4 mt-6 text-[#4db3ff]">
+            <div className="flex gap-4 mt-6 text-[#79f431]">
               <Link href="https://www.facebook.com/Manba1996#"><Facebook size={18} /></Link>
               <Link href="https://www.instagram.com/manbafinance/"><Instagram size={18} /></Link>
               <Link href="https://x.com/ManbaFinanceLtd"><Twitter size={18} /></Link>

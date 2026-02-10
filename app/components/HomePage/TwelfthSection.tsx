@@ -1,6 +1,7 @@
+"use client"
+
 import Image from "next/image";
 import TextAnimation from "./../TextAnimation";
-import Button from "../Button";
 import Link from "next/link";
 
 const products = [
@@ -37,34 +38,54 @@ export default function TwelfthSection() {
           {products.map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-corners border border-[#d4d4d4] shadow-md  hover:shadow-lg transition overflow-hidden p-5"
+              className="relative rounded-corners overflow-hidden border border-[#d4d4d4] group"
             >
               {/* Image */}
-              <div className="relative w-full h-56 rounded-corners overflow-hidden">
-  <Image
-    src={item.image}
-    alt={item.title}
-    fill
-    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-    className="object-cover"
-  />
-</div>
-
-
-              {/* Content */}
-              <div className="mt-6">
-                <h5 className="font-medium text-highlight mb-4">
-                  {item.title}
-                </h5>
-
-
-                {/* Button with unique link */}
-                <Button
-                  text="Explore More"
-                  href={item.link}
-                  className="bg-[#205073] text-white "
+              <div className="relative w-full h-[200px] sm:h-[250px] lg:h-[300px] overflow-hidden">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover group-hover:scale-105 transition duration-500"
                 />
+
+                {/* Overlay */}
+<div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent group-hover:from-black/80 group-hover:via-black/40 transition duration-500"></div>
+
+                {/* Content on Image */}
+                <div className="absolute bottom-6 left-6 right-6 z-10">
+                  <h5 className="font-medium text-white mb-3">
+                    {item.title}
+                  </h5>
+
+                  {/* Explore Button */}
+                  <Link
+                    href={item.link}
+                    target="_blank"
+                    className="relative inline-block text-white font-medium text-[16px]"
+                  >
+                    Explore More
+
+                    {/* Animated underline */}
+                    <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-white overflow-hidden">
+                      <span className="absolute top-0 left-0 w-full h-full bg-[#205073] animate-[underlineMove_2.2s_linear_infinite]"></span>
+                    </span>
+                  </Link>
+                </div>
               </div>
+
+              {/* Tailwind Animation */}
+              <style jsx>{`
+                @keyframes underlineMove {
+                  0% {
+                    transform: translateX(-100%);
+                  }
+                  100% {
+                    transform: translateX(100%);
+                  }
+                }
+              `}</style>
             </div>
           ))}
         </div>
