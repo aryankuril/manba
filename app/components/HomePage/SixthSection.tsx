@@ -81,12 +81,13 @@ const SixthSection = () => {
       }}
     >
       <div
-        className="bg-white rounded-corners border border-[#d4d4d4] shadow-md hover:shadow-lg transition overflow-hidden min-h-[300px] flex flex-col"
-      style={{
-  transform: `translateY(${index * (window.innerWidth < 768 ? 75 :50)}px)`,
-}}
+  className={`bg-white rounded-corners border border-[#d4d4d4] shadow-md hover:shadow-lg transition overflow-hidden min-h-[300px] flex flex-col 
+    ${index === 0 ? "translate-y-0" : ""}
+    ${index === 1 ? "translate-y-[75px] lg:translate-y-[50px]" : ""}
+    ${index === 2 ? "translate-y-[150px] lg:translate-y-[100px]" : ""}
+  `}
+>
 
-      >
         {/* Heading */}
         <div className="bg-[#205073] text-white px-5 py-3 font-medium text-xl flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 lg:gap-4">
   <span className="leading-snug text-base sm:text-lg lg:text-xl">
