@@ -58,11 +58,11 @@ export default function Thirdsection() {
         </h3>
       </TextAnimation>
 
-      <FadeInFromLeft>
+      {/* <FadeInFromLeft> */}
         <p className="text-gray-600 body3 mb-12 text-center">
           To Make Your Dream Come True
         </p>
-      </FadeInFromLeft>
+      {/* </FadeInFromLeft> */}
 
 <div className=" mx-auto flex flex-col lg:flex-row items-center justify-center gap-50 text-left relative">
 
@@ -126,11 +126,12 @@ export default function Thirdsection() {
         {/* text */}
         <motion.div
           className="pt-1 origin-left w-full"
-          initial={false}
-          animate={{
-            scale: isActive ? (window.innerWidth < 768 ? 1.05 : 1.25) : 1,
-          }}
-          transition={{ duration: 0.35, ease: "easeInOut" }}
+         initial={false}
+  animate={{
+    scale: isActive ? 1.08 : 1,
+    x: isActive ? 10 : 0,
+  }}
+  transition={{ duration: 0.35, ease: "easeInOut" }}
         >
           <h5
             className={`font-semibold transition-all duration-300 ${

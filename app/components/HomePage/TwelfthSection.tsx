@@ -65,13 +65,13 @@ const sliderRef = useRef<HTMLDivElement | null>(null);
         
         {/* LEFT TEXT */}
         <div className="lg:w-[40%] w-full text-center lg:text-left">
-        
+        <TextAnimation>
           <h3
   className="text-[#010205]  font-semibold mb-5"
 >
  EMI Calculator
 </h3>
-{/* </TextAnimation> */}
+</TextAnimation>
 
 {/* <FadeInFromLeft> */}
 

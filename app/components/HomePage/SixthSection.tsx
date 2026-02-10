@@ -59,12 +59,12 @@ const SixthSection = () => {
             </TextAnimation>
 
 
-            <FadeInFromLeft>
+            {/* <FadeInFromLeft> */}
 
             <p className="text-gray-600 text-lg mb-3">
               Please keep these documents ready before applying for your EV Two Wheeler Loan.
             </p>
-            </FadeInFromLeft>
+            {/* </FadeInFromLeft> */}
 
             <Button
               text="Apply Now"

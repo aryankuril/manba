@@ -222,11 +222,11 @@ const sendEmail = async (e) => {
               </h3>
               </TextAnimation>
 
-              <FadeInFromLeft >
+              {/* <FadeInFromLeft > */}
               <p className="lg:mb-30 mb-6 body3">
  Have questions? Let’s help you get your EV loan faster.
                </p>
-               </FadeInFromLeft>
+               {/* </FadeInFromLeft> */}
 
               <div className="space-y-5 body3 ">
 <div className="flex items-center space-x-4 lg:mb-10">

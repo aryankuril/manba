@@ -47,12 +47,12 @@ export default function SeventhSection() {
     </h3>
   </TextAnimation>
 
-  <FadeInFromLeft>
+  {/* <FadeInFromLeft> */}
     <p className="body3 text-white max-w-md mb-5">
       Explore the most flexible, quick and cost-effective <br /> way to own your
       dream EV two wheeler
     </p>
-  </FadeInFromLeft>
+  {/* </FadeInFromLeft> */}
 
   {/* <FadeInFromLeft> */}
     <div className="relative z-10">

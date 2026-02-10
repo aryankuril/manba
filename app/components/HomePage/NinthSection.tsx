@@ -58,13 +58,13 @@ const toggleFaq = (index: number) => {
       <div className="flex flex-col lg:flex-row justify-between gap-10">
         {/* Left Section */}
         <div className="lg:w-5/12">
-        {/* <TextAnimation> */}
+        <TextAnimation>
          <h3
   className="text-[#010205]  font-semibold mb-5"
 >
 Your Questions Answered
 </h3>
-{/* </TextAnimation> */}
+</TextAnimation>
 
 {/* <FadeInFromLeft> */}
 
