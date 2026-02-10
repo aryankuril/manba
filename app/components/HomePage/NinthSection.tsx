@@ -60,7 +60,7 @@ const toggleFaq = (index: number) => {
         <div className="lg:w-5/12">
         {/* <TextAnimation> */}
          <h3
-  className="text-[#010205]  font-semibold mb-3"
+  className="text-[#010205]  font-semibold mb-5"
 >
 Your Questions Answered
 </h3>
@@ -68,7 +68,7 @@ Your Questions Answered
 
 {/* <FadeInFromLeft> */}
 
-       <p className="text-gray-600 body3  mb-3">
+       <p className="text-gray-600 body3  mb-5">
   Find clear answers to common questions about Manba’s EV two-wheeler loans, eligibility, process, and repayment—so you can switch to electric with confidence.
 </p>
 

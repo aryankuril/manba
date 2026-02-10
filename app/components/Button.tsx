@@ -113,7 +113,7 @@ const Button: React.FC<ButtonProps> = ({
           background:
             "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
         }}
-        className={`relative inline-flex items-center justify-center px-5 py-3 rounded-[32px] uppercase text-white font-semibold text-base overflow-hidden transition-all duration-300 ease-out hover:scale-[1.06] ${className}`}
+        className={`relative inline-flex items-center justify-center px-8 py-3 rounded-[32px] uppercase text-white font-semibold text-base overflow-hidden transition-all duration-300 ease-out hover:scale-[1.06] ${className}`}
       >
         {ShineEffect}
         {ButtonContent}
@@ -133,7 +133,7 @@ const Button: React.FC<ButtonProps> = ({
         background:
           "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
       }}
-      className={`relative inline-flex items-center justify-center px-5 py-3 cursor-pointer rounded-[32px] uppercase text-white font-semibold text-base overflow-hidden transition-all duration-300 ease-out hover:scale-[1.06] ${
+      className={`relative inline-flex items-center justify-center px-10 py-3 cursor-pointer rounded-[32px] uppercase text-white font-semibold text-base overflow-hidden transition-all duration-300 ease-out hover:scale-[1.06] ${
         disabled || loading ? "opacity-50 cursor-not-allowed" : ""
       } ${className}`}
     >

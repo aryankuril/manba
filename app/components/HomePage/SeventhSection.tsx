@@ -42,27 +42,27 @@ export default function SeventhSection() {
         {/* LEFT CONTENT */}
         <div className="relative z-10 w-full lg:w-1/2 flex flex-col justify-center">
   <TextAnimation>
-    <h3 className="max-w-xl mb-3 font-semibold text-white leading-tight">
+    <h3 className="max-w-xl mb-5 font-semibold text-white leading-tight">
       EV Two Wheeler Loan Eligibility Criteria
     </h3>
   </TextAnimation>
 
   <FadeInFromLeft>
-    <p className="body3 text-white max-w-md mb-3">
+    <p className="body3 text-white max-w-md mb-5">
       Explore the most flexible, quick and cost-effective <br /> way to own your
       dream EV two wheeler
     </p>
   </FadeInFromLeft>
 
-  <FadeInFromLeft>
+  {/* <FadeInFromLeft> */}
     <div className="relative z-10">
       <Button
         text="Calculate Your Loan"
         href="/calculator"
-        className="bg-[#205073] text-white w-fit"
+        className=" text-white "
       />
     </div>
-  </FadeInFromLeft>
+  {/* </FadeInFromLeft> */}
 </div>
 
 
@@ -89,7 +89,7 @@ export default function SeventhSection() {
                   </div>
 
                   <div>
-                    <h6 className="font-semibold text-white">{item.title}</h6>
+                    <h5 className="font-medium text-white">{item.title}</h5>
                     <p className="text-white body3 mt-2 leading-snug">
                       {item.description}
                     </p>

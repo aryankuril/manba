@@ -168,7 +168,7 @@ const highlightWords = (text: string) => {
                   {/* CONTENT */}
                   <div className=" flex flex-col justify-between">
 
-                     <h5 className="text-gray-900 ">
+                     <h5 className="font-medium text-black">
 “{item.maintext}”
 
 </h5>

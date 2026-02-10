@@ -89,7 +89,7 @@ const SixthSection = () => {
               }}
             >
               <Image
-                src="/images/loanapprove.svg"
+                src="/images/loanapprovee2.png"
                 alt="EV Scooter"
                 width={420}
                 height={420}
@@ -112,17 +112,17 @@ const SixthSection = () => {
       <div
         className={`bg-white rounded-corners border border-[#d4d4d4] shadow-md hover:shadow-lg transition overflow-hidden min-h-[300px] flex flex-col 
           ${index === 0 ? "translate-y-0" : ""}
-          ${index === 1 ? "translate-y-[75px] lg:translate-y-[50px]" : ""}
-          ${index === 2 ? "translate-y-[150px] lg:translate-y-[100px]" : ""}
+          ${index === 1 ? "translate-y-[120px] lg:translate-y-[60px]" : ""}
+          ${index === 2 ? "translate-y-[210px] lg:translate-y-[120px]" : ""}
         `}
       >
         {/* Heading */}
         
-        <div className="bg-[#205073] text-white px-5 py-3 font-medium text-xl flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 lg:gap-4">
+        <div className="bg-[#205073] text-white px-5 py-6 font-medium text-xl flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 lg:gap-4">
            <TextAnimation>
-          <span className="leading-snug text-base sm:text-lg lg:text-xl">
+          <h5 className="font-medium text-white">
             {section.title}
-          </span>
+          </h5>
 </TextAnimation>
           <span className="bg-white text-[#205073] text-xs font-semibold px-3 py-1 rounded-full w-fit whitespace-nowrap">
             {section.subtitle}

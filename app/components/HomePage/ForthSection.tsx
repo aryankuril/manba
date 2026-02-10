@@ -1,193 +1,210 @@
 "use client";
+
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import {
-  ChartBar,
-  Rocket,
-  ClipboardList,
-  Search,
-  Zap,
-} from "lucide-react";
-import Button from "../Button";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import TextAnimation from './../TextAnimation';
-import FadeInFromLeft from './../Animation/FadeInFromLeft';
+import TextAnimation from "./../TextAnimation";
+import FadeInFromLeft from "./../Animation/FadeInFromLeft";
 
 export default function Thirdsection() {
   const steps = [
     {
       id: 1,
       title: "Customer Visits",
-      desc: "Visits Website OR Visits Showroom",
+      desc: "Start your EV loan journey easily online.",
       icon: "/icons/rating.png",
+      img: "/images/process4.png",
     },
     {
       id: 2,
       title: "CRM",
-      desc: "Information is logged in the CRM",
+      desc: "Provide required documents for verification.",
       icon: "/icons/crm.png",
+      img: "/images/process1.jpg",
     },
     {
       id: 3,
       title: "Approval",
-      desc: "System Approved in 1 min",
+      desc: "Loan approval in just a few minutes.",
       icon: "/icons/approve.svg",
+      img: "/images/process2.jpg",
     },
     {
       id: 4,
       title: "Onboarding",
-      desc: "GEO Deployment",
+      desc: "Complete onboarding and get your EV loan.",
       icon: "/icons/onboarding.png",
+      img: "/images/process3.JPG",
     },
   ];
 
-const [active, setActive] = useState(0);
+  const [active, setActive] = useState(1);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((prev) => (prev >= steps.length ? 1 : prev + 1));
+    }, 2500);
 
-useEffect(() => {
-  const isMobile = window.innerWidth < 768;
+    return () => clearInterval(interval);
+  }, [steps.length]);
 
-  setActive(isMobile ? 1 : 0);
-
-  const interval = setInterval(() => {
-    setActive((prev) => {
-      if (prev >= steps.length) {
-        return isMobile ? 1 : 0;
-      }
-      return prev + 1;
-    });
-  }, 1000);
-
-  return () => clearInterval(interval);
-}, [steps.length]);
-
-
-
-
-const progressMap: Record<number, number> = {
-  0: 0,
-  1: 10,
-  2: 38,
-  3: 65,
-  4: 100,
-};
-
-
-
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const activeStep = steps.find((s) => s.id === active);
 
   return (
-    <div className="w-full container py-10 sm:py-15 lg:py-20 flex flex-col items-center">
+    <section className="w-full container py-10 sm:py-15 lg:py-20">
       <TextAnimation>
-        <h3 className="text-center font-semibold text-black ">
-          How Our Process Works
+        <h3 className="text-center font-semibold text-black mb-4">
+          Get an EV Two Wheeler loan  in just 4 steps
         </h3>
       </TextAnimation>
 
       <FadeInFromLeft>
-      <p className="text-gray-600 body3 mb-10 text-center">
-        To Make Your Dream Come True
-      </p>
+        <p className="text-gray-600 body3 mb-12 text-center">
+          To Make Your Dream Come True
+        </p>
       </FadeInFromLeft>
 
-      <div className="relative w-full px-6 overflow-hidden">
-    
-        {/* Desktop Background Line */}
-        <div className="absolute top-[80px] left-[30px]  w-full h-1 bg-gray-200 rounded-full hidden md:block"></div>
+<div className=" mx-auto flex flex-col lg:flex-row items-center justify-center gap-50 text-left relative">
 
-        {/* Desktop Animated Fill Line */}
+        
+        {/* LEFT PROCESS LIST */}
+        <div >
+          {/* <h4 className="text-2xl lg:text-3xl font-semibold text-black mb-8 leading-tight">
+            Get an EV loan <br /> in just 4 steps
+          </h4> */}
+
+        <div className="flex flex-col gap-20 relative pl-6 overflow-hidden">
+  {/* vertical line */}
+  <div className="absolute left-[50px] top-3 bottom-3 w-[2px] bg-gray-200"></div>
+
+  {steps.map((step) => {
+    const isActive = active === step.id;
+
+    return (
+      <motion.div
+        key={step.id}
+        onClick={() => setActive(step.id)}
+        className="flex items-start gap-5 cursor-pointer relative"
+        initial={false}
+        animate={{
+          scale: isActive ? 1.03 : 1,
+        }}
+        transition={{ duration: 0.35, ease: "easeInOut" }}
+      >
+        {/* icon circle */}
         <motion.div
-  className="absolute top-[80px] h-1 w-full rounded-full hidden md:block"
-  initial={{ width: 0 }}
-  animate={{ width: `${progressMap[active] ?? 0}%` }}
-  transition={{ duration: 0.6, ease: "easeInOut" }}
-  style={{
-    backgroundSize: "200% 100%",
-    background:
-      "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
-  }}
-/>
+          initial={false}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
+          className={`w-12 h-12 flex items-center justify-center rounded-full border transition-all duration-500 flex-shrink-0 ${
+            isActive
+              ? "bg-[#205073] border-[#205073] shadow-md"
+              : "bg-gray-100 border-gray-200"
+          }`}
+        >
+          <motion.div
+            initial={false}
+            animate={{
+              scale: isActive ? 1.2 : 1,
+            }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+          >
+            <Image
+              src={step.icon}
+              alt=""
+              width={24}
+              height={24}
+              className="object-cover"
+              style={{
+                filter: isActive
+                  ? "invert(70%) sepia(90%) saturate(900%) hue-rotate(50deg) brightness(105%) contrast(105%)"
+                  : "brightness(0)",
+              }}
+            />
+          </motion.div>
+        </motion.div>
+
+        {/* text */}
+        <motion.div
+          className="pt-1 origin-left w-full"
+          initial={false}
+          animate={{
+            scale: isActive ? (window.innerWidth < 768 ? 1.05 : 1.25) : 1,
+          }}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
+        >
+          <h5
+            className={`font-semibold transition-all duration-300 ${
+              isActive ? "text-black" : "text-gray-500"
+            }`}
+          >
+            {step.title}
+          </h5>
+
+          <p
+            className={`text-sm mt-1 leading-snug transition-all duration-300 ${
+              isActive ? "text-gray-600" : "text-gray-400"
+            }`}
+          >
+            {step.desc}
+          </p>
+        </motion.div>
+      </motion.div>
+    );
+  })}
+</div>
 
 
-        {/* DESKTOP STEPS */}
-        <div className="hidden md:flex justify-between relative z-10 mt-6">
-          {steps.map((step) => (
-            <div
-              key={step.id}
-              className="flex flex-col items-center cursor-pointer"
-              onClick={() => setActive(step.id)}
-            >
+          {/* MOBILE IMAGE BELOW
+          <div className="block lg:hidden mt-10">
+            <AnimatePresence mode="wait">
               <motion.div
-                className={`w-24 h-24 flex items-center justify-center rounded-full shadow-md transition-all ${
-                  active >= step.id ? "bg-[#205073]" : "bg-gray-200"
-                }`}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
+                key={activeStep?.img}
+                initial={{ opacity: 0, scale: 0.92, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.92, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="w-full flex justify-center"
               >
                 <Image
-                  src={step.icon}
-                  alt=""
-                  width={32}
-                  height={32}
-                  style={{
-                    filter:
-                      active >= step.id
-                        ? "invert(70%) sepia(90%) saturate(900%) hue-rotate(50deg) brightness(105%) contrast(105%)"
-                        : "brightness(0)",
-                  }}
+                  src={activeStep?.img || "/images/process1.png"}
+                  alt="Process Image"
+                  width={320}
+                  height={320}
+                  className="object-contain w-full max-w-[280px]"
                 />
               </motion.div>
+            </AnimatePresence>
+          </div> */}
 
-              <h5 className="mt-4 font-medium text-highlight">{step.title}</h5>
-              <p className="text-sm text-gray-600 body3">{step.desc}</p>
-            </div>
-          ))}
         </div>
 
-        {/* MOBILE SLIDING BALL ANIMATION */}
-        <div className="md:hidden w-full flex justify-center relative h-50 mt-6 overflow-hidden">
-          {steps.map((step) => (
-            <motion.div
-              key={step.id}
-              initial={false}
-              animate={{
-                x:
-                  step.id === active
-                    ? 0
-                    : step.id < active
-                    ? -200
-                    : 200,
-                opacity: step.id === active ? 1 : 0,
-                scale: step.id === active ? 1 : 0.6,
-              }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-              className="absolute flex flex-col items-center "
-            >
-              <div
-                className={`w-28 h-28 flex items-center justify-center rounded-full shadow-md transition-all ${
-                  active >= step.id ? "bg-[#205073]" : "bg-gray-200"
-                }`}
-              >
-                <Image
-                  src={step.icon}
-                  alt=""
-                  width={32}
-                  height={32}
-                  style={{
-                    filter:
-                      active >= step.id
-                        ? "invert(70%) sepia(90%) saturate(900%) hue-rotate(50deg) brightness(105%) contrast(105%)"
-                        : "brightness(0)",
-                  }}
-                />
-              </div>
+        {/* RIGHT SIDE IMAGE (DESKTOP ONLY) */}
+        <div className="hidden lg:flex justify-center items-center">
+ <div className="bg-white border rounded-corners border-gray-200 shadow-xl w-[520px] h-[500px] flex items-center justify-center overflow-hidden relative">
+  <AnimatePresence mode="sync">
+    <motion.div
+      key={activeStep?.img}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.45, ease: "easeInOut" }}
+      className="absolute inset-0 flex items-center justify-center"
+    >
+      <Image
+        src={activeStep?.img || "/images/process1.png"}
+        alt="Process Image"
+        width={520}
+        height={520}
+        className="w-full h-full object-cover"
+      />
+    </motion.div>
+  </AnimatePresence>
+</div>
 
-              <h5 className="mt-4 font-semibold">{step.title}</h5>
-              <p className="text-sm text-gray-600">{step.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+</div>
+
+
       </div>
-    </div>
+    </section>
   );
 }
