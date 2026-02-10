@@ -229,29 +229,36 @@ const mapCenter =
                 <h3 className="font-semibold mb-2">Contact Information</h3>
               </TextAnimation>
 
-              <p className="lg:mb-10 mb-6 body3">
+              <p className="lg:mb-10 mb-5 body3">
                 Have questions? Let’s help you get your EV loan faster.
               </p>
 
               <div className="space-y-5 body3">
-                <div className="flex items-center space-x-4 lg:mb-6">
-                  <Phone className="w-5 h-5 text-[#79f431]" />
-                  <a href="tel:02262346666">022 6234 6666</a>
-                </div>
 
-                <div className="flex items-center space-x-4 lg:mb-6">
-                  <Mail className="w-5 h-5 text-[#79f431]" />
-                  <a href="mailto:info@manbafinance.com">info@manbafinance.com</a>
-                </div>
+  <div className="flex items-start gap-4 lg:mb-5">
+    <Phone className="w-5 h-5 text-[#79f431] flex-shrink-0 mt-[2px]" />
+    <a href="tel:02262346666" className="leading-relaxed">
+      022 6234 6666
+    </a>
+  </div>
 
-                <div className="flex items-start space-x-4 lg:mb-8">
-                  <MapPin className="w-5 h-5 text-[#79f431] mt-1" />
-                  <span className="max-w-sm text-sm leading-relaxed">
-                    324, Runwal Heights, Opp. Nirmal Lifestyle, LBS Marg,
-                    Mulund (W), Mumbai – 400080
-                  </span>
-                </div>
-              </div>
+  <div className="flex items-start gap-4 lg:mb-5">
+    <Mail className="w-5 h-5 text-[#79f431] flex-shrink-0 mt-[2px]" />
+    <a href="mailto:info@manbafinance.com" className="leading-relaxed">
+      info@manbafinance.com
+    </a>
+  </div>
+
+  <div className="flex items-start gap-4 lg:mb-5">
+    <MapPin className="w-5 h-5 text-[#79f431] flex-shrink-0 mt-[2px]" />
+    <span className="max-w-sm text-sm leading-relaxed">
+      324, Runwal Heights, Opp. Nirmal Lifestyle, LBS Marg, Mulund (W),
+      Mumbai – 400080
+    </span>
+  </div>
+
+</div>
+
 
               {/* ================= FILTER + MAP ================= */}
 <div className="mt-8">
@@ -298,7 +305,7 @@ const mapCenter =
   </div>
 
   {/* MAP */}
-  <div className="w-full h-[260px] rounded-2xl overflow-hidden border border-white/20 shadow-lg bg-white/10 backdrop-blur-md">
+  <div className="w-full h-[260px] rounded-2xl overflow-hidden border border-white/20 shadow-lg ">
     {isLoaded ? (
       <GoogleMap
         zoom={filteredMarkers.length === 1 ? 12 : 5}
