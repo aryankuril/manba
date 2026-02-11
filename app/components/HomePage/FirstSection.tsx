@@ -80,7 +80,7 @@ const FirstSection = () => {
 
             {/* TEXT */}
             <div className="w-full text-left">
-              <div className="max-w-xl text-black">
+              <div className="max-w-xl text-white">
                 <TextAnimation>
                   <h1 className="font-bold leading-tight">
                     EV Two Wheeler Loan
@@ -88,7 +88,7 @@ const FirstSection = () => {
                 </TextAnimation>
 
                 <motion.p
-                  className="mt-4 text-base leading-relaxed font-medium text-black"
+                  className="mt-4 text-base leading-relaxed font-medium text-white"
                   initial={{ opacity: 0, x: -40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.7, ease: "easeOut" }}
@@ -105,7 +105,7 @@ const FirstSection = () => {
                       <h4 className="text-2xl font-bold text-[#79f431]">
                         <Counter value={item.value} suffix={item.suffix} />
                       </h4>
-                      <p className="text-sm text-black font-semibold">
+                      <p className="text-sm text-white font-semibold">
                         {item.label}
                       </p>
                     </div>

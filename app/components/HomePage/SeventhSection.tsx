@@ -29,7 +29,7 @@ export default function SeventhSection() {
       
       {/* MAIN FULL WIDTH CARD */}
       <div
-        className="rounded-corners border border-[#d4d4d4] shadow-md p-8 relative overflow-hidden min-h-[420px] flex flex-col lg:flex-row justify-between gap-8"
+        className="rounded-corners border border-[#d4d4d4] shadow-md lg:p-8 p-5 relative overflow-hidden min-h-[420px] flex flex-col lg:flex-row justify-between gap-8"
         style={{
           backgroundImage: "url('/images/ev-bg.jpg')",
           backgroundSize: "cover",
@@ -68,11 +68,9 @@ export default function SeventhSection() {
 
 
 
-                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent transition duration-500"></div>
-
-
+    <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent transition duration-500"></div>
         {/* RIGHT BOX INSIDE IMAGE CARD */}
-        <div className="relative z-10 w-full lg:w-[420px] bg-white/20 backdrop-blur-sm border-b border-white/20 rounded-corners border shadow-lg p-6 flex flex-col justify-center">
+        <div className="relative z-10 w-full lg:w-[420px] bg-white/20 backdrop-blur-sm border-b border-white/20 rounded-corners border shadow-lg lg:p-6 p-5 flex flex-col justify-center">
           
           <h5 className="font-medium text-white mb-6">
             Eligibility Requirements

@@ -10,7 +10,7 @@ import Image from "next/image";
 const documentsData = [
   {
     title: "Proof of Identity with full Date of Birth ",
-    subtitle: "(Any One)",
+    subtitle: "Any One",
     items: [
       "Pan Card",
       "Aadhar Card",
@@ -21,7 +21,7 @@ const documentsData = [
   },
   {
     title: "Proof of Residence",
-    subtitle: "(Any One)",
+    subtitle: "Any One",
     items: [
       "Electricity Bill (Self/Parental)",
       "Purchase Agreement",
@@ -33,7 +33,7 @@ const documentsData = [
   },
   {
     title: "Proof of Income",
-    subtitle: "(Required as per Product requirement)",
+    subtitle: "Required as per Product requirement",
     items: [
       "Salaried – Previous 3 month Salary Credit Bank statement & salary slip.",
       "Self employed – Latest Assessment year IT filed and Business Proof.",
@@ -112,13 +112,18 @@ const SixthSection = () => {
       <div
         className={`bg-white rounded-corners border border-[#d4d4d4] shadow-md hover:shadow-lg transition overflow-hidden min-h-[300px] flex flex-col 
           ${index === 0 ? "translate-y-0" : ""}
-          ${index === 1 ? "translate-y-[115px] lg:translate-y-[60px]" : ""}
-          ${index === 2 ? "translate-y-[210px] lg:translate-y-[120px]" : ""}
+          ${index === 1 ? "translate-y-[118px] lg:translate-y-[60px]" : ""}
+          ${index === 2 ? "translate-y-[205px] lg:translate-y-[120px]" : ""}
         `}
       >
         {/* Heading */}
         
-        <div className="bg-[#205073] text-white px-5 py-6 font-medium text-xl flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 lg:gap-4">
+        <div 
+        style={{
+          backgroundSize: "200% 100%",
+          background:
+            "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
+        }}className=" text-white px-5 py-6 font-medium text-xl flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 lg:gap-4">
            <TextAnimation>
           <h5 className="font-medium text-white">
             {section.title}

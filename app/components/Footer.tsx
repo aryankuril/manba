@@ -142,15 +142,33 @@ export default function Footer() {
         <div className="container h-px bg-white/20 my-8 " />
 
         {/* Bottom Bar */}
-        <div className=" container flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-100">
-          <p>© 2026 All Rights Reserved.</p>
+        <div className="container flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-100 text-center md:text-left">
+  <p>© 2026 All Rights Reserved.</p>
 
-          <div className="flex flex-wrap gap-6">
-            <Link href="https://www.manbafinance.com/disclaimer/" className="hover:text-[#4db3ff] text-gray-100">Disclaimer</Link>
-            <Link href="https://www.manbafinance.com/terms-conditions/" className="hover:text-[#4db3ff] text-gray-100">Terms & Conditions</Link>
-            <Link href="https://www.manbafinance.com/payment-gateway-terms-conditions/" className="hover:text-[#4db3ff] text-gray-100">Payment Gateway</Link>
-          </div>
-        </div>
+  <div className="flex flex-wrap gap-6 justify-center md:justify-end">
+    <Link
+      href="https://www.manbafinance.com/disclaimer/"
+      className="hover:text-[#4db3ff] text-gray-100"
+    >
+      Disclaimer
+    </Link>
+
+    <Link
+      href="https://www.manbafinance.com/terms-conditions/"
+      className="hover:text-[#4db3ff] text-gray-100"
+    >
+      Terms & Conditions
+    </Link>
+
+    <Link
+      href="https://www.manbafinance.com/payment-gateway-terms-conditions/"
+      className="hover:text-[#4db3ff] text-gray-100"
+    >
+      Payment Gateway
+    </Link>
+  </div>
+</div>
+
       </div>
     </footer>
   );

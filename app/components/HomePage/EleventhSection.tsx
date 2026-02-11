@@ -111,13 +111,13 @@ const highlightWords = (text: string) => {
 
       {/* FADE EDGES */}
       <div className="relative">
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-10" />
+        <div className="hidden md:block pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10" />
+        <div className="hidden md:block pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-10" />
 
         {/* MASK */}
         <div
           ref={sliderRef}
-          className="overflow-hidden w-full cursor-grab active:cursor-grabbing"
+          className="overflow-hidden w-full cursor-grab active:cursor-grabbing "
           onMouseDown={(e) => {
             setIsDown(true);
             setStartX(e.pageX - (sliderRef.current?.offsetLeft || 0));
@@ -151,7 +151,7 @@ const highlightWords = (text: string) => {
         >
           <div className="flex w-max">
             {[...testimonials, ...testimonials].map((item, index) => (
-              <div key={index} className="flex-shrink-0 px-2">
+              <div key={index} className="flex-shrink-0 px-3">
                 <div className="bg-white  rounded-corners p-4 gap-5 border  border-[#d4d4d4] shadow-md flex h-full overflow-hidden w-[520px]">
                   {/* IMAGE */}
                   <div className="relative w-[250px] min-h-[250px] flex-shrink-0">

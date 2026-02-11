@@ -1,12 +1,57 @@
 "use client";
 
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useEffect } from "react";
 import confetti from "canvas-confetti";
 import { Phone, Mail, MapPin, ChevronDown } from "lucide-react";
-import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+
+
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl:
+    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+});
+
 
 import Button from "../Button";
 import TextAnimation from "./../TextAnimation";
+
+
+const FlyToLocation = ({ center, zoom }) => {
+  const map = useMap();
+  const prevRef = useRef(null);
+
+  useEffect(() => {
+    const prev = prevRef.current;
+
+    if (
+      prev &&
+      prev.lat === center.lat &&
+      prev.lng === center.lng &&
+      prev.zoom === zoom
+    ) {
+      return;
+    }
+
+    prevRef.current = { lat: center.lat, lng: center.lng, zoom };
+
+    map.flyTo([center.lat, center.lng], zoom, {
+      animate: true,
+      duration: 1.2,
+    });
+  }, [center.lat, center.lng, zoom, map]);
+
+  return null;
+};
+
+
+
 
 const ContactUs = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -44,9 +89,6 @@ const ContactUs = () => {
 
   // ===================== STORE DATA =====================
 // ===================== GOOGLE MAP =====================
-const { isLoaded } = useLoadScript({
-  googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-});
 
 // coordinates list (must be exact for markers)
 const storeLocations = [
@@ -100,10 +142,12 @@ const filteredMarkers = storeLocations.filter((store) => {
 });
 
 // map center
-const mapCenter =
-  filteredMarkers.length > 0
+const mapCenter = useMemo(() => {
+  return filteredMarkers.length > 0
     ? { lat: filteredMarkers[0].lat, lng: filteredMarkers[0].lng }
-    : { lat: 20.5937, lng: 78.9629 }; // India center
+    : { lat: 20.5937, lng: 78.9629 };
+}, [filteredMarkers]);
+
 
   // ===================== VALIDATION =====================
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -267,7 +311,7 @@ const mapCenter =
   </h4>
 
   {/* Filters */}
-  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 ">
     {/* State */}
     <div className="relative">
       <select
@@ -305,31 +349,35 @@ const mapCenter =
   </div>
 
   {/* MAP */}
-  <div className="w-full h-[260px] rounded-2xl overflow-hidden border border-white/20 shadow-lg ">
-    {isLoaded ? (
-      <GoogleMap
-        zoom={filteredMarkers.length === 1 ? 12 : 5}
-        center={mapCenter}
-        mapContainerStyle={{ width: "100%", height: "100%" }}
-        options={{
-          disableDefaultUI: true,
-          zoomControl: true,
-        }}
-      >
-        {filteredMarkers.map((store, idx) => (
-          <Marker
-            key={idx}
-            position={{ lat: store.lat, lng: store.lng }}
-            title={`${store.city}, ${store.state}`}
-          />
-        ))}
-      </GoogleMap>
-    ) : (
-      <div className="flex items-center justify-center h-full text-white">
-        Loading Map...
-      </div>
-    )}
-  </div>
+<div className="w-full h-[260px] rounded-2xl overflow-hidden border border-white/20 shadow-lg">
+  <MapContainer
+    center={[mapCenter.lat, mapCenter.lng]}
+    zoom={filteredMarkers.length === 1 ? 12 : 5}
+    style={{ width: "100%", height: "100%" }}
+    scrollWheelZoom={false}
+  >
+    <FlyToLocation
+      center={mapCenter}
+      zoom={filteredMarkers.length === 1 ? 12 : 5}
+    />
+
+    <TileLayer
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      attribution="&copy; OpenStreetMap contributors"
+    />
+
+    {filteredMarkers.map((store) => (
+  <Marker key={`${store.city}-${store.state}`} position={[store.lat, store.lng]}>
+
+        <Popup>
+          <b>{store.city}</b>, {store.state}
+        </Popup>
+      </Marker>
+    ))}
+  </MapContainer>
+</div>
+
+
 
   {/* Store List */}
   {/* <div className="mt-5 bg-white/10 border border-white/20 rounded-2xl p-4 backdrop-blur-md max-h-[170px] overflow-y-auto scrollbar-hide">

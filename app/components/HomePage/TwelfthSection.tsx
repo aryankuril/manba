@@ -76,9 +76,7 @@ const sliderRef = useRef<HTMLDivElement | null>(null);
 {/* <FadeInFromLeft> */}
 
        <p className="text-gray-600 body3  mb-5">
-Revfin offers loans at reducing and flat rates, enabling you to select
-            the EMI that suits your budget best. Quickly check your affordable EMI
-            options here.</p>
+Experience the joy of riding an electric two-wheeler with easy monthly installments Calculate Your EMI Now</p>
 
  <Button
            text="Check Your EMI"
