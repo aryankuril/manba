@@ -1,16 +1,15 @@
- "use client"
-import { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
-import AnimatedSlider from './AnimatedSlider';
-import ResultCard from './ResultCard';
-import PieChart from './PieChart';
-import Button from '../Button';
+"use client";
+import { useState, useMemo } from "react";
+import { motion } from "framer-motion";
+import AnimatedSlider from "./AnimatedSlider";
+import ResultCard from "./ResultCard";
+import PieChart from "./PieChart";
+import Button from "../Button";
 import Image from "next/image";
 
-// import { Button } from '@/components/ui/button';
-import { Calculator, ArrowRight } from 'lucide-react';
-import TextAnimation from './../TextAnimation';
-import FadeInFromLeft from './../Animation/FadeInFromLeft';
+import { Calculator, ArrowRight } from "lucide-react";
+import TextAnimation from "./../TextAnimation";
+import FadeInFromLeft from "./../Animation/FadeInFromLeft";
 
 const EMICalculator = () => {
   const [loanAmount, setLoanAmount] = useState(500000);
@@ -22,10 +21,10 @@ const EMICalculator = () => {
     const monthlyRate = interestRate / 12 / 100;
     const months = loanTenure;
 
-    // EMI Formula: EMI = P × r × (1 + r)^n / ((1 + r)^n - 1)
-    const emi = principal * monthlyRate * Math.pow(1 + monthlyRate, months) / 
-                (Math.pow(1 + monthlyRate, months) - 1);
-    
+    const emi =
+      (principal * monthlyRate * Math.pow(1 + monthlyRate, months)) /
+      (Math.pow(1 + monthlyRate, months) - 1);
+
     const totalPayment = emi * months;
     const totalInterest = totalPayment - principal;
 
@@ -44,32 +43,34 @@ const EMICalculator = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
     >
-
       <div className="relative w-full mb-12 overflow-visible">
+        {/* FULL WIDTH BACKGROUND IMAGE (OUTSIDE CONTAINER) */}
+        {/* <div className="absolute -top-30 left-0 w-full h-[320px] -z-10">
+          <Image
+            src="/images/Shape1.png"
+            alt="bg"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div> */}
 
         <div className="py-10 sm:py-15 lg:py-10 container">
-
           {/* Text Content */}
           <div className="relative z-10 max-w-6xl mx-auto text-center lg:text-left">
             <TextAnimation>
-              <h2 className="font-semibold text-black">
-                EMI Calculator
-              </h2>
+              <h2 className="font-semibold text-black">EMI Calculator</h2>
             </TextAnimation>
 
-
-
-<FadeInFromLeft>
-            <p className="body3 text-gray-600 font-secondary  mt-2">
-              Manba Finance simplifies finances with easy EMI calculator
-            </p>
+            <FadeInFromLeft>
+              <p className="body3 text-gray-600 font-secondary mt-2">
+                Manba Finance simplifies finances with easy EMI calculator
+              </p>
             </FadeInFromLeft>
           </div>
-
         </div>
 
-        <div className="glass-card rounded-2xl md:rounded-3xl shadow-glass container">
-          
+        <div className="glass-card rounded-2xl md:rounded-3xl shadow-glass container relative z-10">
           <div className="grid lg:grid-cols-2 gap-0 lg:gap-12 max-w-6xl mx-auto">
             {/* Input Section */}
             <div className="space-y-6">
@@ -127,115 +128,165 @@ const EMICalculator = () => {
                 ]}
               />
 
-              {/* Apply Now Button */}
-              {/* <div className="hidden md:block w-full">
-                <Button
-  text="Apply Now"
-  href="/#contact-section"
-  className="mt-4 bg-[#205073] text-white w-full"
-/>
 
-                <p className="body3 text-gray-600 text-center  mt-2">
-                  Making sense of loans is hassle-free with <br />  Manba Finance's EMI Calculator.
-                </p>
-              </div> */}
+
+              {/* CTA BAR BELOW SLIDERS */}
+<div className="hidden md:flex w-full bg-white border border-[#d4d4d4] rounded-2xl shadow-md px-5 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 relative overflow-hidden">
+
+
+
+  {/* BG IMAGE */}
+  <Image
+    src="/images/ev-bg.jpg"   // <-- add your bg image here later
+    alt="bg"
+    fill
+    className="object-cover"
+    priority
+  />
+
+    <div className="absolute inset-0 bg-black/50 z-10"></div>
+
+  {/* CONTENT */}
+  <div className="relative z-10">
+    <h5 className=" font-medium text-white">
+     Need EMI Help?
+    </h5>
+
+    <p className="body3 text-white mt-1 max-w-sm">
+     Get instant EMI details with <br /> Manba Finance.
+    </p>
+  </div>
+
+  {/* BUTTON */}
+ <Button
+        text="APPLY NOW"
+        href="/calculator"
+        className=" text-white z-10 "
+      />
+
+</div>
+
 
             </div>
 
-           
-           {/* Results Section */}
-<div className="h-full flex flex-col justify-between">
+            {/* ===================== RESULTS SECTION (ICICI STYLE) ===================== */}
+           {/* ===================== RESULTS SECTION (FULL HEIGHT MATCH LEFT) ===================== */}
+<div className="w-full h-full bg-white rounded-2xl border border-[#d4d4d4] shadow-md overflow-hidden flex flex-col justify-between">
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+  {/* TOP EMI */}
+  <div className="text-center px-5 py-5 border-b border-dashed border-gray-300">
+    <p className="body3 font-semibold text-gray-800">
+      Monthly EMI
+    </p>
 
-  {/* Pie Chart */}
-  <motion.div
-    className="w-full flex items-center justify-center h-full "
-    initial={{ opacity: 0, scale: 0.9 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ delay: 0.6 }}
-  >
-    <div className="w-full flex justify-center items-center h-full">
-      <div className="w-[170px]">
-        <PieChart
-          principal={calculations.principal}
-          interest={calculations.totalInterest}
-        />
-      </div>
-    </div>
-  </motion.div>
-
-  {/* Monthly EMI */}
-  <div className="w-full h-full flex ">
-    <div className="w-full flex flex-col flex-1 max-h-[500px]">
-
-        <ResultCard
-          label="Monthly EMI"
-          value={calculations.emi}
-          highlight={true}
-          delay={0.3}
-        />
-
-    </div>
+    <h4 className="text-[22px] font-bold text-[#205073] leading-tight mt-1">
+      ₹ {calculations.emi.toLocaleString("en-IN")}
+    </h4>
   </div>
 
-</div>
-
-
-
-  {/* Bottom Row (Total Interest + Total Payment) */}
-  <div className="grid grid-cols-2 gap-4 mt-6 items-stretch">
-
+  {/* MIDDLE 2 BOXES */}
+  <div className="grid grid-cols-2 text-center border-b border-dashed border-gray-300 flex-1">
+    
     {/* Total Interest */}
-    <div className="w-full">
-      <ResultCard
-        value={calculations.totalInterest}
-        label="Total Interest"
-        delay={0.4}
-      />
+    <div className="px-4 py-5 border-r border-dashed border-gray-300 flex flex-col justify-center">
+      <p className="body3 font-semibold text-gray-800">
+        Total Interest 
+      </p>
+
+      <h4 className="text-[18px] font-bold text-[#205073] mt-2">
+        ₹ {calculations.totalInterest.toLocaleString("en-IN")}
+      </h4>
     </div>
 
     {/* Total Payment */}
-    <div className="w-full">
-      <ResultCard
-        label="Total Payment"
-        value={calculations.totalPayment}
-        delay={0.5}
-      />
+    <div className="px-4 py-5 flex flex-col justify-center">
+      <p className="body3 font-semibold text-gray-800">
+        Total Payment
+      </p>
+
+      {/* <p className="text-[10px] text-gray-400">(Principal + Interest)</p> */}
+
+      <h4 className="text-[18px] font-bold text-[#205073] mt-2">
+        ₹ {calculations.totalPayment.toLocaleString("en-IN")}
+      </h4>
     </div>
 
   </div>
 
+  {/* PIE CHART TITLE */}
+  <div className="text-center pt-4 pb-2">
+    <p className="body3 font-semibold text-gray-800">
+      Break-up of Total Payment
+    </p>
+  </div>
+
+  {/* PIE CHART */}
+  <div className="flex justify-center pb-5">
+    <div className="w-[180px]">
+      <PieChart
+        principal={calculations.principal}
+        interest={calculations.totalInterest}
+      />
+    </div>
+  </div>
+
 </div>
+<div className=" md:hidden mt-5 w-full bg-white border border-[#d4d4d4] rounded-2xl shadow-md px-5 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 relative overflow-hidden">
 
-
-          </div>
-
-       {/* Center Apply Button Below Both Sections */}
-<div className="w-full flex flex-col items-center justify-center mt-10">
-  <Button
-    text="Apply Now"
-    onClick={() => {
-      if (typeof window !== "undefined") {
-        document.getElementById("contact-section")?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }}
-    className="bg-[#205073] text-white w-full md:w-[280px]"
+  {/* BG IMAGE */}
+  <Image
+    src="/images/ev-bg.jpg"   // <-- add your bg image here later
+    alt="bg"
+    fill
+    className="object-cover"
+    priority
   />
 
-  <p className="body3 text-gray-600 text-center mt-3 max-w-md">
-    Making sense of loans is hassle-free with Manba Finance's EMI Calculator.
-  </p>
+  {/* CONTENT */}
+  <div className="relative z-10">
+    <h5 className=" font-semibold text-white">
+     Need EMI Help?
+    </h5>
+
+    <p className="body3 text-white mt-1">
+      Making sense of loans is hassle-free with Manba Finance's EMI Calculator.
+    </p>
+  </div>
+
+  {/* BUTTON */}
+ <Button
+        text="APPLY NOW"
+        href="/calculator"
+        className=" text-white "
+      />
+
 </div>
 
+            {/* ===================== END RESULTS SECTION ===================== */}
+          </div>
 
+          {/* Center Apply Button Below Both Sections */}
+          {/* <div className="w-full flex flex-col items-center justify-center mt-10">
+            <Button
+              text="Apply Now"
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  document.getElementById("contact-section")?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }
+              }}
+              className="bg-[#205073] text-white w-full md:w-[280px]"
+            />
+
+            <p className="body3 text-gray-600 text-center mt-3 max-w-md">
+              Making sense of loans is hassle-free with Manba Finance's EMI
+              Calculator.
+            </p>
+          </div> */}
         </div>
-
       </div>
-
     </motion.div>
   );
 };

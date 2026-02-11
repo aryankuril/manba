@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 interface PieChartProps {
   principal: number;
@@ -9,21 +9,24 @@ interface PieChartProps {
 const PieChart = ({ principal, interest }: PieChartProps) => {
   const total = principal + interest;
 
-  const { principalAngle, principalPercentage } = useMemo(() => {
-    const percentage = total === 0 ? 0 : (principal / total) * 100;
-    const angle = total === 0 ? 0 : (principal / total) * 360;
+  const { principalAngle, principalPercentage, interestPercentage } =
+    useMemo(() => {
+      const principalPercent = total === 0 ? 0 : (principal / total) * 100;
+      const interestPercent = total === 0 ? 0 : (interest / total) * 100;
 
-    return {
-      principalPercentage: percentage,
-      principalAngle: angle,
-    };
-  }, [principal, interest, total]);
+      const angle = total === 0 ? 0 : (principal / total) * 360;
+
+      return {
+        principalPercentage: principalPercent,
+        interestPercentage: interestPercent,
+        principalAngle: angle,
+      };
+    }, [principal, interest, total]);
 
   const createArcPath = (
     startAngle: number,
     endAngle: number,
-    radius: number,
-    innerRadius: number
+    radius: number
   ) => {
     const startRad = (startAngle - 90) * (Math.PI / 180);
     const endRad = (endAngle - 90) * (Math.PI / 180);
@@ -33,135 +36,122 @@ const PieChart = ({ principal, interest }: PieChartProps) => {
     const x2 = 100 + radius * Math.cos(endRad);
     const y2 = 100 + radius * Math.sin(endRad);
 
-    const x3 = 100 + innerRadius * Math.cos(endRad);
-    const y3 = 100 + innerRadius * Math.sin(endRad);
-    const x4 = 100 + innerRadius * Math.cos(startRad);
-    const y4 = 100 + innerRadius * Math.sin(startRad);
-
     const largeArcFlag = endAngle - startAngle > 180 ? 1 : 0;
 
     return `
-      M ${x1} ${y1}
+      M 100 100
+      L ${x1} ${y1}
       A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}
-      L ${x3} ${y3}
-      A ${innerRadius} ${innerRadius} 0 ${largeArcFlag} 0 ${x4} ${y4}
       Z
     `;
   };
 
+const [tooltip, setTooltip] = useState({
+  visible: false,
+  text: "",
+  x: 0,
+  y: 0,
+});
 
 
-  const formattedTotal = `₹${total.toLocaleString("en-IN")}`;
+ return (
+  <div className="relative w-full max-w-[220px] mx-auto overflow-visible">
 
-const totalFontSize =
-  formattedTotal.length > 10
-    ? "10px"
-    : formattedTotal.length > 8
-    ? "12px"
-    : "14px";
+   {tooltip.visible && (
+  <div
+    className="absolute bg-white shadow-lg border border-gray-200 px-4 py-2 rounded-md text-sm font-semibold text-black z-50 pointer-events-none"
+    style={{
+      left: tooltip.x,
+      top: tooltip.y,
+      transform: "translate(-50%, -120%)",
+      whiteSpace: "nowrap",
+    }}
+  >
+    {tooltip.text}
+  </div>
+)}
 
 
-  return (
-    <motion.div
-      className="relative w-full max-w-[280px] mx-auto"
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.4 }} // ONLY mount animation
-    >
-      <svg viewBox="0 0 200 200" className="w-full h-auto drop-shadow-lg">
-        <defs>
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-
-          {/* <linearGradient id="principalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="hsl(195, 93%, 35%)" />
-            <stop offset="100%" stopColor="hsl(195, 80%, 50%)" />
-          </linearGradient> */}
-
-          <linearGradient id="interestGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="hsl(210, 20%, 85%)" />
-            <stop offset="100%" stopColor="hsl(210, 20%, 75%)" />
-          </linearGradient>
-          <clipPath id="centerClip">
-  <circle cx="100" cy="100" r="45" />
-</clipPath>
-
-        </defs>
-
-        {/* Interest */}
+    <div className="w-full h-[180px] flex items-center justify-center">
+      <svg
+        viewBox="0 0 200 200"
+        className="w-full h-full drop-shadow-lg"
+        preserveAspectRatio="xMidYMid meet"
+      >
         <path
-          d={createArcPath(principalAngle, 360, 90, 65)}
-
-          fill="#79f431"
-        />
-
-        {/* Principal */}
-        <path
-d={createArcPath(0, principalAngle, 90, 65)}
-
-  fill="#205073 "
-  filter="url(#glow)"
+  d={createArcPath(0, principalAngle, 90)}
+  fill="#205073"
+  className="cursor-pointer"
+  onMouseEnter={(e) =>
+    setTooltip({
+      visible: true,
+      text: `Principal Loan Amount: ${principalPercentage.toFixed(1)}%`,
+      x: e.nativeEvent.offsetX,
+      y: e.nativeEvent.offsetY,
+    })
+  }
+  onMouseMove={(e) =>
+    setTooltip((prev) => ({
+      ...prev,
+      x: e.nativeEvent.offsetX,
+      y: e.nativeEvent.offsetY,
+    }))
+  }
+  onMouseLeave={() =>
+    setTooltip({ visible: false, text: "", x: 0, y: 0 })
+  }
 />
 
 
-        {/* Center */}
-        {/* Center (clipped) */}
-<g clipPath="url(#centerClip)">
-  <circle cx="100" cy="10" r="45" fill="white" />
-
-
-
-<text
-  x="100"
-  y="100"
-  textAnchor="middle"
-  className="fill-primary font-bold font-display"
-  style={{ fontSize: totalFontSize }}
->
-  {formattedTotal}
-</text>
-
-<text
-  x="100"
-  y="120"
-  textAnchor="middle"
-  className="fill-foreground text-xs text-black font-secondary  font-medium"
->
-  Total
-</text>
-
-</g>
-
+      <path
+  d={createArcPath(principalAngle, 360, 90)}
+  fill="#79f431"
+  className="cursor-pointer"
+  onMouseEnter={(e) =>
+    setTooltip({
+      visible: true,
+      text: `Total Interest: ${interestPercentage.toFixed(1)}%`,
+      x: e.nativeEvent.offsetX,
+      y: e.nativeEvent.offsetY,
+    })
+  }
+  onMouseMove={(e) =>
+    setTooltip((prev) => ({
+      ...prev,
+      x: e.nativeEvent.offsetX,
+      y: e.nativeEvent.offsetY,
+    }))
+  }
+  onMouseLeave={() =>
+    setTooltip({ visible: false, text: "", x: 0, y: 0 })
+  }
+/>
 
       </svg>
-
-      {/* Legend */}
-     {/* Legend */}
-<div className="flex justify-center gap-10 mt-4">
+    </div>
+    <div className="flex justify-center items-center gap-6 mt-2 w-full px-2">
   
   <div className="flex items-center gap-2">
-    <div className="w-3 h-3 aspect-square rounded-full bg-[#205073] flex-shrink-0" />
-    <span className="text-sm text-muted-foreground">
-      Principal ({principalPercentage.toFixed(1)}%)
+    <div className="w-3 h-3 rounded-sm bg-[#79f431] flex-shrink-0" />
+    <span className="text-xs text-muted-foreground whitespace-nowrap">
+      Total Interest
     </span>
   </div>
 
   <div className="flex items-center gap-2">
-    <div className="w-3 h-3 aspect-square rounded-full bg-[#79f431] flex-shrink-0" />
-    <span className="text-sm text-muted-foreground">
-      Interest {(100 - principalPercentage).toFixed(1)}%
+    <div className="w-3 h-3 rounded-sm bg-[#205073] flex-shrink-0" />
+    <span className="text-xs text-muted-foreground whitespace-nowrap">
+      Principal
     </span>
   </div>
 
 </div>
 
-    </motion.div>
-  );
+
+
+  </div>
+);
+
 };
 
 export default PieChart;

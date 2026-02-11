@@ -18,11 +18,11 @@ const ResultCard = ({
 }: ResultCardProps) => {
   return (
     <motion.div
-      className={`relative p-3 h-full w-full bg-white rounded-corners border border-[#d4d4d4] shadow-md overflow-hidden transition-all duration-300 ${
-        highlight 
-          ? 'glass-card ' 
-          : 'bg-secondary/50 '
-      }`}
+    
+  className={`relative p-5 h-full w-full bg-gray-200 rounded-corners border border-[#d4d4d4] shadow-md overflow-hidden transition-all duration-300 flex flex-col justify-end ${
+    highlight ? "glass-card " : "bg-secondary/50 "
+  }`}
+
       initial={{ opacity: 0, y: 20, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.4, delay }}
