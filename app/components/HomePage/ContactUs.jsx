@@ -3,20 +3,33 @@
 import { useState, useRef, useMemo, useEffect } from "react";
 import confetti from "canvas-confetti";
 import { Phone, Mail, MapPin, ChevronDown } from "lucide-react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
+import { useMap } from "react-leaflet";
 
 
 
-delete L.Icon.Default.prototype._getIconUrl;
+const MapContainer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.MapContainer),
+  { ssr: false }
+);
 
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl:
-    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-});
+const TileLayer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.TileLayer),
+  { ssr: false }
+);
+
+const Marker = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Marker),
+  { ssr: false }
+);
+
+const Popup = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Popup),
+  { ssr: false }
+);
+
+
 
 
 import Button from "../Button";
@@ -53,6 +66,7 @@ const FlyToLocation = ({ center, zoom }) => {
 
 
 
+
 const ContactUs = () => {
   const [submitting, setSubmitting] = useState(false);
 
@@ -76,6 +90,25 @@ const ContactUs = () => {
     fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
     fire(0.1, { spread: 120, startVelocity: 45 });
   };
+
+
+
+useEffect(() => {
+  (async () => {
+    const L = (await import("leaflet")).default;
+
+    delete L.Icon.Default.prototype._getIconUrl;
+
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl:
+        "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+      iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+      shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+    });
+  })();
+}, []);
+
+
 
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
