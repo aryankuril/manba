@@ -100,7 +100,7 @@ const SixthSection = () => {
           </div>
 
           {/* RIGHT SIDE STACK CARDS */}
-         <div className="w-full lg:w-1/2 relative flex flex-col gap-10">
+         <div className="w-full lg:w-1/2 relative flex flex-col ">
   {documentsData.map((section, index) => (
     <div
       key={index}
@@ -124,11 +124,11 @@ const SixthSection = () => {
           background:
             "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
         }}className=" text-white px-5 py-6 font-medium text-xl flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 lg:gap-4">
-           <TextAnimation>
+           {/* <TextAnimation> */}
           <h5 className="font-medium text-white">
             {section.title}
           </h5>
-</TextAnimation>
+{/* </TextAnimation> */}
           <span className="bg-white text-[#205073] text-xs font-semibold px-3 py-1 rounded-full w-fit whitespace-nowrap">
             {section.subtitle}
           </span>
