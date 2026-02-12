@@ -129,23 +129,31 @@ const [tooltip, setTooltip] = useState({
 
       </svg>
     </div>
-    <div className="flex justify-center items-center gap-6 mt-2 w-full px-2">
+<div className="flex justify-center items-center gap-6 mt-2 w-full px-2">
   
   <div className="flex items-center gap-2">
     <div className="w-3 h-3 rounded-sm bg-[#79f431] flex-shrink-0" />
-    <span className="text-xs text-muted-foreground whitespace-nowrap">
-      Total Interest
+    <span className="text-xs text-white whitespace-nowrap">
+      Total Interest 
+      <span className="ml-1 md:hidden text-white/80">
+        ({interestPercentage.toFixed(1)}%)
+      </span>
     </span>
   </div>
 
   <div className="flex items-center gap-2">
     <div className="w-3 h-3 rounded-sm bg-[#205073] flex-shrink-0" />
-    <span className="text-xs text-muted-foreground whitespace-nowrap">
-      Principal
+    <span className="text-xs text-white whitespace-nowrap">
+      Principal 
+      <span className="ml-1 md:hidden text-white/80">
+        ({principalPercentage.toFixed(1)}%)
+
+      </span>
     </span>
   </div>
 
 </div>
+
 
 
 

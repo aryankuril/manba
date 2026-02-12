@@ -171,15 +171,19 @@ const EMICalculator = () => {
 
             {/* ===================== RESULTS SECTION (ICICI STYLE) ===================== */}
            {/* ===================== RESULTS SECTION (FULL HEIGHT MATCH LEFT) ===================== */}
-<div className="w-full h-full bg-white rounded-2xl border border-[#d4d4d4] shadow-md overflow-hidden flex flex-col justify-between">
+<div  style={{
+          backgroundSize: "200% 100%",
+          background:
+            "linear-gradient(135deg, #205073 0%, #2fa7a0 55%, #329d9c 100%)",
+        }} className="w-full h-full rounded-2xl border border-[#d4d4d4] shadow-md overflow-hidden flex flex-col justify-between">
 
   {/* TOP EMI */}
   <div className="text-center px-5 py-5 border-b border-dashed border-gray-300">
-    <p className="body3 font-semibold text-gray-800">
+    <p className="body3 font-semibold text-white">
       Monthly EMI
     </p>
 
-    <h4 className="text-[22px] font-bold text-[#205073] leading-tight mt-1">
+    <h4 className="text-[22px] font-bold text-[#79f431] leading-tight mt-1">
       ₹ {calculations.emi.toLocaleString("en-IN")}
     </h4>
   </div>
@@ -189,24 +193,24 @@ const EMICalculator = () => {
     
     {/* Total Interest */}
     <div className="px-4 py-5 border-r border-dashed border-gray-300 flex flex-col justify-center">
-      <p className="body3 font-semibold text-gray-800">
+      <p className="body3 font-semibold text-white">
         Total Interest 
       </p>
 
-      <h4 className="text-[18px] font-bold text-[#205073] mt-2">
+      <h4 className="text-[18px] font-bold text-white mt-2">
         ₹ {calculations.totalInterest.toLocaleString("en-IN")}
       </h4>
     </div>
 
     {/* Total Payment */}
     <div className="px-4 py-5 flex flex-col justify-center">
-      <p className="body3 font-semibold text-gray-800">
+      <p className="body3 font-semibold text-white">
         Total Payment
       </p>
 
       {/* <p className="text-[10px] text-gray-400">(Principal + Interest)</p> */}
 
-      <h4 className="text-[18px] font-bold text-[#205073] mt-2">
+      <h4 className="text-[18px] font-bold text-white mt-2">
         ₹ {calculations.totalPayment.toLocaleString("en-IN")}
       </h4>
     </div>
@@ -215,7 +219,7 @@ const EMICalculator = () => {
 
   {/* PIE CHART TITLE */}
   <div className="text-center pt-4 pb-2">
-    <p className="body3 font-semibold text-gray-800">
+    <p className="body3 font-semibold text-white">
       Break-up of Total Payment
     </p>
   </div>
@@ -249,8 +253,8 @@ const EMICalculator = () => {
     </h5>
 
     <p className="body3 text-white mt-1">
-      Making sense of loans is hassle-free with Manba Finance's EMI Calculator.
-    </p>
+Get instant EMI details with
+Manba Finance.    </p>
   </div>
 
   {/* BUTTON */}
